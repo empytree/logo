@@ -1,0 +1,12 @@
+{
+  "version": "0.2.1",
+  "date": "2026-10-24",
+  "site": "http://empytree.com/",
+  "sourceCommit": "9145a47a0d1f5cfb998848d2e6646a66fdaf300f",
+  "faviconChoices": 288,
+  "compactMarks": 288,
+  "genericOpenDefaults": 144,
+  "frames": ["open", "closed"],
+  "verifiedInventoryFiles": 581,
+  "transport": "http"
+}

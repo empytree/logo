@@ -1,26 +1,29 @@
-# Initial publication and commit plan
+# Publication history and owner workflow
 
-[Русский README](../README.ru.md) · [Development history](development-history.md)
+[Development history](development-history.md) · [Current adoption](adoptions/0.2.1.md)
 
-The initial history should be factual. Do not backdate commits to manufacture a timestamp for earlier design work. The session's decisions are recorded in the development history; a Git commit created now is a current summary or snapshot of that work.
+All commits and pushes are performed by the owner. Dates and author identity remain factual; earlier design stages are not represented as backdated Git records.
 
-The owner creates all commits and performs all pushes. Preparation of files, snapshots and this plan does not authorize automated commits or publication.
+## Recorded public stages
 
-## Two initial commits
+| Commit | Result |
+| --- | --- |
+| `55e83a3` | Accepted first implementation, source geometry, generated assets and design/research documentation |
+| `7f9c791` | Public structure, English documentation, offline gallery, verification and pinned website-package export |
+| `dc036c3` | Actual first adoption record, 0.1.0 |
+| `de6460a` | Full musical generator and initial conservative micro filter, 0.2.0 |
+| `9145a47` | Author approval of every supported micro combination and compact-mark export, 0.2.1 |
 
-1. **`feat: establish the accepted empytree logo system`** — import the actual end-of-design snapshot: geometry, accepted policy, generated assets, 12 checks, Russian construction rules, optical comparisons, authorship and the first research/count reports. This is a complete recorded snapshot, not a claim that every earlier sketch already existed in Git.
-2. **`build: prepare public documentation and pinned website packages`** — add the public `empytree/logo` structure, English README/specification/usage/authorship, Russian navigation, standalone gallery, development and rollout records, pinned dependencies, verification workflow and the limited website-package exporter with tests.
+Version 0.2.1 is now deployed on empytree.com. The [record](adoptions/0.2.1.md) identifies its full public source SHA and public checks. Private consumer commits and infrastructure are not part of this history.
 
-Use the real commit date and the owner's actual configured author identity. The second commit is the first publication candidate for package version 0.1.0. A public release is not asserted until the owner creates it. Existing owner-created repository commits must be preserved rather than reset or replaced to force this plan.
+## Documentation refresh
 
-## Adoption commit after website rollout
+The current documentation change records the 0.2.1 adoption, replaces outdated summaries with the full family, puts an up-to-date image first in both READMEs, synchronizes current texts and labels historical comparisons. It changes no deployed geometry or selector behavior and needs no website re-export.
 
-The first rollout is now recorded in `docs/adoptions/0.1.0.md`. For the next owner-created history, commit that file alone as **`docs: record the first favicon adoption on empytree.com`**, then commit the remaining generator, resources and synchronized documentation as **`feat: add the musical generator and micro allowlist`**. Do not claim 0.2.0 adoption in either commit; it still requires its own source export and rollout.
+A suitable owner-created commit is `docs: refresh identity overview and current adoption`. Review the diff and generated sheets, then commit and push through the owner's normal workflow. No history reset or reconstructed earlier commits are needed.
 
-After the website actually adopts the released package, add a separate commit such as **`docs: record the first favicon adoption on empytree.com`**. Record the full public source commit, package version, date, scope and public validation. Never fill this record in advance or publish the private consumer's repository, internal commit identifiers or deployment details.
+Future drawing/runtime changes require a new version, pinned export, consumer rollout and a factual adoption record after the rollout.
 
-The next generator work and micro exclusion groups form a new release after that milestone. They must not be described as implemented by the initial two commits.
+## По-русски
 
-## Кратко по-русски
-
-Предлагаются два начальных коммита: реальный сохранённый результат проектирования и затем подготовка к публичному использованию с двуязычной документацией и дистрибутивом. Запись внедрения — отдельный последующий коммит после реального подключения на сайте. Журнал решений сохраняет историю разработки без искусственных дат. Все коммиты и push выполняет владелец. Окончательная политика прав требует отдельного решения владельца; этот документ её не устанавливает.
+Первые пять публичных этапов уже выполнены владельцем. Текущий changeset — актуальная документация, сводные изображения и запись внедрения 0.2.1. Его можно оформить одним коммитом документации. На сайте ничего повторно выкладывать не нужно: используемый SHA и графика сохраняются. Коммиты и push выполняет владелец.

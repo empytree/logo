@@ -2,7 +2,7 @@
 
 [Русский](../generator.md) · [Offline generator](../../examples/generator.html) · [First adoption](../adoptions/0.1.0.md)
 
-Version **0.2.1** implements the author's acceptance of **every supported 16 px combination**. Confirmed website adoption still refers to 0.1.0 until the next rollout is recorded. The published 0.2.0 source contained a stricter automatic filter; the author has superseded that decision. Geometry is unchanged.
+Version **0.2.1** implements the author's acceptance of **every supported 16 px combination**. Version 0.2.1 is [deployed](../adoptions/0.2.1.md): all 288 favicon choices and independent compact breadcrumb marks are in use. The published 0.2.0 source contained a stricter automatic filter; the author has superseded that decision. Geometry is unchanged.
 
 ## Independent parts
 

@@ -18,7 +18,7 @@ async function save(name, svg) {
   await writeFile(new URL(`${name}.svg`, destination), svg);
   await sharp(Buffer.from(svg)).png().toFile(fileURLToPath(new URL(`${name}.png`, destination)));
 }
-const dentSheet = [start(1440, 1260), text(64, 62, 'Вмятины: увеличенная, промежуточная и от углов', 26), text(64, 103, 'Глаза и неровный стык одинаковы · у всех трёх профилей одна глубина', 18)];
+const dentSheet = [start(1440, 1260), text(64, 62, 'История конструкции: три профиля вмятин', 26), text(64, 103, 'Глаза и неровный стык одинаковы · у всех трёх профилей одна глубина', 18)];
 const dentCases = [{mouth:'flat', dent:'left', label:'Прямой рот · вмятина слева'}, {mouth:'corner-left', dent:'both', label:'Левый угол · две вмятины'}, {mouth:'down', dent:'right', label:'Треугольник · вмятина справа'}];
 for (const [col, dentProfile] of dentProfiles.entries()) {
   const x = 80 + col * 456;
@@ -40,7 +40,7 @@ for (const [col, dentProfile] of dentProfiles.entries()) {
 dentSheet.push(text(64, 1218, 'Утверждена пологая промежуточная вмятина. Остальные профили — история сравнения.', 18), '</svg>');
 await save('dent-comparison', dentSheet.join(''));
 
-const joinSheet = [start(1440, 1200), text(64, 64, 'Стык головки и штиля: характер или гладкость', 26), text(64, 103, 'Слева — сохранённый вариант; справа — локальное сглаживание без переноса головок', 18), text(64, 165, 'ЗАМЕТНЫЙ СТЫК · СОХРАНЯЕМ', 20), text(760, 165, 'АККУРАТНЫЙ · ТОЛЬКО СРАВНЕНИЕ', 20)];
+const joinSheet = [start(1440, 1200), text(64, 64, 'История конструкции: неровный стык утверждён', 26), text(64, 103, 'Слева — сохранённый вариант; справа — локальное сглаживание без переноса головок', 18), text(64, 165, 'ЗАМЕТНЫЙ СТЫК · СОХРАНЯЕМ', 20), text(760, 165, 'АККУРАТНЫЙ · ТОЛЬКО СРАВНЕНИЕ', 20)];
 const jointCases = [{family:'arrows', mouth:'flat', label:'Ноты-стрелки'}, {family:'beam', mouth:'flat', label:'Связанная пара'}, {family:'rest8', mouth:'flat', label:'Раздельные восьмые · этюд'}];
 for (const [row, options] of jointCases.entries()) {
   const y = 214 + row * 290;
@@ -57,7 +57,7 @@ await save('joint-comparison', joinSheet.join(''));
 console.log('Built review-only comparisons for dent profiles and note joints.');
 
 // Actual 16 px rasters and nearest-neighbour enlargements: no synthetic vector zoom.
-const microSheet=[start(1440,940),text(64,60,'16 px: чуть меньшие головки и зазор у левой вмятины',26),text(64,100,'Рамка, стрелки, штили и положение рта не менялись · слева в паре было, справа стало',18)];
+const microSheet=[start(1440,940),text(64,60,'История micro: уменьшение головок нот',26),text(64,100,'Рамка, стрелки, штили и положение рта не менялись · слева в паре было, справа стало',18)];
 for(const [col,dentProfile] of dentProfiles.entries()){
   const x=64+col*456;microSheet.push(text(x,160,dentProfileLabels[dentProfile],21));
   for(const [row,dent] of ['left','both'].entries()){

@@ -1,5 +1,7 @@
 # История решений
 
+Текущее состояние — [внедрённая 0.2.1](adoptions/0.2.1.md). Ниже этапы перечислены в порядке разработки; прежние кандидаты и ограничения описывают свой исторический момент.
+
 Зафиксировано 24 октября 2026. Это ретроспективный журнал разработки в диалоге, а не утверждение, что каждый этап уже был отдельным Git-коммитом. Коммиты при переносе создаются с фактическими датами; промежуточные состояния не выдаются за существовавшие публичные релизы.
 
 | Этап | Решение |
@@ -16,7 +18,7 @@
 
 Подробности геометрии и границы исследования находятся в [спецификации](logo-system.md) и [исследовании аналогий](research/image-analogies.md). Следующий реальный этап — [внедрение 0.1.0](adoptions/0.1.0.md), выполненное владельцем и проверенное по публичным HTTP-ресурсам.
 
-## Развитие после первого внедрения
+## 0.2.0: развитие после первого внедрения
 
 Полный генератор реализует четыре независимых верха, девять ртов и четыре состояния боков: 432 display-выражения, по 288 кандидатов compact/micro. Новая матрица отделена от стабильного первого API. Утверждённые исходные силуэты не изменены. Вариант `mixed` и половинная пауза добавлены по исходному плану.
 
@@ -24,7 +26,7 @@
 
 Подготовлены самостоятельная страница генератора, CLI, русские и английские правила и следующий пакет 0.2.0. Это кандидат; его внедрение не следует из внедрения 0.1.0 и требует отдельного коммита, экспорта и обновления сайта.
 
-## Development summary
+## 0.2.0 stage summary
 
 The author accepted the irregular joint and intermediate shallow dent. Version 0.1.0 was subsequently adopted and publicly verified over HTTP. The next 0.2.0 candidate implements the full independent musical matrix and a conservative micro allowlist: 40 open/closed choices, 20 open by default. Requiring separation at all three densities reduced an initial 50-choice candidate set to 40. The original silhouettes remain unchanged. The next website adoption is a separate milestone.
 
@@ -33,3 +35,9 @@ The author accepted the irregular joint and intermediate shallow dent. Version 0
 После публикации генератора автор просмотрел варианты и однозначно разрешил использовать все сочетания 16 px. Редакция политики 2 и версия 0.2.1 сохраняют геометрию, но отменяют автоматические запреты. Все 288 открытых/закрытых сочетаний доступны; 144 открытых составляют общий пул по умолчанию. Старые зазоры, детали пауз и совпадения растров сохранены как наблюдения. Добавлен экспорт компактных SVG для случайной ссылки на главную в хлебных крошках.
 
 The author approved every supported 16 px combination. Policy revision 2 removes automatic exclusions without redrawing geometry; measurements remain advisory. The 0.2.1 consumer package adds compact marks for breadcrumb home links.
+
+## Внедрение 0.2.1 и актуальное представление
+
+Владелец опубликовал и внедрил 0.2.1. Публично подтверждены 288 favicon, компактный Home на jugbeat, оба режима JavaScript и все 581 SHA-256. Затем README и сводные изображения обновлены до действующей семьи: четыре крупных разных верха/рта, девять ртов, стороны/рамки и настоящие ICO-пиксели. Сравнения профилей и стыков сохранены как история. Правки документации не заменяют внедрённый исходный SHA и не требуют новой выкладки сайта.
+
+Version 0.2.1 is deployed and publicly verified. The documentation refresh presents the current family while preserving the original geometry, deployed package and historical research.

@@ -6,7 +6,7 @@ const count=groups=>groups.reduce((rows,group)=>rows.flatMap(row=>group.map(item
 const report={
   status:'implemented full matrix; all supported micro combinations author-approved; advisory measurements',
   dimensions:{eyes:eyes.length,mouths:mouthKinds.length,sides:dents.length},
-  current:{default:count([['arrows'],mouths,dents,['open']]),withClosed:count([['arrows'],mouths,dents,['open','closed']])},
+  firstImplementation:{default:count([['arrows'],mouths,dents,['open']]),withClosed:count([['arrows'],mouths,dents,['open','closed']])},
   matrix:{oneFrame:count([eyes,mouthKinds,dents,['open']]),openAndClosed:count([eyes,mouthKinds,dents,['open','closed']]),displayWithCrease:count([eyes,mouthKinds,dents,['open','closed','crease']])},
   micro:{allowed:catalog.counts.microAllowed,excluded:catalog.counts.microExcluded,defaultOpen:catalog.counts.websitePool,policyRevision:catalog.microPolicyRevision},
   fixed:['from-inset dent profile','character joint'],

@@ -5,7 +5,7 @@
     "mouths": 9,
     "sides": 4
   },
-  "current": {
+  "firstImplementation": {
     "default": 24,
     "withClosed": 48
   },

@@ -12,7 +12,7 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "build": "node tools/build.mjs && node tools/build-system.mjs && node tools/build-generator.mjs",
+    "build": "node tools/build.mjs && node tools/build-system.mjs && node tools/build-generator.mjs && node tools/build-docs.mjs",
     "check": "node --test tools/check.test.mjs tools/site-package.test.mjs tools/gallery.test.mjs tools/system.test.mjs",
     "audit:docs": "node tools/count-variants.mjs && node tools/audit-docs.mjs",
     "research:examples": "node tools/research-examples.mjs",

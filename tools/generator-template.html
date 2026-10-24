@@ -38,7 +38,7 @@
   <div id="grid" class="grid"></div>
 </section>
 </main>
-<footer>Offline, no external fonts or services. <a href="../README.md">Documentation</a> · <a href="index.html">First edition</a> · New drawings are release candidates; website adoption is recorded separately.</footer>
+<footer>Offline, no external fonts or services. <a href="../README.md">Documentation</a> · <a href="index.html">First edition</a> · <a href="../docs/adoptions/__ADOPTED_VERSION__.md">Deployed on empytree.com</a>.</footer>
 <script>
 (()=>{
   const data=__GENERATOR_DATA__;
@@ -82,7 +82,7 @@
   $('download').addEventListener('click',()=>{const entry=current();if(!entry||!entry.allowed)return;const url=URL.createObjectURL(new Blob([svg(entry)],{type:'image/svg+xml'}));const anchor=document.createElement('a');anchor.href=url;anchor.download=entry.id+'-'+entry.optical+'.svg';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
   $('permalink').addEventListener('click',()=>{const value=new URLSearchParams(controls.map(c=>[c,$(c).value]));location.hash=value.toString()});
   const saved=new URLSearchParams(location.hash.slice(1));for(const control of controls){const value=saved.get(control);if(value&&Array.from($(control).options).some(o=>o.value===value))$(control).value=value}
-  const counts=data.counts;for(const [value,label] of [[432,'display expressions'],[288,'compact candidates'],[counts.microAllowed,'eligible micro expressions'],[counts.websitePool,'open-frame favicon choices']]){const item=document.createElement('div');const strong=document.createElement('strong');strong.textContent=value;const caption=document.createElement('span');caption.textContent=label;item.append(strong,caption);$('counts').appendChild(item)}
+  const counts=data.counts;for(const [value,label] of [[432,'display expressions'],[288,'compact expressions'],[counts.microAllowed,'approved micro expressions'],[counts.websitePool,'generic open-frame defaults']]){const item=document.createElement('div');const strong=document.createElement('strong');strong.textContent=value;const caption=document.createElement('span');caption.textContent=label;item.append(strong,caption);$('counts').appendChild(item)}
   render();
 })();
 </script>

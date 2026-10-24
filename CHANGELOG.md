@@ -1,11 +1,18 @@
 # Changelog
 
-## 0.2.1 — release candidate
+## Documentation refresh — 2026-10-24
+
+- Image-first English/Russian READMEs and current full-family overview sheets.
+- Twelve-expression native ICO sheet, side-state sheet and explicit historical-study labels.
+- All current texts describe deployed 0.2.1; source geometry and website runtime remain unchanged.
+
+
+## 0.2.1 — adopted on 2026-10-24
 
 - Author approval supersedes automatic micro exclusions: 288 usable open/closed combinations, 144 open defaults.
 - Geometry remains unchanged; optical reports and the history of revision 1 remain advisory.
 - Consumer schema 3 exports 288 ICOs and 288 compact SVGs with a markPool for breadcrumb home links.
-- Synchronized RU/EN rules, browser generator and tests. Website adoption of this version is pending.
+- Synchronized RU/EN rules, browser generator and tests. Website adoption is [recorded](docs/adoptions/0.2.1.md): full 288-choice favicons and compact breadcrumb home marks.
 
 ## 0.2.0 — published source, not adopted
 
@@ -15,7 +22,7 @@
 - Allowlist-based selector and next website package. Original approved geometry remains unchanged.
 - English/Russian generator documentation and a factual first-adoption record.
 
-This candidate is not yet adopted on the website.
+Version 0.2.0 was not deployed; the author-approved 0.2.1 replaced it for the next website adoption.
 
 ## 0.1.0 — published and adopted on 2026-10-24
 

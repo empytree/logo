@@ -1,52 +1,52 @@
-# empytree / personal mark system
+![empytree — the current mark system, four eye pairs and nine mouths](docs/brand/overview.png)
 
-[Русский](README.ru.md) · [Construction rules](docs/en/logo-system.md) · [Full generator](examples/generator.html) · [First-edition gallery](examples/index.html)
+# empytree
 
-Quiet music from a crumpled box. A personal mark for **empytree**: note-like eyes also suggest upward arrows, a geometric mouth, and an open square with controlled side dents.
+[Русский](README.ru.md) · [Generator](examples/generator.html) · [Construction](docs/en/logo-system.md) · [Use on a website](docs/en/usage.md)
 
-![The current family](docs/brand/dented-sides.png)
+**Quiet music from a crumpled box.** A personal mark system by **Sergei Parfenov · empytree**. Note-like eyes, a changing mouth and a square with shallow dents keep one character across many expressions. The uneven notehead-to-stem joint is deliberate.
 
-The accepted construction uses intermediate shallow dents (`from-inset`), the deliberately irregular notehead-to-stem joint (`character`), and a separate micro drawing with slightly smaller heads for 16 px. The canonical face has a straight mouth, open top and undented sides. Other side profiles and the smooth joint are historical studies.
+**Version 0.2.1 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.2.1.md).
 
-The adopted 0.1.0 website pool is **24 combinations**: six mouths × four side states, open frame. Optional closed frames bring the available first-version pool to 48. Version 0.2.1 implements the full matrix: 144 combinations per fixed frame, 288 open/closed candidates and 432 display expressions including the top crease. The author approves all 288 open/closed micro combinations; 144 open-frame choices form the generic default pool. Optical measurements are advisory. See the [generator specification](docs/en/generator.md). These counts do not certify perceptual distinctness.
+## The system
 
-## Build and inspect
+| Part | Choices |
+| --- | --- |
+| Eyes | Note arrows; beamed notes; separate eighths; partial beam plus a flag |
+| Mouth | Six lines/wedges/triangles, plus eighth, quarter and half rests |
+| Sides | Straight, left dent, right dent, both dents |
+| Frame | Open or closed; an additional top crease for display sizes |
 
-Use Node.js 24 and the committed lockfile:
+Four eye pairs × nine mouths × four side states give **144** expressions per frame, **288** with open/closed frames and **432** in display with the top-crease frame. The author approves every supported 16 px combination. Optical measurements remain advisory and do not exclude faces. The generic selector defaults to 144 open-frame choices; the site explicitly enables both frames.
+
+The canonical face is `arrows / flat / open / none`. Fixed features are the intermediate shallow dent profile, irregular joint and slightly reduced micro noteheads. There are three optical drawings: micro for 16–20 CSS px, compact for 21–63, display from 64. Formats and pixel densities do not multiply the face count.
+
+## Explore and build
+
+Open [the generator](examples/generator.html) directly in a browser: choose parts, inspect real 16 px rasters and download SVGs. It works offline. The [pixel sheet](docs/brand/pixel-check.png) compares twelve expressions at 1×/2×/3×; open the original image for native-pixel inspection.
+
+Use Node.js 24:
 
 ```sh
 npm ci
-npm run build
-npm run research:examples
-npm run audit:docs
-npm run check
+npm run verify
+npm run generate -- --eyes mixed --mouth rest2 --dent left --size 128 --output .local/mark.svg
 ```
 
-Open [examples/generator.html](examples/generator.html) directly in a browser; the first-edition gallery remains at [examples/index.html](examples/index.html). It is self-contained and needs no API, server or ChatGPT host. The historical catalog is in `public/brand/v1/`; the independent musical catalog and micro allowlist are in `public/brand/v2/`. Node and Sharp are build dependencies; a consuming website needs only the exported static files and the selector script.
+Current resources are in `public/brand/v2/`. `public/brand/v1/` and the [first-edition gallery](examples/index.html) preserve the earlier implementation. Website consumers receive a pinned static package; Node and Sharp are build tools, not server requirements. [Export and integration](docs/en/usage.md).
 
 ## Documentation
 
-- [Construction and diversity — English](docs/en/logo-system.md), [Русский](docs/logo-system.md)
-- [Build, algorithm and website adoption](docs/en/usage.md)
+- [Construction — English](docs/en/logo-system.md), [Русский](docs/logo-system.md)
+- [Generator and author-approved micro policy — English](docs/en/generator.md), [Русский](docs/generator.md)
+- [Website integration and breadcrumbs](docs/en/usage.md)
+- [Current visual sheets and historical comparisons](docs/brand/README.md)
+- [Combination counts](docs/variation-space.md), [development history](docs/development-history.md), [next steps](docs/roadmap.md)
 - [Authorship — English](AUTHORSHIP.en.md), [Русский](AUTHORSHIP.md)
-- [Development decisions](docs/development-history.md), [rollout roadmap](docs/roadmap.md)
-- [Full generator, author approval and compact marks](docs/en/generator.md), [Русский](docs/generator.md)
-- [Combination count](docs/variation-space.md)
-- [Recorded website adoption — 0.1.0](docs/adoptions/0.1.0.md)
-- [Image analogy research and its limitations](docs/research/image-analogies.md)
-- [Rights and publication research](docs/rights-and-publication.md)
-- [Documentation audit](docs/documentation-audit.md)
+- [Image analogy research](docs/research/image-analogies.md), [rights/publication research](docs/rights-and-publication.md)
 
-Research and detailed historical records are currently in Russian; the English specification and authorship record cover the accepted state. Legal-policy drafts have not become an adopted bilingual license.
+## Authorship and use
 
-See the [language policy](docs/languages.md) and [initial commit plan](docs/commit-plan.md).
+Concept, original sketch and art direction: **empytree**. Vector implementation, generation and documentation were prepared with AI assistance under the author's direction. [Provenance](AUTHORSHIP.en.md).
 
-## Website consumer
-
-This repository is separate from the website. Version 0.1.0 is [adopted](docs/adoptions/0.1.0.md) with 24 static favicon choices. Version 0.2.1 is the next candidate, with 144 open-frame defaults, 288 approved open/closed choices and compact SVGs for breadcrumbs. The browser chooses one per load and does not fetch executable code from GitHub. See the [adoption contract](docs/en/usage.md); adoption of 0.2.1 is pending.
-
-## Rights
-
-Concept, supplied sketch and art direction: **empytree**, [empytree.com](http://empytree.com/). Implementation was prepared with AI assistance under the author's direction. The [provenance record](AUTHORSHIP.en.md) distinguishes this from an authorship or trademark-registration guarantee.
-
-The project is not currently declared open source. No blanket MIT or other reuse license has been selected. Public visibility and ordinary GitHub forks do not themselves grant a separate right to adopt this personal mark as another brand. The `private` package setting prevents accidental npm publication; it does not mean the GitHub repository must be private.
+This is a personal identity, not an invitation to adopt the mark as another brand. No blanket reuse license has been selected; the project is not declared open source. Public visibility and ordinary GitHub forks do not themselves supply a separate brand-use license. [Rights and publication](docs/rights-and-publication.md).

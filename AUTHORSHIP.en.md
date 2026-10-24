@@ -1,15 +1,17 @@
 # empytree — authorship and provenance
 
-[Русский текст](AUTHORSHIP.md) · [README](README.md)
+[Русский](AUTHORSHIP.md) · [README](README.md)
 
-Accepted construction recorded on 24 October 2026. This is a development record; no earlier public release is asserted.
+Original concept, supplied sketch and art direction: **Sergei Parfenov (Сергей Парфёнов), known as empytree**. Related public identities: [empytree.com](http://empytree.com/) and [github.com/empytree](https://github.com/empytree). This system is published as [empytree/logo](https://github.com/empytree/logo). [jugbeat](https://github.com/empytree/jugbeat) is a separate project by the same author, not a mark-system dependency.
 
-Original concept, supplied sketch and art direction: **empytree**. Related personal site: [empytree.com](http://empytree.com/). Public account: [github.com/empytree](https://github.com/empytree). The existing [jugbeat project](https://github.com/empytree/jugbeat) is background context for the account, not a dependency of this repository.
+Development decisions were recorded on 24 October 2026. The owner published the source and adopted first 0.1.0, then [0.2.1](docs/adoptions/0.2.1.md). Adoption records identify actual public source commits and resources; earlier discussion dates are not represented as pre-existing Git commits.
 
-The concept combines a quiet face, musical notes, “this side up” arrows and a crumpled box. The author selected the changing mouths, open frame, irregular note joints, intermediate shallow side dents and micro-size refinement. The accepted policy is `from-inset` + `character`; the larger musical generator remains planned work.
+The concept is quiet music from a crumpled box. Note-like eyes also suggest “this side up” arrows; a changing mouth and square frame preserve the character. The author selected changing expressions, open framing, irregular note joints, intermediate shallow dents, micro head refinement and independent musical parts.
 
-Vector implementation, generator, exports and documentation were prepared with AI assistance under empytree's sketches, instructions and iterative creative decisions. AI is not claimed as a co-author. This record does not guarantee that every element or automated output is copyrightable in every jurisdiction.
+Current decisions are `from-inset` dents, `character` joints, micro head scaling 0.88 × 0.96, four eye pairs, nine mouths and open/closed small frames with a further display-only crease. The author approves all 288 supported 16 px combinations. Measurements are advisory, not automatic exclusions.
 
-Preserve sketches, intermediate files and the actual development history. A later series of repository commits summarizes that history; it is not presented as contemporaneous Git records of every session step. Publication dates and signatures must be factual.
+Vector implementation, generator, exports, integration examples and documentation were prepared with AI assistance under the author's sketch, instructions and iterative creative decisions. AI is not claimed as a co-author. This describes the process and does not guarantee that each element or automated result is copyrightable in every jurisdiction.
 
-Attribution, permitted use and trademark registration are separate matters. A domain or repository is not a trademark registration. Licensing has not been finalized; public visibility and GitHub forks do not in themselves grant a separate right to adopt this personal mark as another brand. The [Russian rights review](docs/rights-and-publication.md) contains research and proposed wording, not an automatically adopted license.
+Preserve sketches, intermediate material, actual Git history and the [decision journal](docs/development-history.md). Analogy research followed development; third-party marks were neither drawing sources nor included in graphic assets.
+
+Authorship, licensing and trademark registration are separate matters. A domain or repository is not a trademark registration. No blanket reuse license has been selected. The [rights review](docs/rights-and-publication.md) contains research and proposed wording rather than an automatically adopted policy.

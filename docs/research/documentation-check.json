@@ -1,7 +1,7 @@
 {
   "date": "2026-10-24",
-  "markdownFiles": 19,
-  "localLinks": 122,
+  "markdownFiles": 21,
+  "localLinks": 149,
   "missingLinks": 0,
   "construction": {
     "dentProfile": "from-inset",
@@ -9,8 +9,12 @@
     "microHeadScaleX": 0.88,
     "microHeadScaleY": 0.96
   },
-  "adoptedChoices": 24,
-  "nextChoices": 144,
+  "systemVersion": "0.2.1",
+  "adoptedVersion": "0.2.1",
+  "adoptedSource": "9145a47a0d1f5cfb998848d2e6646a66fdaf300f",
+  "adoptedChoices": 288,
+  "genericOpenDefaults": 144,
+  "firstImplementationChoices": 24,
   "matrix": {
     "oneFrame": 144,
     "openAndClosed": 288,

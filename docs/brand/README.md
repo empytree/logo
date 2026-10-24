@@ -1,0 +1,29 @@
+# Visual sheets / Сводные изображения
+
+[README](../../README.md) · [Правила](../logo-system.md) · [Generator](../../examples/generator.html)
+
+Current system: **0.2.1**, construction 1.3, micro approval 2. All supported 16 px combinations are usable. The overview starts the English and Russian READMEs; the remaining sheets serve closer inspection.
+
+| Current sheet | What it shows |
+| --- | --- |
+| [overview.png](overview.png), [русская версия](overview-ru.png) | Four large, deliberately different eye/mouth examples; all nine mouths; side/frame states; optical drawings; current usage |
+| [dented-sides.png](dented-sides.png) | Four current eye families × four side states; only the frame changes within each column |
+| [pixel-check.png](pixel-check.png) | Twelve distinct examples; real 16/32/48 physical-pixel ICO layers and nearest-neighbour enlargements |
+| [matrix-display.png](matrix-display.png) | Four eye pairs × nine mouths, with a fixed open frame and straight sides |
+| [matrix-micro.png](matrix-micro.png) | 144 open-frame combinations at native 16 px and enlarged pixels; all are approved |
+| [hero.png](hero.png) | Canonical large face: arrows / flat / open / none |
+
+SVG sources accompany the overview, side and pixel sheets. `tools/build-docs.mjs` builds current presentation sheets from `renderMark()` and exported ICO bytes; `tools/build-system.mjs` builds the full matrices. `npm run build` rebuilds them all. The four overview examples deliberately vary eyes, mouth, frame and sides rather than only the mouth.
+
+Pixel dimensions describe the source image. GitHub or a browser may scale a whole sheet down; open the original image at 100% to inspect native pixels. Enlargements use nearest-neighbour resampling. Logo drawings have no font dependency; explanatory sheet text uses installed fonts and may vary slightly between rendering environments.
+
+## Construction history / История конструкции
+
+The following are **historical comparisons**, not additional current choices:
+
+- [dent-comparison.png](dent-comparison.png): three studied dent profiles; `from-inset` was chosen.
+- [joint-comparison.png](joint-comparison.png): irregular and clean joints; `character` was chosen.
+- [micro-head-comparison.png](micro-head-comparison.png): head sizes before/after refinement, also showing discarded dent profiles for comparison.
+- `review/`: individual study SVGs. They do not enter a runtime pool.
+
+Исторические сравнения сохранены, поскольку объясняют решения автора. Они подписаны как история и не предлагают заново выбирать профиль или стык. Поисковые образцы в `docs/research/examples/` — отдельный датированный материал исследования, а не актуальная обложка системы.
