@@ -121,3 +121,4 @@ dentSheet.push(text(64, 1190, 'Вмятина ограничена середи�
 await writeFile(path.join(preview, 'dented-sides.svg'), dentSheet.join(''));
 await sharp(Buffer.from(dentSheet.join(''))).png().toFile(path.join(preview, 'dented-sides.png'));
 await import('./comparisons.mjs');
+await import('./build-gallery.mjs');

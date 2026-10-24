@@ -1,12 +1,18 @@
 {
-  "name": "empytree-logo-system",
+  "name": "@empytree/logo",
+  "version": "0.1.0",
+  "description": "The personal mark system of empytree: construction, optical variants and controlled diversity.",
   "private": true,
   "type": "module",
+  "repository": { "type": "git", "url": "https://github.com/empytree/logo.git" },
+  "engines": { "node": ">=24 <25" },
   "scripts": {
     "build": "node tools/build.mjs",
-    "check": "node --test tools/check.test.mjs",
+    "check": "node --test tools/check.test.mjs tools/site-package.test.mjs tools/gallery.test.mjs",
     "audit:docs": "node tools/count-variants.mjs && node tools/audit-docs.mjs",
-    "research:examples": "node tools/research-examples.mjs"
+    "research:examples": "node tools/research-examples.mjs",
+    "export:site": "node tools/export-site.mjs",
+    "verify": "npm run build && npm run research:examples && npm run audit:docs && npm run check"
   },
   "devDependencies": {
     "sharp": "0.35.5"

@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { identityConfig } from './identity-config.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const reportTarget=path.join(root,'docs/research/documentation-check.json');
-async function walk(directory){const result=[];for(const item of await readdir(directory,{withFileTypes:true})){const name=path.join(directory,item.name);if(item.isDirectory())result.push(...await walk(name));else if(item.name.endsWith('.md'))result.push(name)}return result}
+async function walk(directory){const result=[];for(const item of await readdir(directory,{withFileTypes:true})){if(['node_modules','.git','dist','.local'].includes(item.name))continue;const name=path.join(directory,item.name);if(item.isDirectory())result.push(...await walk(name));else if(item.name.endsWith('.md'))result.push(name)}return result}
 const files=await walk(root);let localLinks=0;const missing=[];
 for(const file of files){
   const source=(await readFile(file,'utf8')).replace(/```[\s\S]*?```/g,'');

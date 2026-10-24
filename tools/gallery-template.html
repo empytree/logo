@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>empytree — personal mark system</title>
+<style>
+  :root{color-scheme:light dark;font:16px/1.5 system-ui,sans-serif;color:light-dark(#20211f,#f5f4ef);background:light-dark(#f5f4ef,#20211f)}
+  body{max-width:1000px;margin:0 auto;padding:28px 20px}h1{font-size:1.5rem}h2{font-size:1.1rem}a{color:inherit}
+  .controls{display:flex;gap:16px;flex-wrap:wrap;align-items:end}label{display:grid;gap:4px}select,button{font:inherit;padding:8px;color:inherit;background:transparent;border:1px solid currentColor;border-radius:3px}
+  .hero{display:flex;justify-content:center;margin:32px 0}.hero svg{width:192px;height:192px}
+  .sizes{display:flex;align-items:end;justify-content:center;gap:24px;flex-wrap:wrap}.size{display:grid;justify-items:center;gap:8px}.size small{font-size:.8rem}
+  .faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:18px;margin-top:20px}.face{display:grid;justify-items:center;gap:8px;text-align:center}.face svg{width:76px;height:76px}.face small{font-size:.75rem}
+  .meta{font-size:.9rem;opacity:.85}button{cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+  @media(pointer:coarse){button,select{min-height:44px}}@media(max-width:420px){.controls{display:grid;grid-template-columns:1fr}.controls label{min-width:0}.hero svg{width:160px;height:160px}}
+</style>
+<header>
+  <h1>empytree / personal mark system</h1>
+  <p>Quiet music from a crumpled box.</p>
+  <p class="meta">Accepted construction: intermediate shallow dents, irregular note joints. <a href="../README.md">Documentation</a></p>
+</header>
+<main>
+  <div class="controls">
+    <label>Mouth<select id="mouth"></select></label>
+    <label>Sides<select id="dent"></select></label>
+    <label>Top<select id="frame"><option value="open">Open</option><option value="closed">Closed</option></select></label>
+    <button id="random" type="button">Another expression</button>
+  </div>
+  <div id="hero" class="hero"></div>
+  <div id="sizes" class="sizes" aria-label="Actual optical sizes"></div>
+  <p id="status" class="meta" aria-live="polite"></p>
+  <h2>The limited website pool</h2>
+  <p class="meta">24 combinations: six mouths × four side states, open top. Click an example to inspect it.</p>
+  <div id="faces" class="faces"></div>
+</main>
+<script>
+(()=>{
+  const data=__GALLERY_DATA__;
+  const names={flat:'Straight',rise:'Rising /',fall:'Falling \\', 'corner-left':'Left wedge','corner-right':'Right wedge',down:'Down triangle',none:'Straight sides',left:'Left dent',right:'Right dent',both:'Both dents'};
+  const mouth=document.getElementById('mouth'),dent=document.getElementById('dent'),frame=document.getElementById('frame');
+  for(const [select,values] of [[mouth,data.mouths],[dent,data.dents]])for(const value of values){const option=document.createElement('option');option.value=value;option.textContent=names[value];select.appendChild(option)}
+  const key=(m,d,f,o)=>[m,d,f,o].join(':');
+  function render(){
+    const m=mouth.value,d=dent.value,f=frame.value;document.getElementById('hero').innerHTML=data.marks[key(m,d,f,'display')];
+    const sizes=document.getElementById('sizes');sizes.replaceChildren();
+    for(const size of [16,24,32,48,64,96]){const figure=document.createElement('div');figure.className='size';const optical=size<=20?'micro':size<64?'compact':'display';figure.innerHTML=data.marks[key(m,d,f,optical)];figure.querySelector('svg').setAttribute('width',size);figure.querySelector('svg').setAttribute('height',size);const label=document.createElement('small');label.textContent=size+' px';figure.appendChild(label);sizes.appendChild(figure)}
+    document.getElementById('status').textContent=names[m]+' · '+names[d]+' · '+f+' top';
+  }
+  for(const select of [mouth,dent,frame])select.addEventListener('change',render);
+  const choices=[];for(const m of data.mouths)for(const d of data.dents)choices.push([m,d]);
+  document.getElementById('random').addEventListener('click',()=>{const candidates=choices.filter(([m,d])=>m!==mouth.value||d!==dent.value);const [m,d]=candidates[Math.floor(Math.random()*candidates.length)];mouth.value=m;dent.value=d;render()});
+  const faces=document.getElementById('faces');for(const [m,d] of choices){const button=document.createElement('button');button.className='face';button.type='button';button.innerHTML=data.marks[key(m,d,'open','display')];const label=document.createElement('small');label.textContent=names[m]+' · '+names[d];button.appendChild(label);button.addEventListener('click',()=>{mouth.value=m;dent.value=d;frame.value='open';render()});faces.appendChild(button)}
+  render();
+})();
+</script>
+</html>
