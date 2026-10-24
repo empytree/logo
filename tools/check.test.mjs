@@ -72,7 +72,7 @@ test('micro flat mouth and one-pixel frame stay solid; all six expressions diffe
   for (let x = 1; x < 15; x++) assert.deepEqual(pixel(x, 14), [32, 33, 31]);
   for (const xy of [[0, 0], [7, 1], [8, 1], [7, 11], [7, 13]]) assert.deepEqual(pixel(...xy), [255, 255, 255]);
 });
-test('all geometric variants and dents are self-contained; music extensions remain future scope', () => {
+test('legacy geometry remains self-contained; historical musical studies stay display-only', () => {
   for (const dent of dents) for (const optical of ['micro', 'compact', 'display']) for (const frame of frames) for (const mouth of mouths) {
     const svg = mark({ optical, frame, mouth, dent });
     assert.doesNotMatch(svg, /<script|<image|<text|<foreignObject|url\(/i);

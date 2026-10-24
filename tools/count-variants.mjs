@@ -1,13 +1,14 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { mouths, dents } from './geometry.mjs';
-const eyes=['arrows','beamed-pair','separate-eighths','partial-beam-and-flag'];
-const futureMouths=[...mouths,'rest-eighth','rest-quarter','rest-half'];
+import { eyePairs as eyes,mouthKinds } from './system.mjs';
+const catalog=JSON.parse(await readFile(new URL('../public/brand/v2/variants.json',import.meta.url),'utf8'));
 const count=groups=>groups.reduce((rows,group)=>rows.flatMap(row=>group.map(item=>[...row,item])),[[]]).length;
 const report={
-  status:'theoretical future parameter combinations, not validated 16px silhouettes',
-  dimensions:{eyes:eyes.length,mouths:futureMouths.length,sides:dents.length},
+  status:'implemented full matrix; conservative micro allowlist; next release candidate',
+  dimensions:{eyes:eyes.length,mouths:mouthKinds.length,sides:dents.length},
   current:{default:count([['arrows'],mouths,dents,['open']]),withClosed:count([['arrows'],mouths,dents,['open','closed']])},
-  future:{oneFrame:count([eyes,futureMouths,dents,['open']]),openAndClosed:count([eyes,futureMouths,dents,['open','closed']]),displayWithCrease:count([eyes,futureMouths,dents,['open','closed','crease']])},
+  matrix:{oneFrame:count([eyes,mouthKinds,dents,['open']]),openAndClosed:count([eyes,mouthKinds,dents,['open','closed']]),displayWithCrease:count([eyes,mouthKinds,dents,['open','closed','crease']])},
+  micro:{allowed:catalog.counts.microAllowed,excluded:catalog.counts.microExcluded,defaultOpen:catalog.counts.websitePool,policyRevision:catalog.microPolicyRevision},
   fixed:['from-inset dent profile','character joint'],
 };
 await mkdir(new URL('../docs/research/',import.meta.url),{recursive:true});

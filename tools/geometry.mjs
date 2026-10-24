@@ -14,7 +14,7 @@ export const labels = {
 const line = (d, width) => `<path d="${d}" fill="none" stroke="currentColor" stroke-width="${width}" stroke-linecap="butt" stroke-linejoin="miter"/>`;
 const rect = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`;
 
-function frameShape(optical, frame, dent, dentProfile) {
+export function frameShape(optical, frame, dent, dentProfile) {
   const left = dent === 'left' || dent === 'both';
   const right = dent === 'right' || dent === 'both';
   const inset = dentProfile === 'from-inset';
@@ -52,7 +52,7 @@ function cleanStem(x, top, cx, cy, rx, ry, width, flag = null) {
   return `<path d="${upper}V${n(cy-ry-1)}C${n(x+width/2)} ${n(cy-ry*.5)} ${n(ex)} ${n(ey-ry*.5)} ${n(ex)} ${n(ey)}L${n(x-width/2)} ${cy}Z"/>`;
 }
 
-function arrows(optical, joint, microHeadScaleX, microHeadScaleY) {
+export function arrows(optical, joint, microHeadScaleX, microHeadScaleY) {
   if (optical === 'micro') {
     // At 16 px the left shard joins the tip. An isolated subpixel shard is unstable.
     const head = `<path d="M4 8H7V10H3V9H4Z" transform="translate(7 9) scale(${microHeadScaleX} ${microHeadScaleY}) translate(-7 -9)"/>`;
@@ -68,7 +68,7 @@ function arrows(optical, joint, microHeadScaleX, microHeadScaleY) {
   ).join('');
 }
 
-function mouthShape(optical, mouth) {
+export function mouthShape(optical, mouth) {
   const c = optical === 'compact';
   const m = optical === 'micro';
   const [l, r, top, bottom, mid, w] = m ? [4, 12, 11, 13, 12, 1]

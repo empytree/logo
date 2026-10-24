@@ -1,7 +1,7 @@
 {
   "date": "2026-10-24",
-  "markdownFiles": 16,
-  "localLinks": 81,
+  "markdownFiles": 19,
+  "localLinks": 121,
   "missingLinks": 0,
   "construction": {
     "dentProfile": "from-inset",
@@ -9,10 +9,17 @@
     "microHeadScaleX": 0.88,
     "microHeadScaleY": 0.96
   },
-  "currentChoices": 24,
-  "future": {
+  "adoptedChoices": 24,
+  "nextChoices": 20,
+  "matrix": {
     "oneFrame": 144,
     "openAndClosed": 288,
     "displayWithCrease": 432
+  },
+  "micro": {
+    "allowed": 40,
+    "excluded": 248,
+    "defaultOpen": 20,
+    "policyRevision": 1
   }
 }

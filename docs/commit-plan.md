@@ -15,6 +15,8 @@ Use the real commit date and the owner's actual configured author identity. The 
 
 ## Adoption commit after website rollout
 
+The first rollout is now recorded in `docs/adoptions/0.1.0.md`. For the next owner-created history, commit that file alone as **`docs: record the first favicon adoption on empytree.com`**, then commit the remaining generator, resources and synchronized documentation as **`feat: add the musical generator and micro allowlist`**. Do not claim 0.2.0 adoption in either commit; it still requires its own source export and rollout.
+
 After the website actually adopts the released package, add a separate commit such as **`docs: record the first favicon adoption on empytree.com`**. Record the full public source commit, package version, date, scope and public validation. Never fill this record in advance or publish the private consumer's repository, internal commit identifiers or deployment details.
 
 The next generator work and micro exclusion groups form a new release after that milestone. They must not be described as implemented by the initial two commits.

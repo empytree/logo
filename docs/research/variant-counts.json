@@ -1,5 +1,5 @@
 {
-  "status": "theoretical future parameter combinations, not validated 16px silhouettes",
+  "status": "implemented full matrix; conservative micro allowlist; next release candidate",
   "dimensions": {
     "eyes": 4,
     "mouths": 9,
@@ -9,10 +9,16 @@
     "default": 24,
     "withClosed": 48
   },
-  "future": {
+  "matrix": {
     "oneFrame": 144,
     "openAndClosed": 288,
     "displayWithCrease": 432
+  },
+  "micro": {
+    "allowed": 40,
+    "excluded": 248,
+    "defaultOpen": 20,
+    "policyRevision": 1
   },
   "fixed": [
     "from-inset dent profile",

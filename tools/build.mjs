@@ -117,7 +117,7 @@ for (const [row, dent] of dents.entries()) {
     if (row === 3) dentSheet.push(text(x, y + 207, labels[mouth], 16));
   }
 }
-dentSheet.push(text(64, 1190, 'Вмятина ограничена серединой бока. Углы коробки и лицо не смещаются.', 18), '</svg>');
+dentSheet.push(text(64, 1190, 'Пологая вмятина начинается после коротких прямых у углов. Лицо не смещается.', 18), '</svg>');
 await writeFile(path.join(preview, 'dented-sides.svg'), dentSheet.join(''));
 await sharp(Buffer.from(dentSheet.join(''))).png().toFile(path.join(preview, 'dented-sides.png'));
 await import('./comparisons.mjs');

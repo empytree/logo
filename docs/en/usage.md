@@ -2,6 +2,8 @@
 
 [README](../../README.md) · [Construction](logo-system.md) · [Русский план](../roadmap.md)
 
+This page documents the adopted 0.1.0 behavior and the shared consumer contract. For the current 0.2.0 generator, optical allowlist and exporter, start with [generator.md](generator.md).
+
 ## Source and build
 
 Use Node.js 24. Install the pinned dependency tree with `npm ci`, then run `npm run verify`. Sharp is a build dependency, not a website runtime dependency. The package is private in the npm sense to prevent accidental registry publication; the GitHub repository may be public.
@@ -24,15 +26,17 @@ It runs once per document load. There is no timer, API or runtime geometry gener
 
 For this limited export keep the default open-frame pool; do not enable closed frames, which are not included in the package. The full source catalog supports closed frames for other consumers.
 
-## Export a release
+## Export the historical 0.1.0 pool
+
+The commands and 24-choice package below describe the original limited exporter. For the current 0.2.0 candidate use [generator.md](generator.md), `npm run export:site` and its size-specific allowlist; the historical exporter is `npm run export:legacy`.
 
 After the owner has committed the complete source and the checkout is clean:
 
 ```sh
-npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
+npm run export:legacy -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-The exporter verifies the actual repository root, HEAD and clean status. It refuses an unpinned release and refuses to overwrite an existing output directory. The package appears under `dist/empytree-logo-0.1.0/`, containing:
+The exporter verifies the actual repository root, HEAD and clean status. It refuses an unpinned release and refuses to overwrite an existing output directory. The original published source produced `dist/empytree-logo-0.1.0/`. Output paths use the package version of the checkout; invoking the legacy exporter from a later checkout does not recreate the old provenance. It contains:
 
 - `public/brand/empytree/v0.1.0/`: 24 ICO variants, the fallback ICO, stable Apple icon, prepared 96 px PNG, selector script and limited manifest.
 - `logo-source.json` beside those resources: source repository, full source commit, version, accepted construction, pool size and SHA-256 inventory.
@@ -43,7 +47,7 @@ The 96 px PNG is prepared but is not selected by this head snippet. The declared
 For a local review before there is a source commit:
 
 ```sh
-npm run export:site -- --development
+npm run export:legacy -- --development
 ```
 
 A development package uses a `-dev` path and a null source commit. It must not be recorded as an adopted release. If an output exists, use a different `--output-name` for another candidate; do not overwrite a published version.
@@ -64,6 +68,6 @@ The first consumer is intended to be empytree.com. Its source, templates, deploy
 
 ## Adoption record
 
-No website adoption is asserted yet. After it is real, add a separate record containing the released package version, full public source commit, public target site, actual adoption date, scope and observable validation. Do not publish the private site's remote URL, private commit identifiers, templates or deployment logs to establish that record.
+Version 0.1.0 is [adopted](../adoptions/0.1.0.md). Version 0.2.0 is not adopted yet. After each real rollout, add a separate record containing the released package version, full public source commit, public target site, actual adoption date, scope and observable validation. Do not publish the private site's remote URL, private commit identifiers, templates or deployment logs to establish that record.
 
-Later generator changes require a new source version, validation and a new consumer package. The planned 144/288/432 matrix must first define size-specific allowed groups, including exclusions for dirty or indistinguishable 16 px outputs.
+Later generator changes require a new source version, validation and a new consumer package. The 144/288/432 matrix and size-specific micro groups are implemented in the next generator; its next adoption must use the new version and exported allowlist.

@@ -8,7 +8,8 @@ test('development export limits the pool, preserves provenance and detects corru
   const result=await exportSitePackage({development:true,outputName:name});
   try{
     assert.equal(result.provenance.sourceCommit,null);assert.equal(result.provenance.poolSize,24);
-    assert.equal(result.provenance.assetBase,'/brand/empytree/v0.1.0-dev/');
+    const pkg=JSON.parse(await readFile(path.join(projectRoot,'package.json'),'utf8'));
+    assert.equal(result.provenance.assetBase,`/brand/empytree/v${pkg.version}-dev/`);
     const head=await readFile(path.join(result.output,'head.html'),'utf8');
     assert.ok(head.includes(result.provenance.assetBase+'random-favicon.js'));
     await verifySitePackage(result.resourceDir,{requireRelease:false});

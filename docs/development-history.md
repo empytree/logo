@@ -14,8 +14,16 @@
 | Проверка и исследование | Аудит документации, три визуальных образца для поиска аналогий, расчёт будущих 144/288/432 параметрических сочетаний |
 | Разделение проектов | Целевой публичный репозиторий — `empytree/logo`; сайт — самостоятельный потребитель версии ресурсов |
 
-Подробности геометрии и границы исследования находятся в [спецификации](logo-system.md) и [исследовании аналогий](research/image-analogies.md). Отдельного внешнего внедрения этот журнал не утверждает.
+Подробности геометрии и границы исследования находятся в [спецификации](logo-system.md) и [исследовании аналогий](research/image-analogies.md). Следующий реальный этап — [внедрение 0.1.0](adoptions/0.1.0.md), выполненное владельцем и проверенное по публичным HTTP-ресурсам.
+
+## Развитие после первого внедрения
+
+Полный генератор реализует четыре независимых верха, девять ртов и четыре состояния боков: 432 display-выражения, по 288 кандидатов compact/micro. Новая матрица отделена от стабильного первого API. Утверждённые исходные силуэты не изменены. Вариант `mixed` и половинная пауза добавлены по исходному плану.
+
+После просмотра реальных пикселей исключена вся micro-группа четвертной паузы. Маски слоёв и плотности 1×/2×/3× выявили столкновения и недостаточные зазоры. Первичный отбор только по 1× оставлял 50 вариантов; обнаруженный при 2× конфликт у связанной пары с правой вмятиной привёл к окончательному требованию проверять все три плотности до выбора. Результат редакции 1: 40 разрешённых открытых/закрытых, 20 открытых по умолчанию, 248 исключённых. Пороговое удаление одинаковых силуэтов предусмотрено как отдельный этап; оно не утверждает доказанную различимость человеком.
+
+Подготовлены самостоятельная страница генератора, CLI, русские и английские правила и следующий пакет 0.2.0. Это кандидат; его внедрение не следует из внедрения 0.1.0 и требует отдельного коммита, экспорта и обновления сайта.
 
 ## Development summary
 
-The session moved from the author's sketch to controlled expressions, optical sizes, side-state diversity and comparative studies. The author accepted the irregular joint and the intermediate shallow dent. Micro heads were reduced while keeping shafts and the larger drawings unchanged. The public repository records this history and provides a source for versioned downstream adoption. It does not imply that the website has already adopted a release.
+The author accepted the irregular joint and intermediate shallow dent. Version 0.1.0 was subsequently adopted and publicly verified over HTTP. The next 0.2.0 candidate implements the full independent musical matrix and a conservative micro allowlist: 40 open/closed choices, 20 open by default. Requiring separation at all three densities reduced an initial 50-choice candidate set to 40. The original silhouettes remain unchanged. The next website adoption is a separate milestone.

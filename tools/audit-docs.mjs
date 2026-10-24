@@ -24,9 +24,15 @@ const main=await readFile(path.join(root,'docs/logo-system.md'),'utf8');
 assert.ok(main.includes("dentProfile='from-inset'"));
 assert.ok(!main.includes('окончательный выбор профиля ещё предстоит'));
 const counts=JSON.parse(await readFile(path.join(root,'docs/research/variant-counts.json'),'utf8'));
-assert.deepEqual(counts.future,{oneFrame:144,openAndClosed:288,displayWithCrease:432});
+assert.deepEqual(counts.matrix,{oneFrame:144,openAndClosed:288,displayWithCrease:432});
 const manifest=JSON.parse(await readFile(path.join(root,'public/brand/v1/variants.json'),'utf8'));
 assert.deepEqual(manifest.construction,identityConfig,'Generated exports do not match accepted construction');
-const result={date:'2026-10-24',markdownFiles:files.length,localLinks,missingLinks:missing.length,construction:identityConfig,currentChoices:manifest.defaultPool.length,future:counts.future};
+const current=JSON.parse(await readFile(path.join(root,'public/brand/v2/variants.json'),'utf8'));
+assert.deepEqual(current.construction,identityConfig);
+assert.equal(current.counts.microAllowed,40);assert.equal(current.counts.websitePool,20);
+for(const file of ['README.md','README.ru.md','docs/en/generator.md','docs/generator.md']){
+  const content=await readFile(path.join(root,file),'utf8');assert.ok(content.includes('0.2.0'));assert.ok(content.includes('40'));assert.ok(content.includes('20'));
+}
+const result={date:'2026-10-24',markdownFiles:files.length,localLinks,missingLinks:missing.length,construction:identityConfig,adoptedChoices:manifest.defaultPool.length,nextChoices:current.counts.websitePool,matrix:counts.matrix,micro:counts.micro};
 await writeFile(reportTarget,JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result));

@@ -13,7 +13,7 @@ function git(args){
   if(result.status!==0)throw Error('Release export needs a real Git checkout with an existing commit.');
   return result.stdout.trim();
 }
-function verifySource(commit){
+export function verifySource(commit){
   if(!/^[0-9a-f]{40}$/i.test(commit||''))throw Error('A full source commit is required for a release export.');
   const checkout=path.resolve(git(['rev-parse','--show-toplevel']));
   const expected=path.resolve(projectRoot);
