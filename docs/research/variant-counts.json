@@ -1,0 +1,21 @@
+{
+  "status": "theoretical future parameter combinations, not validated 16px silhouettes",
+  "dimensions": {
+    "eyes": 4,
+    "mouths": 9,
+    "sides": 4
+  },
+  "current": {
+    "default": 24,
+    "withClosed": 48
+  },
+  "future": {
+    "oneFrame": 144,
+    "openAndClosed": 288,
+    "displayWithCrease": 432
+  },
+  "fixed": [
+    "from-inset dent profile",
+    "character joint"
+  ]
+}

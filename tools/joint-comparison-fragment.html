@@ -1,0 +1,43 @@
+<div id="empytree-joint-comparison">
+  <style>
+    #empytree-joint-comparison .jc-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:20px}
+    #empytree-joint-comparison figure {margin:0;display:flex;flex-direction:column;align-items:center;gap:16px;min-width:0}
+    #empytree-joint-comparison figcaption {text-align:center}
+    #empytree-joint-comparison .jc-mark {display:block;background:var(--foreground);mask:no-repeat center/contain;-webkit-mask:no-repeat center/contain;flex:none}
+    #empytree-joint-comparison .jc-crop {width:100%;max-width:300px;aspect-ratio:36/13}
+    #empytree-joint-comparison .jc-label {display:flex;flex-direction:column;gap:4px}
+    @media(max-width:580px){#empytree-joint-comparison .jc-grid{grid-template-columns:1fr}}
+  </style>
+  <h3>Заметный и аккуратный стык</h3>
+  <div class="viz-controls">
+    <label class="form-label jc-label">Начертание нот
+      <select class="form-select" data-choice="family">
+        <option value="arrows">Ноты-стрелки</option><option value="beam">Связанная пара</option><option value="rest8">Раздельные восьмые · этюд</option>
+      </select>
+    </label>
+  </div>
+  <div class="jc-grid" data-grid></div>
+  <span class="sr-only" data-status aria-live="polite"></span>
+</div>
+<script>
+(function(){
+  const root=document.getElementById('empytree-joint-comparison');
+  const assets=__JOINT_ASSETS__;
+  const select=root.querySelector('[data-choice]');let family='arrows';
+  function mask(el,data,label){el.className='jc-mark';el.style.maskImage='url("'+data+'")';el.style.webkitMaskImage=el.style.maskImage;el.setAttribute('role','img');el.setAttribute('aria-label',label)}
+  function render(){
+    const grid=root.querySelector('[data-grid]');grid.replaceChildren();
+    for(const [joint,label] of [['character','Сохраняем заметный'],['clean','Аккуратный · сравнение']]){
+      const figure=document.createElement('figure');const caption=document.createElement('figcaption');caption.textContent=label;figure.appendChild(caption);
+      const full=document.createElement('span');mask(full,assets[family+':'+joint+':full'],label);full.style.width='128px';full.style.height='128px';figure.appendChild(full);
+      const crop=document.createElement('span');mask(crop,assets[family+':'+joint+':crop'],label+', увеличение соединения');crop.className+=' jc-crop';figure.appendChild(crop);
+      grid.appendChild(figure);
+    }
+    root.querySelector('[data-status]').textContent=select.selectedOptions[0].text;
+  }
+  function restore(value){const v=value&&(value.modelContent||value);if(v&&Array.from(select.options).some(o=>o.value===v.family))family=v.family;select.value=family;render()}
+  select.addEventListener('change',function(){family=select.value;render();if(window.openai&&window.openai.setWidgetState)window.openai.setWidgetState({modelContent:{comparison:'note-joints',family},privateContent:null}).catch(function(){})});
+  window.addEventListener('openai:set_globals',function(event){if(event.detail&&event.detail.globals&&event.detail.globals.widgetState)restore(event.detail.globals.widgetState)});
+  restore(window.openai&&window.openai.widgetState);
+})();
+</script>

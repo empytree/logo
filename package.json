@@ -1,0 +1,14 @@
+{
+  "name": "empytree-logo-system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node --test tools/check.test.mjs",
+    "audit:docs": "node tools/count-variants.mjs && node tools/audit-docs.mjs",
+    "research:examples": "node tools/research-examples.mjs"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
+  }
+}

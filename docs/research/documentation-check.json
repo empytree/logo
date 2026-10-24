@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "markdownFiles": 7,
+  "localLinks": 35,
+  "missingLinks": 0,
+  "construction": {
+    "dentProfile": "from-inset",
+    "joint": "character",
+    "microHeadScaleX": 0.88,
+    "microHeadScaleY": 0.96
+  },
+  "currentChoices": 24,
+  "future": {
+    "oneFrame": 144,
+    "openAndClosed": 288,
+    "displayWithCrease": 432
+  }
+}

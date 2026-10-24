@@ -1,0 +1,64 @@
+<div id="empytree-dent-comparison">
+  <style>
+    #empytree-dent-comparison .dc-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:20px}
+    #empytree-dent-comparison figure {margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}
+    #empytree-dent-comparison figcaption {text-align:center;min-height:40px}
+    #empytree-dent-comparison .dc-mark {display:block;flex:none;background:var(--foreground);mask:no-repeat center/contain;-webkit-mask:no-repeat center/contain}
+    #empytree-dent-comparison .dc-sizes {display:flex;align-items:flex-end;justify-content:center;flex-wrap:wrap;gap:12px;min-height:88px}
+    #empytree-dent-comparison .dc-size {display:flex;flex-direction:column;align-items:center;gap:8px}
+    #empytree-dent-comparison .dc-label {display:flex;flex-direction:column;gap:4px}
+    @media(max-width:580px){#empytree-dent-comparison .dc-grid{grid-template-columns:1fr}#empytree-dent-comparison figcaption{min-height:0}}
+  </style>
+  <h3>Локальная или пологая вмятина</h3>
+  <div class="viz-controls">
+    <label class="form-label dc-label">Рот
+      <select class="form-select" data-choice="mouth">
+        <option value="flat">Прямой</option><option value="rise">Наклон /</option><option value="fall">Наклон \</option>
+        <option value="corner-left">Левый угол</option><option value="corner-right">Правый угол</option><option value="down">Вершина вниз</option>
+      </select>
+    </label>
+    <label class="form-label dc-label">Бока
+      <select class="form-select" data-choice="dent">
+        <option value="left">Вмятина слева</option><option value="right">Вмятина справа</option><option value="both">Обе вмятины</option>
+      </select>
+    </label>
+    <label class="form-label dc-label">Просмотр
+      <select class="form-select" data-choice="view">
+        <option value="full">Крупный знак</option><option value="micro">Пиксели 16 px ×8</option>
+      </select>
+    </label>
+  </div>
+  <div class="dc-grid" data-grid></div>
+  <span class="sr-only" data-status aria-live="polite"></span>
+</div>
+<script>
+(function(){
+  const root=document.getElementById('empytree-dent-comparison');
+  const assets=__DENT_ASSETS__;
+  const profiles=[['local-large','Увеличенная локальная'],['from-inset','Пологая промежуточная'],['from-corners','Пологая от углов']];
+  const selects=Object.fromEntries(Array.from(root.querySelectorAll('[data-choice]')).map(el=>[el.dataset.choice,el]));
+  let state={mouth:'corner-left',dent:'both',view:'full'};
+  function mark(data,size,label){
+    const el=document.createElement('span');el.className='dc-mark';el.style.width=size+'px';el.style.height=size+'px';
+    el.style.maskImage='url("'+data+'")';el.style.webkitMaskImage=el.style.maskImage;el.setAttribute('role','img');el.setAttribute('aria-label',label);return el;
+  }
+  function render(){
+    const grid=root.querySelector('[data-grid]');grid.replaceChildren();
+    for(const [profile,label] of profiles){
+      const figure=document.createElement('figure');const caption=document.createElement('figcaption');caption.textContent=label;figure.appendChild(caption);
+      const prefix=[state.mouth,state.dent,profile].join(':');const micro=state.view==='micro';figure.appendChild(mark(assets[prefix+(micro?':zoom16':':hero')],micro?128:144,label+(micro?', 16 px ×8':'')));
+      const sizes=document.createElement('div');sizes.className='dc-sizes';
+      for(const size of [16,32,64]){
+        const box=document.createElement('div');box.className='dc-size';box.appendChild(mark(assets[prefix+':'+size],size,label+', '+size+' px'));
+        const text=document.createElement('span');text.className='text-small tabular-nums';text.textContent=size+' px';box.appendChild(text);sizes.appendChild(box);
+      }
+      figure.appendChild(sizes);grid.appendChild(figure);
+    }
+    root.querySelector('[data-status]').textContent=selects.mouth.selectedOptions[0].text+' · '+selects.dent.selectedOptions[0].text;
+  }
+  function restore(value){const v=value&&(value.modelContent||value);for(const key of Object.keys(state)){const candidate=v&&v[key];if(Array.from(selects[key].options).some(x=>x.value===candidate))state[key]=candidate;selects[key].value=state[key]}render()}
+  for(const [key,el] of Object.entries(selects))el.addEventListener('change',function(){state[key]=el.value;render();if(window.openai&&window.openai.setWidgetState)window.openai.setWidgetState({modelContent:{comparison:'dent-profiles',...state},privateContent:null}).catch(function(){})});
+  window.addEventListener('openai:set_globals',function(event){if(event.detail&&event.detail.globals&&event.detail.globals.widgetState)restore(event.detail.globals.widgetState)});
+  restore(window.openai&&window.openai.widgetState);
+})();
+</script>

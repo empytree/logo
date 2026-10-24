@@ -1,0 +1,101 @@
+<div id="empytree-quiet-box">
+  <style>
+    #empytree-quiet-box .eqb-hero {display:flex;justify-content:center;padding:22px 0 20px}
+    #empytree-quiet-box .eqb-mark {display:block;background:var(--foreground);mask-repeat:no-repeat;mask-position:center;mask-size:contain;-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;flex:none}
+    #empytree-quiet-box .eqb-sizes {display:flex;align-items:flex-end;justify-content:center;gap:24px;flex-wrap:wrap;padding:12px 0}
+    #empytree-quiet-box figure {margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+    #empytree-quiet-box .eqb-field {display:flex;flex-direction:column;gap:4px;min-width:0}
+    #empytree-quiet-box .eqb-caption {text-align:center;margin:12px 0 0}
+    #empytree-quiet-box .eqb-stage {display:flex;align-items:center;justify-content:center;height:96px}
+  </style>
+  <h3>Тихая музыка из коробки</h3>
+  <div class="viz-controls">
+    <label class="eqb-field form-label">Рот
+      <select class="form-select" data-choice="mouth">
+        <option value="flat">Прямой</option>
+        <option value="rise">Наклон /</option>
+        <option value="fall">Наклон \</option>
+        <option value="corner-left">Левый угол</option>
+        <option value="corner-right">Правый угол</option>
+        <option value="down">Вершина вниз</option>
+      </select>
+    </label>
+    <label class="eqb-field form-label">Бока
+      <select class="form-select" data-choice="dent">
+        <option value="none">Ровные</option>
+        <option value="left">Вмятина слева</option>
+        <option value="right">Вмятина справа</option>
+        <option value="both">Обе вмятины</option>
+      </select>
+    </label>
+    <label class="eqb-field form-label">Верх коробки
+      <select class="form-select" data-choice="frame">
+        <option value="open">Открытый</option>
+        <option value="closed">Закрытый</option>
+        <option value="crease">С заломом · от 64 px</option>
+      </select>
+    </label>
+    <button type="button" class="btn" data-random>Случайный вариант</button>
+  </div>
+  <div class="eqb-hero">
+    <span class="eqb-mark" data-hero role="img" aria-label="Основной знак" style="width:176px;height:176px"></span>
+  </div>
+  <div class="eqb-sizes" data-sizes aria-label="Проверка знака в реальном размере"></div>
+  <p class="eqb-caption text-small" data-caption aria-live="polite"></p>
+</div>
+<script>
+(function () {
+  const root = document.getElementById('empytree-quiet-box');
+  const assets = __EMPYTREE_ASSETS__;
+  const defaults = {mouth:'flat', frame:'open', dent:'none'};
+  const selects = Object.fromEntries(Array.from(root.querySelectorAll('[data-choice]')).map(el => [el.dataset.choice, el]));
+  let state = {...defaults};
+  function key(mouth, frame, dent, size) {return [mouth, frame, dent, size].join(':')}
+  function image(el, data) {
+    const value = 'url("' + data + '")';
+    el.style.maskImage = value; el.style.webkitMaskImage = value;
+  }
+  function restore(value) {
+    const candidate = value && (value.modelContent || value);
+    for (const field of Object.keys(defaults)) {
+      const val = candidate && candidate[field];
+      state[field] = Array.from(selects[field].options).some(o => o.value === val) ? val : defaults[field];
+      selects[field].value = state[field];
+    }
+    render();
+  }
+  function render() {
+    const {mouth, frame, dent} = state;
+    const hero = root.querySelector('[data-hero]');
+    image(hero, assets[key(mouth, frame, dent, 'hero')]);
+    const label = [selects.mouth.selectedOptions[0].text, selects.dent.selectedOptions[0].text, selects.frame.selectedOptions[0].text].join(' · ');
+    hero.setAttribute('aria-label', label);
+    const container = root.querySelector('[data-sizes]'); container.replaceChildren();
+    for (const size of [16, 24, 32, 48, 64, 96]) {
+      const figure = document.createElement('figure');
+      const stage = document.createElement('div'); stage.className = 'eqb-stage';
+      const mark = document.createElement('span'); mark.className = 'eqb-mark';
+      mark.style.width = size + 'px'; mark.style.height = size + 'px';
+      mark.setAttribute('role', 'img'); mark.setAttribute('aria-label', label + ', ' + size + ' px');
+      image(mark, assets[key(mouth, frame, dent, size)]);
+      const caption = document.createElement('figcaption'); caption.className = 'text-small tabular-nums'; caption.textContent = size + ' px';
+      stage.appendChild(mark); figure.append(stage, caption); container.appendChild(figure);
+    }
+    root.querySelector('[data-caption]').textContent = frame === 'crease' ? 'До 64 px — без залома сверху' : '16 px — отдельная плотная версия';
+  }
+  function save() {
+    if (window.openai && window.openai.setWidgetState) window.openai.setWidgetState({modelContent:{...state}, privateContent:null}).catch(function () {});
+  }
+  for (const [field, select] of Object.entries(selects)) select.addEventListener('change', function () {state[field] = select.value; render(); save()});
+  root.querySelector('[data-random]').addEventListener('click', function () {
+    const next = [];
+    for (const m of Array.from(selects.mouth.options)) for (const d of Array.from(selects.dent.options)) if (m.value !== state.mouth || d.value !== state.dent) next.push({mouth:m.value, dent:d.value});
+    const selected = next[Math.floor(Math.random() * next.length)];
+    state = {...state, ...selected}; selects.mouth.value = state.mouth; selects.dent.value = state.dent; render(); save();
+  });
+  window.addEventListener('openai:set_globals', function (event) {
+    if (event.detail && event.detail.globals && event.detail.globals.widgetState) restore(event.detail.globals.widgetState);
+  });
+  restore(window.openai && window.openai.widgetState);
+})();
+</script>

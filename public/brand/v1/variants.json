@@ -1,0 +1,518 @@
+{
+  "version": 1,
+  "construction": {
+    "dentProfile": "from-inset",
+    "joint": "character",
+    "microHeadScaleX": 0.88,
+    "microHeadScaleY": 0.96
+  },
+  "default": "flat-open",
+  "defaultPool": [
+    "flat-open",
+    "rise-open",
+    "fall-open",
+    "corner-left-open",
+    "corner-right-open",
+    "down-open",
+    "flat-open-dent-left",
+    "rise-open-dent-left",
+    "fall-open-dent-left",
+    "corner-left-open-dent-left",
+    "corner-right-open-dent-left",
+    "down-open-dent-left",
+    "flat-open-dent-right",
+    "rise-open-dent-right",
+    "fall-open-dent-right",
+    "corner-left-open-dent-right",
+    "corner-right-open-dent-right",
+    "down-open-dent-right",
+    "flat-open-dent-both",
+    "rise-open-dent-both",
+    "fall-open-dent-both",
+    "corner-left-open-dent-both",
+    "corner-right-open-dent-both",
+    "down-open-dent-both"
+  ],
+  "variants": [
+    {
+      "id": "flat-open",
+      "mouth": "flat",
+      "frame": "open",
+      "dent": "none",
+      "label": "Тишина",
+      "ico": "flat-open.ico",
+      "svg": "flat-open-adaptive.svg",
+      "png": "flat-open-96.png"
+    },
+    {
+      "id": "rise-open",
+      "mouth": "rise",
+      "frame": "open",
+      "dent": "none",
+      "label": "Наклон /",
+      "ico": "rise-open.ico",
+      "svg": "rise-open-adaptive.svg",
+      "png": "rise-open-96.png"
+    },
+    {
+      "id": "fall-open",
+      "mouth": "fall",
+      "frame": "open",
+      "dent": "none",
+      "label": "Наклон \\",
+      "ico": "fall-open.ico",
+      "svg": "fall-open-adaptive.svg",
+      "png": "fall-open-96.png"
+    },
+    {
+      "id": "corner-left-open",
+      "mouth": "corner-left",
+      "frame": "open",
+      "dent": "none",
+      "label": "Левый угол",
+      "ico": "corner-left-open.ico",
+      "svg": "corner-left-open-adaptive.svg",
+      "png": "corner-left-open-96.png"
+    },
+    {
+      "id": "corner-right-open",
+      "mouth": "corner-right",
+      "frame": "open",
+      "dent": "none",
+      "label": "Правый угол",
+      "ico": "corner-right-open.ico",
+      "svg": "corner-right-open-adaptive.svg",
+      "png": "corner-right-open-96.png"
+    },
+    {
+      "id": "down-open",
+      "mouth": "down",
+      "frame": "open",
+      "dent": "none",
+      "label": "Треугольник",
+      "ico": "down-open.ico",
+      "svg": "down-open-adaptive.svg",
+      "png": "down-open-96.png"
+    },
+    {
+      "id": "flat-closed",
+      "mouth": "flat",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Тишина",
+      "ico": "flat-closed.ico",
+      "svg": "flat-closed-adaptive.svg",
+      "png": "flat-closed-96.png"
+    },
+    {
+      "id": "rise-closed",
+      "mouth": "rise",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Наклон /",
+      "ico": "rise-closed.ico",
+      "svg": "rise-closed-adaptive.svg",
+      "png": "rise-closed-96.png"
+    },
+    {
+      "id": "fall-closed",
+      "mouth": "fall",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Наклон \\",
+      "ico": "fall-closed.ico",
+      "svg": "fall-closed-adaptive.svg",
+      "png": "fall-closed-96.png"
+    },
+    {
+      "id": "corner-left-closed",
+      "mouth": "corner-left",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Левый угол",
+      "ico": "corner-left-closed.ico",
+      "svg": "corner-left-closed-adaptive.svg",
+      "png": "corner-left-closed-96.png"
+    },
+    {
+      "id": "corner-right-closed",
+      "mouth": "corner-right",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Правый угол",
+      "ico": "corner-right-closed.ico",
+      "svg": "corner-right-closed-adaptive.svg",
+      "png": "corner-right-closed-96.png"
+    },
+    {
+      "id": "down-closed",
+      "mouth": "down",
+      "frame": "closed",
+      "dent": "none",
+      "label": "Треугольник",
+      "ico": "down-closed.ico",
+      "svg": "down-closed-adaptive.svg",
+      "png": "down-closed-96.png"
+    },
+    {
+      "id": "flat-open-dent-left",
+      "mouth": "flat",
+      "frame": "open",
+      "dent": "left",
+      "label": "Тишина",
+      "ico": "flat-open-dent-left.ico",
+      "svg": "flat-open-dent-left-adaptive.svg",
+      "png": "flat-open-dent-left-96.png"
+    },
+    {
+      "id": "rise-open-dent-left",
+      "mouth": "rise",
+      "frame": "open",
+      "dent": "left",
+      "label": "Наклон /",
+      "ico": "rise-open-dent-left.ico",
+      "svg": "rise-open-dent-left-adaptive.svg",
+      "png": "rise-open-dent-left-96.png"
+    },
+    {
+      "id": "fall-open-dent-left",
+      "mouth": "fall",
+      "frame": "open",
+      "dent": "left",
+      "label": "Наклон \\",
+      "ico": "fall-open-dent-left.ico",
+      "svg": "fall-open-dent-left-adaptive.svg",
+      "png": "fall-open-dent-left-96.png"
+    },
+    {
+      "id": "corner-left-open-dent-left",
+      "mouth": "corner-left",
+      "frame": "open",
+      "dent": "left",
+      "label": "Левый угол",
+      "ico": "corner-left-open-dent-left.ico",
+      "svg": "corner-left-open-dent-left-adaptive.svg",
+      "png": "corner-left-open-dent-left-96.png"
+    },
+    {
+      "id": "corner-right-open-dent-left",
+      "mouth": "corner-right",
+      "frame": "open",
+      "dent": "left",
+      "label": "Правый угол",
+      "ico": "corner-right-open-dent-left.ico",
+      "svg": "corner-right-open-dent-left-adaptive.svg",
+      "png": "corner-right-open-dent-left-96.png"
+    },
+    {
+      "id": "down-open-dent-left",
+      "mouth": "down",
+      "frame": "open",
+      "dent": "left",
+      "label": "Треугольник",
+      "ico": "down-open-dent-left.ico",
+      "svg": "down-open-dent-left-adaptive.svg",
+      "png": "down-open-dent-left-96.png"
+    },
+    {
+      "id": "flat-closed-dent-left",
+      "mouth": "flat",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Тишина",
+      "ico": "flat-closed-dent-left.ico",
+      "svg": "flat-closed-dent-left-adaptive.svg",
+      "png": "flat-closed-dent-left-96.png"
+    },
+    {
+      "id": "rise-closed-dent-left",
+      "mouth": "rise",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Наклон /",
+      "ico": "rise-closed-dent-left.ico",
+      "svg": "rise-closed-dent-left-adaptive.svg",
+      "png": "rise-closed-dent-left-96.png"
+    },
+    {
+      "id": "fall-closed-dent-left",
+      "mouth": "fall",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Наклон \\",
+      "ico": "fall-closed-dent-left.ico",
+      "svg": "fall-closed-dent-left-adaptive.svg",
+      "png": "fall-closed-dent-left-96.png"
+    },
+    {
+      "id": "corner-left-closed-dent-left",
+      "mouth": "corner-left",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Левый угол",
+      "ico": "corner-left-closed-dent-left.ico",
+      "svg": "corner-left-closed-dent-left-adaptive.svg",
+      "png": "corner-left-closed-dent-left-96.png"
+    },
+    {
+      "id": "corner-right-closed-dent-left",
+      "mouth": "corner-right",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Правый угол",
+      "ico": "corner-right-closed-dent-left.ico",
+      "svg": "corner-right-closed-dent-left-adaptive.svg",
+      "png": "corner-right-closed-dent-left-96.png"
+    },
+    {
+      "id": "down-closed-dent-left",
+      "mouth": "down",
+      "frame": "closed",
+      "dent": "left",
+      "label": "Треугольник",
+      "ico": "down-closed-dent-left.ico",
+      "svg": "down-closed-dent-left-adaptive.svg",
+      "png": "down-closed-dent-left-96.png"
+    },
+    {
+      "id": "flat-open-dent-right",
+      "mouth": "flat",
+      "frame": "open",
+      "dent": "right",
+      "label": "Тишина",
+      "ico": "flat-open-dent-right.ico",
+      "svg": "flat-open-dent-right-adaptive.svg",
+      "png": "flat-open-dent-right-96.png"
+    },
+    {
+      "id": "rise-open-dent-right",
+      "mouth": "rise",
+      "frame": "open",
+      "dent": "right",
+      "label": "Наклон /",
+      "ico": "rise-open-dent-right.ico",
+      "svg": "rise-open-dent-right-adaptive.svg",
+      "png": "rise-open-dent-right-96.png"
+    },
+    {
+      "id": "fall-open-dent-right",
+      "mouth": "fall",
+      "frame": "open",
+      "dent": "right",
+      "label": "Наклон \\",
+      "ico": "fall-open-dent-right.ico",
+      "svg": "fall-open-dent-right-adaptive.svg",
+      "png": "fall-open-dent-right-96.png"
+    },
+    {
+      "id": "corner-left-open-dent-right",
+      "mouth": "corner-left",
+      "frame": "open",
+      "dent": "right",
+      "label": "Левый угол",
+      "ico": "corner-left-open-dent-right.ico",
+      "svg": "corner-left-open-dent-right-adaptive.svg",
+      "png": "corner-left-open-dent-right-96.png"
+    },
+    {
+      "id": "corner-right-open-dent-right",
+      "mouth": "corner-right",
+      "frame": "open",
+      "dent": "right",
+      "label": "Правый угол",
+      "ico": "corner-right-open-dent-right.ico",
+      "svg": "corner-right-open-dent-right-adaptive.svg",
+      "png": "corner-right-open-dent-right-96.png"
+    },
+    {
+      "id": "down-open-dent-right",
+      "mouth": "down",
+      "frame": "open",
+      "dent": "right",
+      "label": "Треугольник",
+      "ico": "down-open-dent-right.ico",
+      "svg": "down-open-dent-right-adaptive.svg",
+      "png": "down-open-dent-right-96.png"
+    },
+    {
+      "id": "flat-closed-dent-right",
+      "mouth": "flat",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Тишина",
+      "ico": "flat-closed-dent-right.ico",
+      "svg": "flat-closed-dent-right-adaptive.svg",
+      "png": "flat-closed-dent-right-96.png"
+    },
+    {
+      "id": "rise-closed-dent-right",
+      "mouth": "rise",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Наклон /",
+      "ico": "rise-closed-dent-right.ico",
+      "svg": "rise-closed-dent-right-adaptive.svg",
+      "png": "rise-closed-dent-right-96.png"
+    },
+    {
+      "id": "fall-closed-dent-right",
+      "mouth": "fall",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Наклон \\",
+      "ico": "fall-closed-dent-right.ico",
+      "svg": "fall-closed-dent-right-adaptive.svg",
+      "png": "fall-closed-dent-right-96.png"
+    },
+    {
+      "id": "corner-left-closed-dent-right",
+      "mouth": "corner-left",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Левый угол",
+      "ico": "corner-left-closed-dent-right.ico",
+      "svg": "corner-left-closed-dent-right-adaptive.svg",
+      "png": "corner-left-closed-dent-right-96.png"
+    },
+    {
+      "id": "corner-right-closed-dent-right",
+      "mouth": "corner-right",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Правый угол",
+      "ico": "corner-right-closed-dent-right.ico",
+      "svg": "corner-right-closed-dent-right-adaptive.svg",
+      "png": "corner-right-closed-dent-right-96.png"
+    },
+    {
+      "id": "down-closed-dent-right",
+      "mouth": "down",
+      "frame": "closed",
+      "dent": "right",
+      "label": "Треугольник",
+      "ico": "down-closed-dent-right.ico",
+      "svg": "down-closed-dent-right-adaptive.svg",
+      "png": "down-closed-dent-right-96.png"
+    },
+    {
+      "id": "flat-open-dent-both",
+      "mouth": "flat",
+      "frame": "open",
+      "dent": "both",
+      "label": "Тишина",
+      "ico": "flat-open-dent-both.ico",
+      "svg": "flat-open-dent-both-adaptive.svg",
+      "png": "flat-open-dent-both-96.png"
+    },
+    {
+      "id": "rise-open-dent-both",
+      "mouth": "rise",
+      "frame": "open",
+      "dent": "both",
+      "label": "Наклон /",
+      "ico": "rise-open-dent-both.ico",
+      "svg": "rise-open-dent-both-adaptive.svg",
+      "png": "rise-open-dent-both-96.png"
+    },
+    {
+      "id": "fall-open-dent-both",
+      "mouth": "fall",
+      "frame": "open",
+      "dent": "both",
+      "label": "Наклон \\",
+      "ico": "fall-open-dent-both.ico",
+      "svg": "fall-open-dent-both-adaptive.svg",
+      "png": "fall-open-dent-both-96.png"
+    },
+    {
+      "id": "corner-left-open-dent-both",
+      "mouth": "corner-left",
+      "frame": "open",
+      "dent": "both",
+      "label": "Левый угол",
+      "ico": "corner-left-open-dent-both.ico",
+      "svg": "corner-left-open-dent-both-adaptive.svg",
+      "png": "corner-left-open-dent-both-96.png"
+    },
+    {
+      "id": "corner-right-open-dent-both",
+      "mouth": "corner-right",
+      "frame": "open",
+      "dent": "both",
+      "label": "Правый угол",
+      "ico": "corner-right-open-dent-both.ico",
+      "svg": "corner-right-open-dent-both-adaptive.svg",
+      "png": "corner-right-open-dent-both-96.png"
+    },
+    {
+      "id": "down-open-dent-both",
+      "mouth": "down",
+      "frame": "open",
+      "dent": "both",
+      "label": "Треугольник",
+      "ico": "down-open-dent-both.ico",
+      "svg": "down-open-dent-both-adaptive.svg",
+      "png": "down-open-dent-both-96.png"
+    },
+    {
+      "id": "flat-closed-dent-both",
+      "mouth": "flat",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Тишина",
+      "ico": "flat-closed-dent-both.ico",
+      "svg": "flat-closed-dent-both-adaptive.svg",
+      "png": "flat-closed-dent-both-96.png"
+    },
+    {
+      "id": "rise-closed-dent-both",
+      "mouth": "rise",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Наклон /",
+      "ico": "rise-closed-dent-both.ico",
+      "svg": "rise-closed-dent-both-adaptive.svg",
+      "png": "rise-closed-dent-both-96.png"
+    },
+    {
+      "id": "fall-closed-dent-both",
+      "mouth": "fall",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Наклон \\",
+      "ico": "fall-closed-dent-both.ico",
+      "svg": "fall-closed-dent-both-adaptive.svg",
+      "png": "fall-closed-dent-both-96.png"
+    },
+    {
+      "id": "corner-left-closed-dent-both",
+      "mouth": "corner-left",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Левый угол",
+      "ico": "corner-left-closed-dent-both.ico",
+      "svg": "corner-left-closed-dent-both-adaptive.svg",
+      "png": "corner-left-closed-dent-both-96.png"
+    },
+    {
+      "id": "corner-right-closed-dent-both",
+      "mouth": "corner-right",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Правый угол",
+      "ico": "corner-right-closed-dent-both.ico",
+      "svg": "corner-right-closed-dent-both-adaptive.svg",
+      "png": "corner-right-closed-dent-both-96.png"
+    },
+    {
+      "id": "down-closed-dent-both",
+      "mouth": "down",
+      "frame": "closed",
+      "dent": "both",
+      "label": "Треугольник",
+      "ico": "down-closed-dent-both.ico",
+      "svg": "down-closed-dent-both-adaptive.svg",
+      "png": "down-closed-dent-both-96.png"
+    }
+  ]
+}

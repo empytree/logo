@@ -1,0 +1,23 @@
+[
+  {
+    "id": "A-flat-straight",
+    "mouth": "flat",
+    "dent": "none",
+    "file": "A-flat-straight.png",
+    "sha256": "30d4aeb6ca7e155a9e4c78202083f40b4f6dd5e2fe865260dda8d0acd1a8fe0c"
+  },
+  {
+    "id": "B-triangle-left",
+    "mouth": "down",
+    "dent": "left",
+    "file": "B-triangle-left.png",
+    "sha256": "0dbe1986a3679b52aa0bb60f70f33899585d510029b6a5b8c002b02722310cbe"
+  },
+  {
+    "id": "C-corner-both",
+    "mouth": "corner-left",
+    "dent": "both",
+    "file": "C-corner-both.png",
+    "sha256": "6c23dc731e4d82b34583c3c5d1917aef373b8017f9123c2d14a55092056a7881"
+  }
+]
