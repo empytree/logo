@@ -1,6 +1,13 @@
 # Changelog
 
-## 0.2.0 — release candidate
+## 0.2.1 — release candidate
+
+- Author approval supersedes automatic micro exclusions: 288 usable open/closed combinations, 144 open defaults.
+- Geometry remains unchanged; optical reports and the history of revision 1 remain advisory.
+- Consumer schema 3 exports 288 ICOs and 288 compact SVGs with a markPool for breadcrumb home links.
+- Synchronized RU/EN rules, browser generator and tests. Website adoption of this version is pending.
+
+## 0.2.0 — published source, not adopted
 
 - Independent four-eye-pair / nine-mouth generator: 432 display expressions, 288 compact and 288 micro candidates.
 - Explicit micro policy at 1x/2x/3x: 40 eligible open/closed choices, 20 open-frame defaults; 248 excluded.

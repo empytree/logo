@@ -1,12 +1,13 @@
 {
-  "revision": 1,
+  "revision": 2,
+  "approval": "all-supported-variants-approved-by-empytree",
   "thresholdAlpha": 64,
   "densities": [
     1,
     2,
     3
   ],
-  "minPixelCenterDistance": "density + 1",
+  "advisoryPixelCenterDistance": "density + 1",
   "reasonLabels": {
     "quarter-rest-detail": "Quarter-rest turns collapse at 16 px",
     "frame-eyes-gap": "Frame and eyes lack a full separating pixel",
@@ -19,14 +20,15 @@
     "display": 432,
     "compact": 288,
     "microCandidates": 288,
-    "microAllowed": 40,
-    "microExcluded": 248,
-    "websitePool": 20
+    "microAllowed": 288,
+    "microExcluded": 0,
+    "websitePool": 144
   },
-  "excluded": [
+  "excluded": [],
+  "observations": [
     {
       "id": "arrows--flat--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -57,7 +59,7 @@
     },
     {
       "id": "arrows--flat--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -88,7 +90,7 @@
     },
     {
       "id": "arrows--flat--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -119,7 +121,7 @@
     },
     {
       "id": "arrows--flat--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -150,7 +152,7 @@
     },
     {
       "id": "arrows--flat--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -181,7 +183,7 @@
     },
     {
       "id": "arrows--flat--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -212,7 +214,7 @@
     },
     {
       "id": "arrows--rise--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -244,7 +246,7 @@
     },
     {
       "id": "arrows--rise--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -277,7 +279,7 @@
     },
     {
       "id": "arrows--rise--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -310,7 +312,7 @@
     },
     {
       "id": "arrows--rise--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -343,7 +345,7 @@
     },
     {
       "id": "arrows--rise--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -375,7 +377,7 @@
     },
     {
       "id": "arrows--rise--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -408,7 +410,7 @@
     },
     {
       "id": "arrows--rise--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -441,7 +443,7 @@
     },
     {
       "id": "arrows--rise--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -474,7 +476,7 @@
     },
     {
       "id": "arrows--fall--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -506,7 +508,7 @@
     },
     {
       "id": "arrows--fall--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -539,7 +541,7 @@
     },
     {
       "id": "arrows--fall--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -572,7 +574,7 @@
     },
     {
       "id": "arrows--fall--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -605,7 +607,7 @@
     },
     {
       "id": "arrows--fall--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -637,7 +639,7 @@
     },
     {
       "id": "arrows--fall--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -670,7 +672,7 @@
     },
     {
       "id": "arrows--fall--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -703,7 +705,7 @@
     },
     {
       "id": "arrows--fall--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -736,7 +738,7 @@
     },
     {
       "id": "arrows--corner-left--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -767,7 +769,7 @@
     },
     {
       "id": "arrows--corner-left--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -798,7 +800,7 @@
     },
     {
       "id": "arrows--corner-left--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -829,7 +831,7 @@
     },
     {
       "id": "arrows--corner-left--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -860,7 +862,7 @@
     },
     {
       "id": "arrows--corner-left--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -891,7 +893,7 @@
     },
     {
       "id": "arrows--corner-left--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -922,7 +924,7 @@
     },
     {
       "id": "arrows--corner-right--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -953,7 +955,7 @@
     },
     {
       "id": "arrows--corner-right--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -984,7 +986,7 @@
     },
     {
       "id": "arrows--corner-right--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1015,7 +1017,7 @@
     },
     {
       "id": "arrows--corner-right--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1046,7 +1048,7 @@
     },
     {
       "id": "arrows--corner-right--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1077,7 +1079,7 @@
     },
     {
       "id": "arrows--corner-right--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1108,7 +1110,7 @@
     },
     {
       "id": "arrows--down--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1139,7 +1141,7 @@
     },
     {
       "id": "arrows--down--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1170,7 +1172,7 @@
     },
     {
       "id": "arrows--down--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1201,7 +1203,7 @@
     },
     {
       "id": "arrows--down--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1232,7 +1234,7 @@
     },
     {
       "id": "arrows--down--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1263,7 +1265,7 @@
     },
     {
       "id": "arrows--down--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1294,7 +1296,7 @@
     },
     {
       "id": "arrows--rest8--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -1325,7 +1327,7 @@
     },
     {
       "id": "arrows--rest8--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1357,7 +1359,7 @@
     },
     {
       "id": "arrows--rest8--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1389,7 +1391,7 @@
     },
     {
       "id": "arrows--rest8--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1421,7 +1423,7 @@
     },
     {
       "id": "arrows--rest8--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -1452,7 +1454,7 @@
     },
     {
       "id": "arrows--rest8--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1484,7 +1486,7 @@
     },
     {
       "id": "arrows--rest8--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1516,7 +1518,7 @@
     },
     {
       "id": "arrows--rest8--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -1548,7 +1550,7 @@
     },
     {
       "id": "arrows--rest4--open--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -1580,7 +1582,7 @@
     },
     {
       "id": "arrows--rest4--open--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1613,7 +1615,7 @@
     },
     {
       "id": "arrows--rest4--open--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1646,7 +1648,7 @@
     },
     {
       "id": "arrows--rest4--open--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1679,7 +1681,7 @@
     },
     {
       "id": "arrows--rest4--closed--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -1711,7 +1713,7 @@
     },
     {
       "id": "arrows--rest4--closed--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1744,7 +1746,7 @@
     },
     {
       "id": "arrows--rest4--closed--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1777,7 +1779,7 @@
     },
     {
       "id": "arrows--rest4--closed--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -1810,7 +1812,7 @@
     },
     {
       "id": "arrows--rest2--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1841,7 +1843,7 @@
     },
     {
       "id": "arrows--rest2--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1872,7 +1874,7 @@
     },
     {
       "id": "arrows--rest2--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1903,7 +1905,7 @@
     },
     {
       "id": "arrows--rest2--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1934,7 +1936,7 @@
     },
     {
       "id": "arrows--rest2--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1965,7 +1967,7 @@
     },
     {
       "id": "arrows--rest2--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -1996,7 +1998,7 @@
     },
     {
       "id": "beam--flat--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2027,7 +2029,7 @@
     },
     {
       "id": "beam--flat--open--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -2057,7 +2059,7 @@
     },
     {
       "id": "beam--flat--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2088,7 +2090,7 @@
     },
     {
       "id": "beam--flat--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2119,7 +2121,7 @@
     },
     {
       "id": "beam--flat--closed--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -2149,7 +2151,7 @@
     },
     {
       "id": "beam--flat--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2180,7 +2182,7 @@
     },
     {
       "id": "beam--rise--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2212,7 +2214,7 @@
     },
     {
       "id": "beam--rise--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2245,7 +2247,7 @@
     },
     {
       "id": "beam--rise--open--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2277,7 +2279,7 @@
     },
     {
       "id": "beam--rise--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2310,7 +2312,7 @@
     },
     {
       "id": "beam--rise--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2342,7 +2344,7 @@
     },
     {
       "id": "beam--rise--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2375,7 +2377,7 @@
     },
     {
       "id": "beam--rise--closed--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2407,7 +2409,7 @@
     },
     {
       "id": "beam--rise--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2440,7 +2442,7 @@
     },
     {
       "id": "beam--fall--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2472,7 +2474,7 @@
     },
     {
       "id": "beam--fall--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2505,7 +2507,7 @@
     },
     {
       "id": "beam--fall--open--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2537,7 +2539,7 @@
     },
     {
       "id": "beam--fall--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2570,7 +2572,7 @@
     },
     {
       "id": "beam--fall--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2602,7 +2604,7 @@
     },
     {
       "id": "beam--fall--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2635,7 +2637,7 @@
     },
     {
       "id": "beam--fall--closed--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -2667,7 +2669,7 @@
     },
     {
       "id": "beam--fall--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -2700,7 +2702,7 @@
     },
     {
       "id": "beam--corner-left--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2731,7 +2733,7 @@
     },
     {
       "id": "beam--corner-left--open--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -2761,7 +2763,7 @@
     },
     {
       "id": "beam--corner-left--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2792,7 +2794,7 @@
     },
     {
       "id": "beam--corner-left--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2823,7 +2825,7 @@
     },
     {
       "id": "beam--corner-left--closed--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -2853,7 +2855,7 @@
     },
     {
       "id": "beam--corner-left--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2884,7 +2886,7 @@
     },
     {
       "id": "beam--corner-right--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2915,7 +2917,7 @@
     },
     {
       "id": "beam--corner-right--open--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -2945,7 +2947,7 @@
     },
     {
       "id": "beam--corner-right--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -2976,7 +2978,7 @@
     },
     {
       "id": "beam--corner-right--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3007,7 +3009,7 @@
     },
     {
       "id": "beam--corner-right--closed--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -3037,7 +3039,7 @@
     },
     {
       "id": "beam--corner-right--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3068,7 +3070,7 @@
     },
     {
       "id": "beam--down--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3099,7 +3101,7 @@
     },
     {
       "id": "beam--down--open--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -3129,7 +3131,7 @@
     },
     {
       "id": "beam--down--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3160,7 +3162,7 @@
     },
     {
       "id": "beam--down--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3191,7 +3193,7 @@
     },
     {
       "id": "beam--down--closed--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -3221,7 +3223,7 @@
     },
     {
       "id": "beam--down--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3252,7 +3254,7 @@
     },
     {
       "id": "beam--rest8--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -3283,7 +3285,7 @@
     },
     {
       "id": "beam--rest8--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -3315,7 +3317,7 @@
     },
     {
       "id": "beam--rest8--open--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -3346,7 +3348,7 @@
     },
     {
       "id": "beam--rest8--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -3378,7 +3380,7 @@
     },
     {
       "id": "beam--rest8--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -3409,7 +3411,7 @@
     },
     {
       "id": "beam--rest8--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -3441,7 +3443,7 @@
     },
     {
       "id": "beam--rest8--closed--right",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -3472,7 +3474,7 @@
     },
     {
       "id": "beam--rest8--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -3504,7 +3506,7 @@
     },
     {
       "id": "beam--rest4--open--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -3536,7 +3538,7 @@
     },
     {
       "id": "beam--rest4--open--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -3569,7 +3571,7 @@
     },
     {
       "id": "beam--rest4--open--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -3601,7 +3603,7 @@
     },
     {
       "id": "beam--rest4--open--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -3634,7 +3636,7 @@
     },
     {
       "id": "beam--rest4--closed--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -3666,7 +3668,7 @@
     },
     {
       "id": "beam--rest4--closed--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -3699,7 +3701,7 @@
     },
     {
       "id": "beam--rest4--closed--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -3731,7 +3733,7 @@
     },
     {
       "id": "beam--rest4--closed--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -3764,7 +3766,7 @@
     },
     {
       "id": "beam--rest2--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3795,7 +3797,7 @@
     },
     {
       "id": "beam--rest2--open--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -3825,7 +3827,7 @@
     },
     {
       "id": "beam--rest2--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3856,7 +3858,7 @@
     },
     {
       "id": "beam--rest2--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3887,7 +3889,7 @@
     },
     {
       "id": "beam--rest2--closed--right",
-      "reasons": [
+      "advisories": [
         "density-gap"
       ],
       "metrics": {
@@ -3917,7 +3919,7 @@
     },
     {
       "id": "beam--rest2--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3948,7 +3950,7 @@
     },
     {
       "id": "separate--flat--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -3979,7 +3981,7 @@
     },
     {
       "id": "separate--flat--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4010,7 +4012,7 @@
     },
     {
       "id": "separate--flat--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4041,7 +4043,7 @@
     },
     {
       "id": "separate--flat--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4072,7 +4074,7 @@
     },
     {
       "id": "separate--flat--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4103,7 +4105,7 @@
     },
     {
       "id": "separate--flat--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4134,7 +4136,7 @@
     },
     {
       "id": "separate--rise--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -4166,7 +4168,7 @@
     },
     {
       "id": "separate--rise--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4199,7 +4201,7 @@
     },
     {
       "id": "separate--rise--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4232,7 +4234,7 @@
     },
     {
       "id": "separate--rise--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4265,7 +4267,7 @@
     },
     {
       "id": "separate--rise--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -4297,7 +4299,7 @@
     },
     {
       "id": "separate--rise--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4330,7 +4332,7 @@
     },
     {
       "id": "separate--rise--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4363,7 +4365,7 @@
     },
     {
       "id": "separate--rise--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4396,7 +4398,7 @@
     },
     {
       "id": "separate--fall--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -4428,7 +4430,7 @@
     },
     {
       "id": "separate--fall--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4461,7 +4463,7 @@
     },
     {
       "id": "separate--fall--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4494,7 +4496,7 @@
     },
     {
       "id": "separate--fall--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4527,7 +4529,7 @@
     },
     {
       "id": "separate--fall--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -4559,7 +4561,7 @@
     },
     {
       "id": "separate--fall--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4592,7 +4594,7 @@
     },
     {
       "id": "separate--fall--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4625,7 +4627,7 @@
     },
     {
       "id": "separate--fall--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -4658,7 +4660,7 @@
     },
     {
       "id": "separate--corner-left--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4689,7 +4691,7 @@
     },
     {
       "id": "separate--corner-left--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4720,7 +4722,7 @@
     },
     {
       "id": "separate--corner-left--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4751,7 +4753,7 @@
     },
     {
       "id": "separate--corner-left--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4782,7 +4784,7 @@
     },
     {
       "id": "separate--corner-left--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4813,7 +4815,7 @@
     },
     {
       "id": "separate--corner-left--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4844,7 +4846,7 @@
     },
     {
       "id": "separate--corner-right--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4875,7 +4877,7 @@
     },
     {
       "id": "separate--corner-right--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4906,7 +4908,7 @@
     },
     {
       "id": "separate--corner-right--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4937,7 +4939,7 @@
     },
     {
       "id": "separate--corner-right--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4968,7 +4970,7 @@
     },
     {
       "id": "separate--corner-right--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -4999,7 +5001,7 @@
     },
     {
       "id": "separate--corner-right--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5030,7 +5032,7 @@
     },
     {
       "id": "separate--down--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5061,7 +5063,7 @@
     },
     {
       "id": "separate--down--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5092,7 +5094,7 @@
     },
     {
       "id": "separate--down--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5123,7 +5125,7 @@
     },
     {
       "id": "separate--down--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5154,7 +5156,7 @@
     },
     {
       "id": "separate--down--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5185,7 +5187,7 @@
     },
     {
       "id": "separate--down--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5216,7 +5218,7 @@
     },
     {
       "id": "separate--rest8--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -5247,7 +5249,7 @@
     },
     {
       "id": "separate--rest8--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5279,7 +5281,7 @@
     },
     {
       "id": "separate--rest8--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5311,7 +5313,7 @@
     },
     {
       "id": "separate--rest8--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5343,7 +5345,7 @@
     },
     {
       "id": "separate--rest8--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -5374,7 +5376,7 @@
     },
     {
       "id": "separate--rest8--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5406,7 +5408,7 @@
     },
     {
       "id": "separate--rest8--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5438,7 +5440,7 @@
     },
     {
       "id": "separate--rest8--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -5470,7 +5472,7 @@
     },
     {
       "id": "separate--rest4--open--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -5502,7 +5504,7 @@
     },
     {
       "id": "separate--rest4--open--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5535,7 +5537,7 @@
     },
     {
       "id": "separate--rest4--open--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5568,7 +5570,7 @@
     },
     {
       "id": "separate--rest4--open--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5601,7 +5603,7 @@
     },
     {
       "id": "separate--rest4--closed--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -5633,7 +5635,7 @@
     },
     {
       "id": "separate--rest4--closed--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5666,7 +5668,7 @@
     },
     {
       "id": "separate--rest4--closed--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5699,7 +5701,7 @@
     },
     {
       "id": "separate--rest4--closed--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -5732,7 +5734,7 @@
     },
     {
       "id": "separate--rest2--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5763,7 +5765,7 @@
     },
     {
       "id": "separate--rest2--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5794,7 +5796,7 @@
     },
     {
       "id": "separate--rest2--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5825,7 +5827,7 @@
     },
     {
       "id": "separate--rest2--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5856,7 +5858,7 @@
     },
     {
       "id": "separate--rest2--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5887,7 +5889,7 @@
     },
     {
       "id": "separate--rest2--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5918,7 +5920,7 @@
     },
     {
       "id": "mixed--flat--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5949,7 +5951,7 @@
     },
     {
       "id": "mixed--flat--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -5980,7 +5982,7 @@
     },
     {
       "id": "mixed--flat--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6011,7 +6013,7 @@
     },
     {
       "id": "mixed--flat--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6042,7 +6044,7 @@
     },
     {
       "id": "mixed--flat--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6073,7 +6075,7 @@
     },
     {
       "id": "mixed--flat--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6104,7 +6106,7 @@
     },
     {
       "id": "mixed--rise--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -6136,7 +6138,7 @@
     },
     {
       "id": "mixed--rise--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6169,7 +6171,7 @@
     },
     {
       "id": "mixed--rise--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6202,7 +6204,7 @@
     },
     {
       "id": "mixed--rise--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6235,7 +6237,7 @@
     },
     {
       "id": "mixed--rise--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -6267,7 +6269,7 @@
     },
     {
       "id": "mixed--rise--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6300,7 +6302,7 @@
     },
     {
       "id": "mixed--rise--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6333,7 +6335,7 @@
     },
     {
       "id": "mixed--rise--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6366,7 +6368,7 @@
     },
     {
       "id": "mixed--fall--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -6398,7 +6400,7 @@
     },
     {
       "id": "mixed--fall--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6431,7 +6433,7 @@
     },
     {
       "id": "mixed--fall--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6464,7 +6466,7 @@
     },
     {
       "id": "mixed--fall--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6497,7 +6499,7 @@
     },
     {
       "id": "mixed--fall--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "frame-mouth-gap",
         "density-gap"
@@ -6529,7 +6531,7 @@
     },
     {
       "id": "mixed--fall--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6562,7 +6564,7 @@
     },
     {
       "id": "mixed--fall--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6595,7 +6597,7 @@
     },
     {
       "id": "mixed--fall--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "frame-mouth-gap",
@@ -6628,7 +6630,7 @@
     },
     {
       "id": "mixed--corner-left--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6659,7 +6661,7 @@
     },
     {
       "id": "mixed--corner-left--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6690,7 +6692,7 @@
     },
     {
       "id": "mixed--corner-left--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6721,7 +6723,7 @@
     },
     {
       "id": "mixed--corner-left--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6752,7 +6754,7 @@
     },
     {
       "id": "mixed--corner-left--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6783,7 +6785,7 @@
     },
     {
       "id": "mixed--corner-left--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6814,7 +6816,7 @@
     },
     {
       "id": "mixed--corner-right--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6845,7 +6847,7 @@
     },
     {
       "id": "mixed--corner-right--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6876,7 +6878,7 @@
     },
     {
       "id": "mixed--corner-right--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6907,7 +6909,7 @@
     },
     {
       "id": "mixed--corner-right--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6938,7 +6940,7 @@
     },
     {
       "id": "mixed--corner-right--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -6969,7 +6971,7 @@
     },
     {
       "id": "mixed--corner-right--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7000,7 +7002,7 @@
     },
     {
       "id": "mixed--down--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7031,7 +7033,7 @@
     },
     {
       "id": "mixed--down--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7062,7 +7064,7 @@
     },
     {
       "id": "mixed--down--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7093,7 +7095,7 @@
     },
     {
       "id": "mixed--down--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7124,7 +7126,7 @@
     },
     {
       "id": "mixed--down--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7155,7 +7157,7 @@
     },
     {
       "id": "mixed--down--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7186,7 +7188,7 @@
     },
     {
       "id": "mixed--rest8--open--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -7217,7 +7219,7 @@
     },
     {
       "id": "mixed--rest8--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7249,7 +7251,7 @@
     },
     {
       "id": "mixed--rest8--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7281,7 +7283,7 @@
     },
     {
       "id": "mixed--rest8--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7313,7 +7315,7 @@
     },
     {
       "id": "mixed--rest8--closed--none",
-      "reasons": [
+      "advisories": [
         "eyes-mouth-gap",
         "density-gap"
       ],
@@ -7344,7 +7346,7 @@
     },
     {
       "id": "mixed--rest8--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7376,7 +7378,7 @@
     },
     {
       "id": "mixed--rest8--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7408,7 +7410,7 @@
     },
     {
       "id": "mixed--rest8--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "eyes-mouth-gap",
         "density-gap"
@@ -7440,7 +7442,7 @@
     },
     {
       "id": "mixed--rest4--open--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -7472,7 +7474,7 @@
     },
     {
       "id": "mixed--rest4--open--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7505,7 +7507,7 @@
     },
     {
       "id": "mixed--rest4--open--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7538,7 +7540,7 @@
     },
     {
       "id": "mixed--rest4--open--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7571,7 +7573,7 @@
     },
     {
       "id": "mixed--rest4--closed--none",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-mouth-gap",
         "density-gap"
@@ -7603,7 +7605,7 @@
     },
     {
       "id": "mixed--rest4--closed--left",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7636,7 +7638,7 @@
     },
     {
       "id": "mixed--rest4--closed--right",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7669,7 +7671,7 @@
     },
     {
       "id": "mixed--rest4--closed--both",
-      "reasons": [
+      "advisories": [
         "quarter-rest-detail",
         "frame-eyes-gap",
         "frame-mouth-gap",
@@ -7702,7 +7704,7 @@
     },
     {
       "id": "mixed--rest2--open--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7733,7 +7735,7 @@
     },
     {
       "id": "mixed--rest2--open--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7764,7 +7766,7 @@
     },
     {
       "id": "mixed--rest2--open--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7795,7 +7797,7 @@
     },
     {
       "id": "mixed--rest2--closed--left",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7826,7 +7828,7 @@
     },
     {
       "id": "mixed--rest2--closed--right",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],
@@ -7857,7 +7859,7 @@
     },
     {
       "id": "mixed--rest2--closed--both",
-      "reasons": [
+      "advisories": [
         "frame-eyes-gap",
         "density-gap"
       ],

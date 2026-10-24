@@ -31,10 +31,10 @@
 </section>
 <section class="ledger">
   <h2>The space between the parts matters.</h2>
-  <p>Large marks can use every combination. Small marks use an allowlist before a random choice is made. Red specimens below remain available for study; they never enter the favicon pool.</p>
+  <p>Every supported 16 px combination is approved by empytree. Optical measurements remain visible as observations; they do not remove a face from the pool. The top-crease frame remains display-only.</p>
   <div id="counts" class="counts"></div>
-  <details><summary>How the 16 px filter works</summary><p class="meta">Separate frame, eyes and mouth are rasterized at 16, 32 and 48 physical pixels. Pixels with alpha ≥64/255 enter a mask; each pair of layers needs a minimum centre distance of density + 1 physical pixels. Quarter rests are excluded for lost detail. Identical thresholded 16 px silhouettes keep one representative. These are conservative design rules, not a universal legibility guarantee.</p></details>
-  <label>Contact sheet<select id="sheet"><option value="eligible">Eligible in the selected frame and size</option><option value="all">All candidates in the selected frame and size</option></select></label>
+  <details><summary>Optical observations and the author’s decision</summary><p class="meta">Frame, eyes and mouth are rasterized at 1×/2×/3×. The report retains small gaps, quarter-rest detail and identical thresholded silhouettes as observations. The author accepts every supported micro combination. Geometry is unchanged; density measurements do not act as automatic exclusions.</p></details>
+  <label>Contact sheet<select id="sheet"><option value="all">All combinations in the selected frame and size</option><option value="observed">With optical observations</option></select></label>
   <div id="grid" class="grid"></div>
 </section>
 </main>
@@ -55,10 +55,10 @@
   function list(){return data.catalog.filter(v=>v.optical===$('optical').value&&v.frame===$('frame').value)}
   function drawGrid(){
     const container=$('grid');container.replaceChildren();
-    for(const entry of list().filter(v=>$('sheet').value==='all'||v.allowed)){
+    for(const entry of list().filter(v=>$('sheet').value!=='observed'||v.advisories.length)){
       const button=document.createElement('button');button.type='button';button.className='tile'+(entry.allowed?'':' bad');button.innerHTML=svg(entry);
       const label=document.createElement('small');label.textContent=[data.names[entry.eyes],data.names[entry.mouth],data.names[entry.dent]].join(' / ');button.appendChild(label);
-      if(!entry.allowed)button.title=entry.reasons.map(r=>data.reasons[r]).join('; ');
+      if(entry.advisories.length)button.title=entry.advisories.map(r=>data.reasons[r]).join('; ');
       button.addEventListener('click',()=>select(entry));container.appendChild(button);
     }
   }
@@ -66,7 +66,7 @@
     const entry=current(),optical=$('optical').value;
     $('hero').innerHTML=entry?svg(entry):'<p>Top crease has a display drawing only.</p>';
     $('status').classList.toggle('bad',!entry||!entry.allowed);
-    $('status').textContent=!entry?'No drawing at this size. Choose open/closed or display.':entry.allowed?entry.id+' · eligible at '+optical:entry.id+' · excluded at 16 px: '+entry.reasons.map(r=>data.reasons[r]).join('; ');
+    $('status').textContent=!entry?'No drawing at this size. Choose open/closed or display.':entry.allowed?entry.id+' · eligible at '+optical+(entry.advisories.length?' · observations: '+entry.advisories.map(r=>data.reasons[r]).join('; '):''):entry.id+' · excluded at 16 px: '+entry.reasons.map(r=>data.reasons[r]).join('; ');
     $('download').disabled=!entry||!entry.allowed;
     const samples=$('sizes');samples.replaceChildren();
     if(entry){

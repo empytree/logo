@@ -1,5 +1,5 @@
 {
-  "status": "implemented full matrix; conservative micro allowlist; next release candidate",
+  "status": "implemented full matrix; all supported micro combinations author-approved; advisory measurements",
   "dimensions": {
     "eyes": 4,
     "mouths": 9,
@@ -15,10 +15,10 @@
     "displayWithCrease": 432
   },
   "micro": {
-    "allowed": 40,
-    "excluded": 248,
-    "defaultOpen": 20,
-    "policyRevision": 1
+    "allowed": 288,
+    "excluded": 0,
+    "defaultOpen": 144,
+    "policyRevision": 2
   },
   "fixed": [
     "from-inset dent profile",

@@ -2,7 +2,7 @@
 
 [README](../../README.md) · [Construction](logo-system.md) · [Русский план](../roadmap.md)
 
-This page documents the adopted 0.1.0 behavior and the shared consumer contract. For the current 0.2.0 generator, optical allowlist and exporter, start with [generator.md](generator.md).
+This page documents the adopted 0.1.0 behavior and the shared consumer contract. For the current 0.2.1 generator, optical allowlist and exporter, start with [generator.md](generator.md).
 
 ## Source and build
 
@@ -28,7 +28,7 @@ For this limited export keep the default open-frame pool; do not enable closed f
 
 ## Export the historical 0.1.0 pool
 
-The commands and 24-choice package below describe the original limited exporter. For the current 0.2.0 candidate use [generator.md](generator.md), `npm run export:site` and its size-specific allowlist; the historical exporter is `npm run export:legacy`.
+The commands and 24-choice package below describe the original limited exporter. For the current 0.2.1 candidate use [generator.md](generator.md), `npm run export:site` and its size-specific allowlist; the historical exporter is `npm run export:legacy`.
 
 After the owner has committed the complete source and the checkout is clean:
 
@@ -68,6 +68,6 @@ The first consumer is intended to be empytree.com. Its source, templates, deploy
 
 ## Adoption record
 
-Version 0.1.0 is [adopted](../adoptions/0.1.0.md). Version 0.2.0 is not adopted yet. After each real rollout, add a separate record containing the released package version, full public source commit, public target site, actual adoption date, scope and observable validation. Do not publish the private site's remote URL, private commit identifiers, templates or deployment logs to establish that record.
+Version 0.1.0 is [adopted](../adoptions/0.1.0.md). Version 0.2.1 is not adopted yet. After each real rollout, add a separate record containing the released package version, full public source commit, public target site, actual adoption date, scope and observable validation. Do not publish the private site's remote URL, private commit identifiers, templates or deployment logs to establish that record.
 
 Later generator changes require a new source version, validation and a new consumer package. The 144/288/432 matrix and size-specific micro groups are implemented in the next generator; its next adoption must use the new version and exported allowlist.

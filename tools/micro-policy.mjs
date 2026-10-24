@@ -1,5 +1,6 @@
-// A discrete, conservative optical policy; never repairs a selected face afterwards.
-export const microPolicyRevision = 1;
+// Owner decision: every supported 16 px combination is usable. Measurements are advisory.
+export const microPolicyRevision = 2;
+export const microApproval = 'all-supported-variants-approved-by-empytree';
 export const reasonLabels = {
   'quarter-rest-detail': 'Quarter-rest turns collapse at 16 px',
   'frame-eyes-gap': 'Frame and eyes lack a full separating pixel',

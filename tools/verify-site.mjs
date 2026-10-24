@@ -5,6 +5,6 @@ import path from 'node:path';
 const [directory,...args]=process.argv.slice(2);
 if(!directory||args.some(a=>a!=='--allow-development'))throw Error('Usage: node tools/verify-site.mjs RESOURCE_DIRECTORY [--allow-development]');
 const metadata=JSON.parse(await readFile(path.join(directory,'logo-source.json'),'utf8'));
-const verify=metadata.schemaVersion===2?verifySystemPackage:verifySitePackage;
+const verify=metadata.schemaVersion>=2?verifySystemPackage:verifySitePackage;
 const result=await verify(directory,{requireRelease:!args.includes('--allow-development')});
 console.log(JSON.stringify({verified:true,version:result.version,sourceCommit:result.sourceCommit,poolSize:result.poolSize}));

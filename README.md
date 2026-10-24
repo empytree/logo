@@ -8,7 +8,7 @@ Quiet music from a crumpled box. A personal mark for **empytree**: note-like eye
 
 The accepted construction uses intermediate shallow dents (`from-inset`), the deliberately irregular notehead-to-stem joint (`character`), and a separate micro drawing with slightly smaller heads for 16 px. The canonical face has a straight mouth, open top and undented sides. Other side profiles and the smooth joint are historical studies.
 
-The adopted 0.1.0 website pool is **24 combinations**: six mouths × four side states, open frame. Optional closed frames bring the available first-version pool to 48. Version 0.2.0 implements the full matrix: 144 combinations per fixed frame, 288 open/closed candidates and 432 display expressions including the top crease. Its conservative micro policy permits 40 open/closed choices, including 20 open-frame defaults. See the [generator specification](docs/en/generator.md). These counts do not certify perceptual distinctness.
+The adopted 0.1.0 website pool is **24 combinations**: six mouths × four side states, open frame. Optional closed frames bring the available first-version pool to 48. Version 0.2.1 implements the full matrix: 144 combinations per fixed frame, 288 open/closed candidates and 432 display expressions including the top crease. The author approves all 288 open/closed micro combinations; 144 open-frame choices form the generic default pool. Optical measurements are advisory. See the [generator specification](docs/en/generator.md). These counts do not certify perceptual distinctness.
 
 ## Build and inspect
 
@@ -30,7 +30,7 @@ Open [examples/generator.html](examples/generator.html) directly in a browser; t
 - [Build, algorithm and website adoption](docs/en/usage.md)
 - [Authorship — English](AUTHORSHIP.en.md), [Русский](AUTHORSHIP.md)
 - [Development decisions](docs/development-history.md), [rollout roadmap](docs/roadmap.md)
-- [Full generator and optical exclusions](docs/en/generator.md), [Русский](docs/generator.md)
+- [Full generator, author approval and compact marks](docs/en/generator.md), [Русский](docs/generator.md)
 - [Combination count](docs/variation-space.md)
 - [Recorded website adoption — 0.1.0](docs/adoptions/0.1.0.md)
 - [Image analogy research and its limitations](docs/research/image-analogies.md)
@@ -43,7 +43,7 @@ See the [language policy](docs/languages.md) and [initial commit plan](docs/comm
 
 ## Website consumer
 
-This repository is separate from the website. Version 0.1.0 is [adopted](docs/adoptions/0.1.0.md) with 24 static favicon choices. Version 0.2.0 is the next candidate, with 20 eligible open-frame defaults and 40 available open/closed choices. The browser chooses one per load and does not fetch executable code from GitHub. See the [adoption contract](docs/en/usage.md); adoption of 0.2.0 is pending.
+This repository is separate from the website. Version 0.1.0 is [adopted](docs/adoptions/0.1.0.md) with 24 static favicon choices. Version 0.2.1 is the next candidate, with 144 open-frame defaults, 288 approved open/closed choices and compact SVGs for breadcrumbs. The browser chooses one per load and does not fetch executable code from GitHub. See the [adoption contract](docs/en/usage.md); adoption of 0.2.1 is pending.
 
 ## Rights
 

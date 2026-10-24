@@ -1,66 +1,53 @@
-# Full generator and optical allowlist
+# Generator, approved micro pool and compact marks
 
 [Русский](../generator.md) · [Offline generator](../../examples/generator.html) · [First adoption](../adoptions/0.1.0.md)
 
-Version 0.2.0 is the next release candidate. The website currently uses 0.1.0. The established frame, `from-inset` dents, `character` joints and reduced micro heads remain unchanged.
+Version **0.2.1** implements the author's acceptance of **every supported 16 px combination**. Confirmed website adoption still refers to 0.1.0 until the next rollout is recorded. The published 0.2.0 source contained a stricter automatic filter; the author has superseded that decision. Geometry is unchanged.
 
 ## Independent parts
 
-`tools/system.mjs` combines a complete eye pair, a mouth, a frame and a side state. The eye pair is one parameter, not two independent eyes:
+- Eye pairs: `arrows`, `beam`, `separate`, `mixed` (a partial left beam and a separately flagged right note).
+- Mouths: `flat`, `rise`, `fall`, `corner-left`, `corner-right`, `down`, `rest8`, `rest4`, `rest2`.
+- Sides: `none`, `left`, `right`, `both`, always using `from-inset`.
+- Frames: `open`, `closed`, `crease`; the last remains display-only.
 
-- `arrows`: the accepted hybrid note/up-arrow pair;
-- `beam`: two notes sharing a full horizontal beam;
-- `separate`: two eighth notes with individual flags;
-- `mixed`: a left note with a short horizontal partial beam, plus a separately flagged right note.
+The half rest stands above its reference line. These faces are identity drawings, not complete playable notation. Irregular `character` joints and reduced micro heads remain fixed.
 
-Mouths are `flat`, `rise`, `fall`, `corner-left`, `corner-right`, `down`, `rest8`, `rest4` and `rest2`. The half rest sits **above** its short reference line; omitting the line or hanging the rectangle below it would change its reading. Musical faces are identity drawings, not complete playable notation.
+There are **432** display expressions and **288** compact/micro combinations. All **288** micro combinations are usable. The generic default is **144** open-frame choices; `data-frames="open,closed"` enables all 288. A small top-crease request fails explicitly, without substituting another frame.
 
-The state space contains 432 display expressions (4 × 9 × 4 × 3), including `crease`. Compact and micro each have 288 candidates (open/closed only). Small `crease` requests fail explicitly; the generator does not quietly replace the frame.
+Display starts at 64 CSS px, compact at 21–63, micro at 16–20. ICO contains micro geometry at 16/32/48 physical pixels for a 16 CSS px tab at 1×/2×/3×. Compact SVGs use a 32-unit grid for larger inline marks. Original arrow/geometric-mouth silhouettes remain byte-for-byte compatible.
 
-Existing arrow/geometric-mouth drawings are byte-for-byte compatible with the first renderer. Historical `mark({family: ...})` studies remain unchanged; the new API is `renderMark({eyes,mouth,frame,dent,optical})`.
+## Advisory measurements
 
-## Size-specific eligibility
+Micro policy revision **2** records `all-supported-variants-approved-by-empytree`. No gap, quarter-rest-detail or duplicate-raster observation automatically excludes a choice.
 
-Display starts at 64 CSS px, compact at 21–63, micro at 16–20. The three SVG grids are 64/32/16. They are optical drawings, not three additional expressions. ICO layers use the micro drawing at 16, 32 and 48 physical pixels for a 16 CSS px icon at 1×/2×/3×.
+The build still rasterizes separate frame/eyes/mouth layers at three densities. Pixels with alpha ≥64/255 enter masks. Distances below `density + 1`, small quarter-rest details and identical thresholded silhouettes are retained as observations with density measurements. They do not override the author's review.
 
-Micro policy revision 1 currently permits **40 of 288** open/closed candidates. **20** of those use the default open frame; **248** candidates are excluded. All four eye-pair families remain represented. The old deployed 24-choice pool remains part of version 0.1.0; it is not retrospectively rewritten by this stricter policy.
+Revision 1 admitted 40 open/closed choices (20 open); that decision remains in Git history and the journal. Current results are **288 allowed, 0 excluded**, 144 open defaults. See the [report](../research/micro-policy.json), [catalog](../../public/brand/v2/variants.json), [native raster sheet](../brand/matrix-micro.png) and [large sheet](../brand/matrix-display.png).
 
-Build procedure:
-
-1. Rasterize the frame, eyes and mouth as separate transparent layers at each density 1, 2 and 3.
-2. Include pixels with alpha ≥64/255 in each mask. Measure the Euclidean distance between the nearest occupied pixel centres for each pair of layers.
-3. Require distance ≥`density + 1` physical pixels for frame/eyes, eyes/mouth and frame/mouth. This is a conservative separation rule; it does not quantify aesthetic quality.
-4. Exclude the entire `rest4` micro group: its bends collapse into an ambiguous small fragment. Other collision groups come from measured geometry, not arbitrary name matching.
-5. Among remaining candidates, retain one representative of each identical thresholded 16 px silhouette, in deterministic enumeration order. This deduplication is not a proof of perceptual distinctness; all-density checks still apply.
-6. Form the allowlist **before** shuffling. An empty requested group keeps the fixed fallback; do not silently substitute another expression.
-
-The complete reasons, density measurements and exclusions are in [micro-policy.json](../research/micro-policy.json); the catalog is [variants.json](../../public/brand/v2/variants.json). The [native-pixel sheet](../brand/matrix-micro.png) includes rejected specimens; the [large sheet](../brand/matrix-display.png) shows every eye/mouth pairing. Visual review informed the quarter-rest exclusion and confirms the conservative collisions. Browser tab rendering may vary; this is not a universal readability certification.
-
-## Reproduce and generate
-
-With Node.js 24:
+## Build and generate
 
 ```sh
 npm ci
 npm run verify
-npm run generate -- --eyes mixed --mouth rest2 --dent left --size 128 --output .local/mixed.svg
-npm run generate -- --eyes beam --mouth flat --size 16 --format png --output .local/beam.png
+npm run generate -- --eyes mixed --mouth rest4 --dent left --size 16 --format png --output .local/mark.png
+npm run generate -- --eyes separate --mouth rest2 --size 32 --output .local/home.svg
 ```
 
-`generate` writes SVG to stdout when `--output` is absent. PNG requires an output path. Sizes 16–4096 are accepted. Rejected micro requests fail; `--study` explicitly creates a review specimen and emits a warning. It does not make that specimen eligible for the website.
+CLI supports 16–4096 px and SVG/PNG. SVG without `--output` goes to stdout; PNG needs a file. `--study` remains compatible but is not required for any supported micro combination. The offline HTML generator embeds all 1008 optical drawings and native PNGs without network, server or external fonts.
 
-Open `examples/generator.html` directly: no server, API, external fonts or network is needed. It embeds all 1008 optical drawings, native micro PNGs, rejection reasons, random eligible selection, SVG download and URL-fragment choices. The first-edition gallery remains at `examples/index.html`.
+## Website and breadcrumbs
 
-## Next website package
-
-After the owner commits the complete source and the checkout is clean:
+After the owner commits the complete source, from a clean checkout:
 
 ```sh
 npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-For a local preview only, use `--development`; its commit is null. Version 0.2.0 packages contain 40 eligible ICOs, a canonical fallback, stable Apple icon, 96 px PNG, selector and reduced manifest. The default selector uses the 20 open-frame choices. Closed choices are available via `data-frames="open,closed"`. `data-eyes`, `data-mouths` and `data-dents` restrict that allowlist; they cannot introduce a rejected combination.
+`--development` creates a preview with a null commit. Released 0.2.1 packages contain **288 ICOs and 288 compact SVGs**, plus the fixed favicon, Apple icon, 96 px PNG, selector and manifest. Provenance/manifest schema 3 adds `compactMarks`, `markPool` and per-variant `svg` names. Verification retains compatibility with schema 2 under its original policy revision.
 
-The selector is generated from the allowlist. It draws nothing and fetches no manifest at runtime. A validated `sessionStorage` shuffle bag visits all allowed choices before repeating and prevents an immediate repeat across cycle boundaries. Pool changes discard incompatible storage. Storage failure permits selection without the cross-load guarantee.
+The browser favicon selector chooses once per load from the requested frames. A validated sessionStorage Fisher–Yates bag visits the pool before repeating and avoids immediate cycle-boundary repetition. Unknown/empty groups preserve the fallback. Storage failure removes cross-load guarantees. There is no runtime drawing, manifest fetch or timer.
 
-Keep the provenance file, versioned local resource URLs and explicit no-JS fallback contract described in [usage](usage.md). The historical limited exporter is `npm run export:legacy`; use `export:site` for the next adoption. A new source commit, export and real website rollout must precede a 0.2.0 adoption record.
+Breadcrumb marks may be independently selected on the server from `markPool`, including without JavaScript. Resolve only manifest-listed SVGs inside the pinned resource directory. Insert the trusted SVG inline so `currentColor` follows the link color. Give the link an accessible name such as “Home”; mark the nested SVG decorative with `aria-hidden="true"` and `focusable="false"`. About 32–40 CSS px suits compact breadcrumbs; reserve a comfortable focus/click area and avoid layout shifts.
+
+Keep versioned local URLs and `logo-source.json`. A development package is not a released adoption. A new source commit and real rollout must precede its adoption record. The shared contract and first-version behavior remain in [usage](usage.md).

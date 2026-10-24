@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { enumerate,parts,wrap,renderMark,eyePairs,mouthKinds,names } from './system.mjs';
 import { identityConfig } from './identity-config.mjs';
-import { microPolicyRevision,opticalReasons,filterPool,reasonLabels } from './micro-policy.mjs';
+import { microPolicyRevision,microApproval,opticalReasons,filterPool,reasonLabels } from './micro-policy.mjs';
 const require=createRequire(import.meta.url);
 const sharp=require(process.env.EMPYTREE_SHARP||'sharp');
 const out=new URL('../public/brand/v2/',import.meta.url);
@@ -31,7 +31,7 @@ for(const optical of ['display','compact','micro'])for(const variant of enumerat
   const svg=renderMark(options);
   const file=`${variant.id}-${optical}.svg`;
   await writeFile(new URL(file,out),svg);
-  let metrics=null,reasons=[],rasterHash=null,duplicateOf=null;
+  let metrics=null,advisories=[],rasterHash=null,duplicateOf=null;
   if(optical==='micro'){
     const layers=parts(options);
     const densityGaps={};let densitySafe=true;
@@ -53,15 +53,15 @@ for(const optical of ['display','compact','micro'])for(const variant of enumerat
     await writeFile(new URL(`${variant.id}-16.png`,out),png);
     const mask=await alphaMask(svg);
     rasterHash=createHash('sha256').update(JSON.stringify(mask)).digest('hex');
-    reasons=opticalReasons(variant,metrics);
-    if(!reasons.length&&seen.has(rasterHash)){duplicateOf=seen.get(rasterHash);reasons.push('duplicate-raster')}
-    if(!reasons.length)seen.set(rasterHash,variant.id);
+    advisories=opticalReasons(variant,metrics);
+    if(seen.has(rasterHash)){duplicateOf=seen.get(rasterHash);advisories.push('duplicate-raster')}
+    else seen.set(rasterHash,variant.id);
   }
-  catalog.push({...variant,optical,svg:file,allowed:reasons.length===0,reasons,metrics,rasterHash,duplicateOf});
+  catalog.push({...variant,optical,svg:file,allowed:true,reasons:[],advisories,metrics,rasterHash,duplicateOf});
 }
 const micro=catalog.filter(v=>v.optical==='micro');
 const counts={display:432,compact:288,microCandidates:288,microAllowed:micro.filter(v=>v.allowed).length,microExcluded:micro.filter(v=>!v.allowed).length,websitePool:filterPool(catalog).length};
-const manifest={schemaVersion:2,construction:identityConfig,microPolicyRevision,default:'arrows--flat--open--none',counts,catalog};
+const manifest={schemaVersion:2,construction:identityConfig,microPolicyRevision,microApproval,default:'arrows--flat--open--none',counts,catalog};
 await writeFile(new URL('variants.json',out),JSON.stringify(manifest,null,2)+'\n');
 function ico(layers){
   const header=Buffer.alloc(6+layers.length*16);header.writeUInt16LE(1,2);header.writeUInt16LE(layers.length,4);
@@ -79,12 +79,12 @@ for(const variant of micro.filter(v=>v.allowed)){
 }
 const selector=await readFile(new URL('selector-template.js',import.meta.url),'utf8');
 await writeFile(new URL('random-favicon.js',out),selector.replace('__CANDIDATES__',JSON.stringify(micro.filter(v=>v.allowed).map(({id,eyes,mouth,dent,frame})=>({id,eyes,mouth,dent,frame})))));
-await writeFile(new URL('../docs/research/micro-policy.json',import.meta.url),JSON.stringify({revision:microPolicyRevision,thresholdAlpha:64,densities:[1,2,3],minPixelCenterDistance:'density + 1',reasonLabels,counts,excluded:micro.filter(v=>!v.allowed).map(({id,reasons,metrics,duplicateOf})=>({id,reasons,metrics,duplicateOf}))},null,2)+'\n');
+await writeFile(new URL('../docs/research/micro-policy.json',import.meta.url),JSON.stringify({revision:microPolicyRevision,approval:microApproval,thresholdAlpha:64,densities:[1,2,3],advisoryPixelCenterDistance:'density + 1',reasonLabels,counts,excluded:[],observations:micro.filter(v=>v.advisories.length).map(({id,advisories,metrics,duplicateOf})=>({id,advisories,metrics,duplicateOf}))},null,2)+'\n');
 
 // Review sheets embed the actual native raster, not an enlarged vector approximation.
 const text=(x,y,value,size=14,color='#20211f')=>`<text x="${x}" y="${y}" font-family="Segoe UI,sans-serif" font-size="${size}" fill="${color}">${value}</text>`;
 const image=(data,x,y,size)=>`<image x="${x}" y="${y}" width="${size}" height="${size}" href="data:image/png;base64,${data.toString('base64')}"/>`;
-const sheet=['<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1140"><rect width="1560" height="1140" fill="#f5f4ef"/>',text(24,36,'empytree / 16 px candidates — native pixels + nearest-neighbour ×4',22),text(24,62,`Green: eligible · red: excluded · ${counts.websitePool} eligible open-frame choices`,16)];
+const sheet=['<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1140"><rect width="1560" height="1140" fill="#f5f4ef"/>',text(24,36,'empytree / 16 px — native pixels + nearest-neighbour ×4',22),text(24,62,`All supported combinations approved by empytree · ${counts.websitePool} open-frame choices`,16)];
 for(const [col,eyes] of eyePairs.entries())sheet.push(text(118+col*360,96,names[eyes],17));
 for(const [row,mouth] of mouthKinds.entries()){
   const y=122+row*108;

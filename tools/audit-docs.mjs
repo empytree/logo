@@ -29,9 +29,9 @@ const manifest=JSON.parse(await readFile(path.join(root,'public/brand/v1/variant
 assert.deepEqual(manifest.construction,identityConfig,'Generated exports do not match accepted construction');
 const current=JSON.parse(await readFile(path.join(root,'public/brand/v2/variants.json'),'utf8'));
 assert.deepEqual(current.construction,identityConfig);
-assert.equal(current.counts.microAllowed,40);assert.equal(current.counts.websitePool,20);
+assert.equal(current.counts.microAllowed,288);assert.equal(current.counts.websitePool,144);
 for(const file of ['README.md','README.ru.md','docs/en/generator.md','docs/generator.md']){
-  const content=await readFile(path.join(root,file),'utf8');assert.ok(content.includes('0.2.0'));assert.ok(content.includes('40'));assert.ok(content.includes('20'));
+  const content=await readFile(path.join(root,file),'utf8');assert.ok(content.includes('0.2.1'));assert.ok(content.includes('288'));assert.ok(content.includes('144'));
 }
 const result={date:'2026-10-24',markdownFiles:files.length,localLinks,missingLinks:missing.length,construction:identityConfig,adoptedChoices:manifest.defaultPool.length,nextChoices:current.counts.websitePool,matrix:counts.matrix,micro:counts.micro};
 await writeFile(reportTarget,JSON.stringify(result,null,2)+'\n');

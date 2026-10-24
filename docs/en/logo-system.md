@@ -2,7 +2,7 @@
 
 [Русская спецификация](../logo-system.md) · [README](../../README.md)
 
-Construction revision 1.3, 24 October 2026. The established construction remains accepted. Version 0.1.0 is adopted; version 0.2.0 implements the independent musical generator described in [generator.md](generator.md). This page records the original construction and its stable first-edition API. The mark is personal identification for empytree, not a certified packaging instruction or evidence of trademark registration.
+Construction revision 1.3, 24 October 2026. The established construction remains accepted. Version 0.1.0 is adopted; version 0.2.1 implements the independent musical generator described in [generator.md](generator.md). This page records the original construction and its stable first-edition API. The mark is personal identification for empytree, not a certified packaging instruction or evidence of trademark registration.
 
 ## Concept
 
@@ -67,7 +67,7 @@ The build generates static assets. The browser selector chooses an existing icon
 
 Four eye-pair designs: arrows, beamed notes, separate eighths, partial horizontal beam plus a separate flag. Nine mouths: the six geometric forms plus eighth, quarter and half rests. Four side states produce 144 parameter combinations with one frame, 288 with open/closed frames, and 432 in display when an open top crease is added as a third frame alternative.
 
-These counts do not establish distinct or readable 16 px images. Musical studies are not literal playable notation. The next generator implements size-specific allowed groups, rejection reasons and density validation; its micro pool contains 40 open/closed choices, 20 open by default. Adoption of that version is still a separate milestone. Optical sizes, pixel densities, file formats and discarded dent profiles do not multiply the conceptual face count.
+These counts do not establish distinct or readable 16 px images. Musical studies are not literal playable notation. The next generator implements size-specific allowed groups, rejection reasons and density validation; its author-approved micro pool contains all 288 open/closed choices, 144 open by default. Adoption of that version is still a separate milestone. Optical sizes, pixel densities, file formats and discarded dent profiles do not multiply the conceptual face count.
 
 ## Build and adoption
 

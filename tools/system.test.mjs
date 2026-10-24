@@ -28,14 +28,14 @@ test('full matrix is distinct; the established original drawings remain byte-for
   assert.throws(()=>renderMark({color:'red" onload="bad'}));
 });
 
-test('micro allowlist excludes dense/ambiguous groups before pool formation and keeps all four eye families',()=>{
+test('all supported micro combinations are author-approved and measurements stay advisory',()=>{
   assert.equal(manifest.catalog.length,1008);
   const pool=filterPool(manifest.catalog);
-  assert.ok(pool.length>0&&pool.length<144);assert.equal(new Set(pool.map(v=>v.eyes)).size,4);
-  assert.ok(pool.every(v=>v.allowed&&v.frame==='open'&&v.mouth!=='rest4'&&v.metrics.frameEyes>=2&&v.metrics.eyesMouth>=2&&v.metrics.frameMouth>=2));
-  assert.equal(new Set(pool.map(v=>v.rasterHash)).size,pool.length);
-  assert.ok(manifest.catalog.filter(v=>v.optical==='micro'&&v.mouth==='rest4').every(v=>!v.allowed&&v.reasons.includes('quarter-rest-detail')));
-  assert.deepEqual(filterPool(manifest.catalog,{mouths:['rest4']}),[]);
+  assert.equal(pool.length,144);assert.equal(filterPool(manifest.catalog,{frames:['open','closed']}).length,288);
+  assert.equal(new Set(pool.map(v=>v.eyes)).size,4);
+  assert.ok(manifest.catalog.every(v=>v.allowed&&v.reasons.length===0));
+  assert.equal(filterPool(manifest.catalog,{mouths:['rest4']}).length,16);
+  assert.ok(pool.filter(v=>v.mouth==='rest4').every(v=>v.advisories.includes('quarter-rest-detail')));
 });
 
 test('compact and display layers never overlap at their native raster sizes',async()=>{
@@ -49,7 +49,7 @@ test('compact and display layers never overlap at their native raster sizes',asy
   }
 });
 
-test('eligible micro layers stay separated at 1x, 2x and 3x, and ICO density layers use the micro drawing',async()=>{
+test('advisory measurements remain accurate and all ICO density layers use the micro drawing',async()=>{
   for(const variant of filterPool(manifest.catalog,{frames:['open','closed']})){
     const layers=parts(variant),ico=await readFile(resource(variant.id+'.ico'));
     for(const [index,scale] of [1,2,3].entries()){
@@ -61,7 +61,8 @@ test('eligible micro layers stay separated at 1x, 2x and 3x, and ICO density lay
       }
       for(const [a,b] of [[0,1],[0,2],[1,2]]){
         let distance=Infinity;for(const [x,y] of masks[a])for(const [xx,yy] of masks[b])distance=Math.min(distance,Math.hypot(x-xx,y-yy));
-        assert.ok(distance>=scale+1,`${variant.id}, density ${scale}, gap ${distance}`);
+        const name=a===0?(b===1?'frameEyes':'frameMouth'):'eyesMouth';
+        assert.equal(Number(distance.toFixed(3)),variant.metrics.densityGaps[scale][name]);
       }
       const p=6+index*16,length=ico.readUInt32LE(p+8),offset=ico.readUInt32LE(p+12);
       const expected=await sharp(Buffer.from(renderMark({...variant,color:'#20211f',background:'#ffffff'}).replace('width="16" height="16"',`width="${16*scale}" height="${16*scale}"`))).raw().toBuffer();
@@ -80,7 +81,9 @@ test('new selector visits only eligible choices, exhausts a bag and preserves fa
   for(let cycle=0;cycle<4;cycle++){
     const seen=new Set();for(let i=0;i<pool.length;i++){const result=page(store);assert.ok(pool.some(v=>v.id===result.dataset.expression));assert.notEqual(result.dataset.expression,previous);previous=result.dataset.expression;seen.add(previous)}assert.equal(seen.size,pool.length);
   }
-  assert.match(page(store,{mouths:'rest4'}).href,/favicon.ico$/);
+  assert.match(page(store,{mouths:'rest4'}).href,/--rest4--/);
+  assert.match(page(store,{mouths:'rest16'}).href,/favicon.ico$/);
+  const allStore=new Map(),allSeen=new Set();for(let i=0;i<288;i++)allSeen.add(page(allStore,{frames:'open,closed'}).dataset.expression);assert.equal(allSeen.size,288);
   assert.match(page(store,{eyes:'../../bad'}).href,/favicon.ico$/);
   assert.match(page(store,{enabled:'false'}).href,/favicon.ico$/);
   assert.match(page(new Map(),{},true).href,/--open--/);
@@ -88,12 +91,12 @@ test('new selector visits only eligible choices, exhausts a bag and preserves fa
   assert.match(page(store,{frames:'closed'}).href,/--closed--/);
 });
 
-test('CLI refuses excluded small specimens and unsupported small frames, and can export a permitted SVG',()=>{
+test('CLI exports all approved small specimens and still refuses unsupported small frames',()=>{
   const run=args=>spawnSync(process.execPath,['tools/generate.mjs',...args],{cwd:root,encoding:'utf8',windowsHide:true});
-  assert.notEqual(run(['--mouth','rest4','--size','16']).status,0);
+  assert.equal(run(['--mouth','rest4','--size','16']).status,0);
   assert.notEqual(run(['--frame','crease','--size','16']).status,0);
   assert.match(run(['--eyes','mixed','--size','64']).stdout,/<svg/);
-  const study=run(['--mouth','rest4','--size','16','--study']);assert.equal(study.status,0);assert.match(study.stderr,/Study only/);
+  const study=run(['--mouth','rest4','--size','16','--study']);assert.equal(study.status,0);assert.equal(study.stderr,'');
 });
 
 test('new website package includes only allowed ICOs, records a null development commit and detects corruption',async()=>{
@@ -101,7 +104,10 @@ test('new website package includes only allowed ICOs, records a null development
   const expected=path.join(root,'dist',outputName);
   try{
     const {resourceDir,provenance}=await exportSystemPackage({development:true,outputName});
-    assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,filterPool(manifest.catalog).length);
+    assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,144);assert.equal(provenance.availableChoices,288);assert.equal(provenance.compactMarks,288);
+    const packed=JSON.parse(await readFile(path.join(resourceDir,'variants.json'),'utf8'));
+    assert.equal(packed.markPool.length,288);assert.ok(packed.variants.every(v=>v.svg===v.id+'-compact.svg'));
+    assert.match(await readFile(path.join(resourceDir,packed.variants[0].svg),'utf8'),/viewBox="0 0 32 32"/);
     await assert.rejects(verifySystemPackage(resourceDir));
     await verifySystemPackage(resourceDir,{requireRelease:false});
     await assert.rejects(exportSystemPackage({development:true,outputName}));
@@ -123,7 +129,7 @@ test('offline generator embeds every optical drawing, actual micro pixels and sy
   assert.equal(Object.keys(data.marks).length,1008);assert.equal(Object.keys(data.pixels).length,288);
 });
 
-test('generator controls block rejected exports, preserve explicit invalid frame state and randomize only eligible faces',async()=>{
+test('generator controls allow every micro mark and preserve explicit unsupported frame state',async()=>{
   const html=await readFile(new URL('../examples/generator.html',import.meta.url),'utf8');
   const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];
   class Element {
@@ -134,12 +140,12 @@ test('generator controls block rejected exports, preserve explicit invalid frame
     addEventListener(name,callback){this.listeners[name]=callback}
   }
   const nodes={};for(const id of ['eyes','mouth','dent','frame','optical','sheet'])nodes[id]=new Element('select');
-  nodes.optical.value='display';nodes.sheet.value='eligible';
+  nodes.optical.value='display';nodes.sheet.value='all';
   const document={getElementById:id=>nodes[id]??=new Element(),createElement:tag=>new Element(tag)};
   vm.runInNewContext(script,{document,location:{hash:''},URLSearchParams,Math});
   assert.equal(nodes.download.disabled,false);assert.match(nodes.status.textContent,/eligible at display/);
   nodes.optical.value='micro';nodes.mouth.value='rest4';nodes.optical.listeners.change();
-  assert.equal(nodes.download.disabled,true);assert.match(nodes.status.textContent,/Quarter-rest/);
+  assert.equal(nodes.download.disabled,false);assert.match(nodes.status.textContent,/Quarter-rest/);
   nodes.random.listeners.click();assert.equal(nodes.download.disabled,false);assert.match(nodes.status.textContent,/eligible at micro/);
   nodes.frame.value='crease';nodes.frame.listeners.change();
   assert.equal(nodes.download.disabled,true);assert.equal(nodes.random.disabled,true);assert.match(nodes.status.textContent,/No drawing/);assert.equal(nodes.frame.value,'crease');

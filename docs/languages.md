@@ -6,8 +6,8 @@ Accepted state shared by both languages:
 
 - Construction revision 1.3: `from-inset`, `character`, micro head scaling 0.88 × 0.96.
 - First website pool: 24 open-frame combinations; full first-version catalog: 48 including closed frames.
-- Implemented parameter matrix: 144 / 288 / 432; next micro allowlist 40 open/closed choices, 20 open by default. Adopted 0.1.0 still uses its original 24-choice pool.
-- Version 0.1.0 is publicly adopted; version 0.2.0 remains a candidate until separately committed and rolled out.
+- Implemented parameter matrix: 144 / 288 / 432; all 288 micro open/closed choices author-approved, 144 open by default; observations do not exclude. Adopted 0.1.0 still uses its original 24-choice pool.
+- Version 0.1.0 is publicly adopted; version 0.2.1 remains a candidate until separately committed and rolled out.
 - Rights-policy drafts are not adopted licenses.
 
 When changing construction or behavior, update the corresponding English and Russian pages in the same change and record the revision. Translation must not silently introduce a different allowed pool or license. Automated link checks do not establish semantic equivalence.

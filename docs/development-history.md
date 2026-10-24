@@ -27,3 +27,9 @@
 ## Development summary
 
 The author accepted the irregular joint and intermediate shallow dent. Version 0.1.0 was subsequently adopted and publicly verified over HTTP. The next 0.2.0 candidate implements the full independent musical matrix and a conservative micro allowlist: 40 open/closed choices, 20 open by default. Requiring separation at all three densities reduced an initial 50-choice candidate set to 40. The original silhouettes remain unchanged. The next website adoption is a separate milestone.
+
+## Авторское утверждение всех micro-вариантов
+
+После публикации генератора автор просмотрел варианты и однозначно разрешил использовать все сочетания 16 px. Редакция политики 2 и версия 0.2.1 сохраняют геометрию, но отменяют автоматические запреты. Все 288 открытых/закрытых сочетаний доступны; 144 открытых составляют общий пул по умолчанию. Старые зазоры, детали пауз и совпадения растров сохранены как наблюдения. Добавлен экспорт компактных SVG для случайной ссылки на главную в хлебных крошках.
+
+The author approved every supported 16 px combination. Policy revision 2 removes automatic exclusions without redrawing geometry; measurements remain advisory. The 0.2.1 consumer package adds compact marks for breadcrumb home links.
