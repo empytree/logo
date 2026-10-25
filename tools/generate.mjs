@@ -10,7 +10,7 @@ for(let i=0;i<args.length;i++){
   if(key==='--study'){study=true;continue}
   const value=args[++i];
   if(value===undefined)throw Error(`Missing value for ${key}`);
-  if(['--eyes','--mouth','--frame','--dent','--theme'].includes(key))options[key.slice(2)]=value;
+  if(['--eyes','--mouth','--frame','--dent','--theme','--color'].includes(key))options[key.slice(2)]=value;
   else if(key==='--size')size=Number(value);
   else if(key==='--format')format=value;
   else if(key==='--output')output=value;

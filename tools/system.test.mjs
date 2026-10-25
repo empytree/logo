@@ -95,6 +95,7 @@ test('new selector visits only eligible choices, exhausts a bag and preserves fa
 test('CLI exports all approved small specimens and still refuses unsupported small frames',()=>{
   const run=args=>spawnSync(process.execPath,['tools/generate.mjs',...args],{cwd:root,encoding:'utf8',windowsHide:true});
   assert.equal(run(['--mouth','rest4','--size','16']).status,0);
+  assert.match(run(['--size','16','--theme','dark','--color','#804020']).stdout,/#804020/);
   assert.notEqual(run(['--frame','crease','--size','16']).status,0);
   assert.match(run(['--eyes','mixed','--size','64']).stdout,/<svg/);
   const study=run(['--mouth','rest4','--size','16','--study']);assert.equal(study.status,0);assert.equal(study.stderr,'');
@@ -105,7 +106,7 @@ test('new website package includes only allowed ICOs, records a null development
   const expected=path.join(root,'dist',outputName);
   try{
     const {resourceDir,provenance}=await exportSystemPackage({development:true,outputName});
-    assert.equal(provenance.schemaVersion,4);assert.equal(Object.keys(provenance.files).length,1158);assert.equal(provenance.faviconFiles,576);assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,144);assert.equal(provenance.availableChoices,288);assert.equal(provenance.compactMarks,288);
+    assert.equal(provenance.schemaVersion,5);assert.equal(Object.keys(provenance.files).length,1158);assert.equal(provenance.faviconFiles,576);assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,144);assert.equal(provenance.availableChoices,288);assert.equal(provenance.compactMarks,288);
     const packed=JSON.parse(await readFile(path.join(resourceDir,'variants.json'),'utf8'));
     assert.equal(packed.markPool.length,288);assert.ok(packed.variants.every(v=>v.svg===v.id+'-compact.svg'));
     assert.match(await readFile(path.join(resourceDir,packed.variants[0].svg),'utf8'),/viewBox="0 0 32 32"/);
@@ -151,6 +152,6 @@ test('generator controls allow every micro mark and preserve explicit unsupporte
   nodes.frame.value='crease';nodes.frame.listeners.change();
   assert.equal(nodes.download.disabled,true);assert.equal(nodes.random.disabled,true);assert.match(nodes.status.textContent,/No drawing/);assert.equal(nodes.frame.value,'crease');
   nodes.optical.value='display';nodes.optical.listeners.change();assert.equal(nodes.download.disabled,false);
-  nodes.theme.value='dark';nodes.theme.listeners.change();assert.match(nodes.hero.innerHTML,/#20211f/);assert.match(nodes.hero.innerHTML,/#f5f4ef/);
+  nodes.theme.value='dark';nodes.theme.listeners.change();assert.doesNotMatch(nodes.hero.innerHTML,/#20211f/);assert.match(nodes.hero.innerHTML,/#f5f4ef/);
   assert.ok(nodes.grid.children.length>0);
 });

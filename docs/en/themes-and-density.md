@@ -2,18 +2,20 @@
 
 [Русский](../themes-and-density.md) · [Construction](logo-system.md) · [Comparison sheet](../brand/themes-and-density.png)
 
-Rules for **0.3.0**, construction **1.4**, accepted on 25 October 2026. This is a new source package; the latest verified public adoption remains [0.2.1](../adoptions/0.2.1.md). A source release is not a claim of deployment.
+Rules for **0.3.1**, construction **1.5**, accepted on 25 October 2026. This is a new source package; the latest verified public adoption remains [0.3.0](../adoptions/0.3.0.md). A source release is not a claim of deployment.
 
 ## Placement conditions
 
-Every production mark declares one of two palettes and includes an opaque background:
+Every production mark has known placement conditions and a transparent background. The following line colors are recommended defaults:
 
-| `theme` | Mark | Background |
+| `theme` | Recommended line color | Placement |
 | --- | --- | --- |
-| `light` | `#20211f` | `#f5f4ef` |
-| `dark` | `#f5f4ef` | `#20211f` |
+| `light` | `#20211f` | Light surface |
+| `dark` | `#f5f4ef` | Dark surface |
 
-These are placement modes, not extra expressions. Photos, arbitrary colors and transparent backgrounds are not production modes of this revision. Inline SVG also uses a named palette rather than unrestricted link-color inheritance. The existing dark breadcrumb header calls for `dark`, independently of the visitor's system preference: its placement conditions are known.
+These values are recommendations, not mandatory brand constants. Creative placement may use another explicit line color. Check contrast against the actual surface and legibility at the delivered size, especially 16px. Color changes do not alter geometry, joints, expression counts or the standard random pool.
+
+The API accepts `renderMark({theme:'light',color:'#804020'})`; CLI accepts `--theme light --color '#804020'`. An override is an opaque RGB hex color; `theme` records the intended surface category. The browser generator and standard website set retain the recommended defaults. Uncontrolled text-color inheritance is not an explicit placement decision. The known dark breadcrumb header uses `dark`, independently of system preference. Example surfaces `#f5f4ef` / `#20211f` appear only in previews, never in downloaded marks.
 
 The box fills the canvas, including 16 × 16 instead of the previous 14 × 14 micro box. No mandatory internal padding or external clear-space margin remains. Page layout may add spacing between elements. Contours fit completely, including sharp dent shoulders.
 
@@ -21,7 +23,7 @@ Micro keeps the accepted eye/mouth coordinates and 0.88 × 0.96 head reduction. 
 
 Compact maps its original `[1,31]` bounds to `[0,32]` using `scale(32/30) translate(-1,-1)`. Display maps `[3,61]` to `[0,64]` using `scale(64/58) translate(-3,-3)`. Frames are closed filled contours; tiny outward shoulder miters are constrained during construction rather than cropped after rendering. Irregular joints and the accepted `from-inset` dent remain.
 
-`presentation.mjs` defines palettes, frame geometry and resolutions. Low-level `wrap({theme:null})` is only for measurement masks and studies on a known background. CLI, browser generator and consumer packages export explicit opaque production palettes. `public/brand/v1` preserves historical construction.
+`presentation.mjs` defines palettes, frame geometry and resolutions. Low-level `wrap({theme:null})` is only for measurement masks and studies on a known background. CLI, browser generator and consumer packages export transparent artwork with an explicit line color. `public/brand/v1` preserves historical construction.
 
 ## Every ICO carries the full resolution family
 
@@ -44,8 +46,10 @@ SVG remains vector. Choose an inline mark's optical drawing for its placement si
 3. A `change` event switches only the palette URL. Preserve the face, remaining bag and next random choice. No timer or polling is involved.
 4. Missing/throwing API uses light. Disabled JavaScript or explicit no-JS retains canonical light `favicon.ico`, also with all ten layers. Unknown/empty groups retain the fallback.
 
-The reported preference is not the precise tab-strip color or a custom browser skin. Opaque contrasting palettes do not rely on transparent-background matching. Cached bookmark icons may refresh on the browser's own schedule; immediate updates to every stored copy are not promised.
+The reported preference is not the precise tab-strip color or a custom browser skin. Transparent artwork needs a line color suited to the actual surface. When theme detection is unavailable, the light fallback uses dark lines; its contrast on an arbitrary dark tab strip is not guaranteed. Cached bookmark icons may refresh on the browser's own schedule; immediate updates to every stored copy are not promised.
 
-Schema **4** packages contain 576 ICOs, 576 compact SVGs, two canonical ICOs, PNGs at 96/180, selector and manifest: **1158 SHA-256 entries plus `logo-source.json`**. `ico`/`icoDark` and `svg`/`svgDark` share a face ID. Provenance records palettes, sizes and per-layer optics. Never overwrite previously published versioned resources.
+Schema **5** packages contain 576 ICOs, 576 compact SVGs, two canonical ICOs, PNGs at 96/180, selector and manifest: **1158 SHA-256 entries plus `logo-source.json`**. `ico`/`icoDark` and `svg`/`svgDark` share a face ID. Provenance records palettes, sizes and per-layer optics. Never overwrite previously published versioned resources.
 
 Mechanism references: [MDN: link and multi-size ICO](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link), [Apple: Retina image delivery](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/SafariImageDeliveryBestPractices/ServingImagestoRetinaDisplays/ServingImagestoRetinaDisplays.html), [MDN: matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia), [change event](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/change_event).
+
+Separate policy: [line colors and transparency](colors.md).

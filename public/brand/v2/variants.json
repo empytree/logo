@@ -5,16 +5,18 @@
     "joint": "character",
     "microHeadScaleX": 0.88,
     "microHeadScaleY": 0.96,
-    "revision": "1.4",
+    "revision": "1.5",
     "canvas": "edge-to-edge",
+    "background": "transparent",
+    "lineColors": "recommended-overridable",
     "palettes": {
       "light": {
         "foreground": "#20211f",
-        "background": "#f5f4ef"
+        "background": null
       },
       "dark": {
         "foreground": "#f5f4ef",
-        "background": "#20211f"
+        "background": null
       }
     },
     "icoSizes": [

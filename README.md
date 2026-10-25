@@ -6,9 +6,9 @@
 
 **Quiet music from a crumpled box.** A personal mark system by **Sergei Parfenov · empytree**. Note-like eyes, a changing mouth and a square with shallow dents keep one character across many expressions. The uneven notehead-to-stem joint is deliberate.
 
-**Version 0.2.1 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.2.1.md).
+**Version 0.3.0 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.3.0.md).
 
-**New revision 0.3.0:** two fixed palettes, edge-to-edge artwork and ten resolutions in every ICO. 288 expressions × 2 palettes = **576 ICOs**. Public adoption of 0.3.0 is not yet confirmed. [Theme and density rules](docs/en/themes-and-density.md) · [Pixel comparison](docs/brand/themes-and-density.png).
+**New revision 0.3.1:** transparent artwork, two recommended line colors, edge-to-edge geometry and ten resolutions per ICO. 288 expressions × 2 palettes = **576 ICOs**. 0.3.1 is not yet deployed. Default line colors may be overridden for a known placement. [Theme and density rules](docs/en/themes-and-density.md) · [Pixel comparison](docs/brand/themes-and-density.png).
 
 ## The system
 
@@ -38,6 +38,8 @@ npm run generate -- --eyes mixed --mouth rest2 --dent left --size 128 --output .
 Current resources are in `public/brand/v2/`. `public/brand/v1/` and the [first-edition gallery](examples/index.html) preserve the earlier implementation. Website consumers receive a pinned static package; Node and Sharp are build tools, not server requirements. [Export and integration](docs/en/usage.md).
 
 ## Documentation
+
+- [Line colors and transparency](docs/en/colors.md), [Русский](docs/colors.md)
 
 - [Construction — English](docs/en/logo-system.md), [Русский](docs/logo-system.md)
 - [Generator and author-approved micro policy — English](docs/en/generator.md), [Русский](docs/generator.md)

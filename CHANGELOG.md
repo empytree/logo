@@ -1,12 +1,19 @@
 # Changelog
 
-## 0.3.0 — source preparation, 2026-10-25
+## 0.3.1 — prepared source, 2026-10-25
+
+- Transparent SVG, PNG and every ICO layer; default line colors remain #20211f / #f5f4ef.
+- Line colors are recommendations; explicit creative overrides are supported by API/CLI.
+- Construction 1.5 and consumer schema 5; geometry, 288 expressions, ten resolutions and theme/bag behavior stay unchanged.
+- Public 0.3.0 adoption is recorded; its opaque URLs and source provenance are preserved. Transparent 0.3.1 is not yet deployed.
+
+## 0.3.0 — adopted on 2026-10-25
 
 - Construction 1.4: explicit opaque light/dark palettes; box fits the full canvas. Micro eyes/mouth retain their pixel grid. Irregular joints and accepted dents remain.
 - Every paired ICO has ten directly vector-rasterized layers; physical resolution selects micro/compact/display detail.
 - Theme detection and change events preserve the selected face and shuffle bag.
 - Schema 4 exports 576 ICOs and 576 compact SVGs with palettes, layer sizes/optics and checksums.
-- Offline generator supports both palettes; current sheets and RU/EN rules are updated. Last verified public adoption remains 0.2.1.
+- Offline generator supports both palettes; current sheets and RU/EN rules are updated. Adopted on empytree.com; [public checks](docs/adoptions/0.3.0.md) verified all 1158 inventory hashes.
 
 ## Documentation refresh — 2026-10-24
 

@@ -1,12 +1,12 @@
 # Website integration
 
-[README](../../README.md) · [Construction](logo-system.md) · [Generator](generator.md) · [Deployed 0.2.1](../adoptions/0.2.1.md)
+[README](../../README.md) · [Construction](logo-system.md) · [Generator](generator.md) · [Deployed 0.3.0](../adoptions/0.3.0.md)
 
-Version **0.2.1** is deployed on [empytree.com](http://empytree.com/): 288 favicon choices and independently selected compact home-link marks on the jugbeat page. The deployed public source is [9145a47a0d1f5cfb998848d2e6646a66fdaf300f](https://github.com/empytree/logo/commit/9145a47a0d1f5cfb998848d2e6646a66fdaf300f). Documentation-only commits do not replace that provenance or require a new website package.
+Version **0.3.0** is deployed on [empytree.com](http://empytree.com/): 288 favicon choices and independently selected compact home-link marks on the jugbeat page. The deployed public source is [f27cb6e75281b98352519bcb1357fad197ccc07a](https://github.com/empytree/logo/commit/f27cb6e75281b98352519bcb1357fad197ccc07a). Documentation-only commits do not replace that provenance or require a new website package.
 
-## Current source 0.3.0
+## Current source 0.3.1
 
-The new package adds explicit light/dark palettes, full-canvas marks and ten resolutions per ICO. See [complete theme/density rules](themes-and-density.md). The deployed 0.2.1 statement above remains historical adoption data until 0.3.0 is rolled out and verified.
+The new package adds transparent backgrounds and recommended light/dark line colors, full-canvas marks and ten resolutions per ICO. See [complete theme/density rules](themes-and-density.md). The deployed 0.3.0 statement above remains adoption data until transparent 0.3.1 is rolled out and verified.
 
 Build with Node.js 24: `npm ci`, then `npm run verify`. Preview with `npm run export:site -- --development`; it has a `-dev` URL and null commit. A release requires the owner's clean committed checkout:
 
@@ -14,17 +14,17 @@ Build with Node.js 24: `npm ci`, then `npm run verify`. Preview with `npm run ex
 npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-The exporter checks root/HEAD/clean state and refuses overwrite. Copy only `public/` into the consumer. Schema 4 contains 576 paired ICOs, 576 paired compact SVGs and six other hashed resources, plus provenance: 1159 files total. Each ICO contains 16/20/24/32/40/48/64/96/128/256px, with optics selected by physical resolution. Keep all layers and `logo-source.json`; do not overwrite earlier versioned URLs.
+The exporter checks root/HEAD/clean state and refuses overwrite. Copy only `public/` into the consumer. Schema 5 contains 576 paired ICOs, 576 paired compact SVGs and six other hashed resources, plus provenance: 1159 files total. Each ICO contains 16/20/24/32/40/48/64/96/128/256px, with optics selected by physical resolution. Keep all layers and `logo-source.json`; do not overwrite earlier versioned URLs.
 
 ## Favicon
 
 ```html
 <link rel="icon" type="image/x-icon"
       sizes="16x16 20x20 24x24 32x32 40x40 48x48 64x64 96x96 128x128 256x256"
-      href="/brand/empytree/v0.3.0/favicon.ico" data-empytree-favicon>
+      href="/brand/empytree/v0.3.1/favicon.ico" data-empytree-favicon>
 <link rel="apple-touch-icon" sizes="180x180"
-      href="/brand/empytree/v0.3.0/apple-touch-icon.png">
-<script defer src="/brand/empytree/v0.3.0/random-favicon.js"
+      href="/brand/empytree/v0.3.1/apple-touch-icon.png">
+<script defer src="/brand/empytree/v0.3.1/random-favicon.js"
         data-frames="open,closed"></script>
 ```
 
@@ -34,7 +34,7 @@ The face is selected once per load. `matchMedia` selects its paired palette and 
 
 ## Breadcrumb home mark
 
-On the server choose an ID from `markPool`. For the existing dark header use that variant's `svgDark`; use `svg` for a known light placement. Both have a fixed foreground and opaque background; arbitrary inherited link colors are not production palettes. Resolve only manifest-listed files in the pinned directory; accept no user SVG or path.
+On the server choose an ID from `markPool`. For the existing dark header use that variant's `svgDark`; use `svg` for a known light placement. Both are transparent, with recommended default line colors. Creative placement may explicitly override the line color after checking the actual background. Resolve only manifest-listed files in the pinned directory; accept no user SVG or path.
 
 Give the home link an accessible name, mark its nested SVG `aria-hidden="true" focusable="false"`, reserve its dimensions and provide visible focus. Existing marks are about 32–40 CSS px with a minimum 44px target. Selection is independent of the favicon and works without JavaScript. Server random selection may repeat; no timer changes either mark. SVG itself remains vector at high display density.
 
@@ -42,4 +42,4 @@ Give the home link an accessible name, mark its nested SVG `aria-hidden="true" f
 
 `node tools/verify-site.mjs PATH_TO_RESOURCE_DIRECTORY` checks a pinned release. For preview only add `--allow-development`. Verify checksums, both palettes, ICO dimensions, all independent heads, no-JS, the 404 page and breadcrumb accessibility. Preserve historical text encodings. Test actual browser theme changes and dense displays where available; automated layer checks do not claim access to Apple hardware.
 
-Hashes detect accidental modification; they are not signatures. Record the full public source SHA, version, public scope and observable results only after rollout. Keep private consumer code/history/infrastructure outside this repository. Older 0.1.0 and 0.2.1 URLs/adoption records remain historical; `export:legacy` is not the current recipe.
+Hashes detect accidental modification; they are not signatures. Record the full public source SHA, version, public scope and observable results only after rollout. Keep private consumer code/history/infrastructure outside this repository. Older 0.1.0, 0.2.1 and 0.3.0 URLs/adoption records remain historical; `export:legacy` is not the current recipe.

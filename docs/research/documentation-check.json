@@ -1,17 +1,45 @@
 {
   "date": "2026-10-25",
-  "markdownFiles": 23,
-  "localLinks": 170,
+  "markdownFiles": 27,
+  "localLinks": 186,
   "missingLinks": 0,
   "construction": {
     "dentProfile": "from-inset",
     "joint": "character",
     "microHeadScaleX": 0.88,
-    "microHeadScaleY": 0.96
+    "microHeadScaleY": 0.96,
+    "revision": "1.5",
+    "canvas": "edge-to-edge",
+    "background": "transparent",
+    "lineColors": "recommended-overridable",
+    "palettes": {
+      "light": {
+        "foreground": "#20211f",
+        "background": null
+      },
+      "dark": {
+        "foreground": "#f5f4ef",
+        "background": null
+      }
+    },
+    "icoSizes": [
+      16,
+      20,
+      24,
+      32,
+      40,
+      48,
+      64,
+      96,
+      128,
+      256
+    ],
+    "opticalBasis": "physical-raster-size",
+    "fallbackTheme": "light"
   },
-  "systemVersion": "0.3.0",
-  "adoptedVersion": "0.2.1",
-  "adoptedSource": "9145a47a0d1f5cfb998848d2e6646a66fdaf300f",
+  "systemVersion": "0.3.1",
+  "adoptedVersion": "0.3.0",
+  "adoptedSource": "f27cb6e75281b98352519bcb1357fad197ccc07a",
   "adoptedChoices": 288,
   "genericOpenDefaults": 144,
   "firstImplementationChoices": 24,

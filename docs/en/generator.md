@@ -2,7 +2,7 @@
 
 [Русский](../generator.md) · [Offline generator](../../examples/generator.html) · [First adoption](../adoptions/0.1.0.md)
 
-Version **0.3.0** adds two explicit palettes and full-canvas artwork. The 0.2.1 author decision remains: all **288** supported micro combinations are usable; the generic default is **144** open choices. The latest verified [adoption](../adoptions/0.2.1.md) remains 0.2.1. [Theme, bounds and density](themes-and-density.md).
+Version **0.3.1** adds transparency, two recommended line colors and full-canvas artwork. The 0.2.1 author decision remains: all **288** supported micro combinations are usable; the generic default is **144** open choices. The latest verified [adoption](../adoptions/0.3.0.md) remains 0.3.0. [Theme, bounds and density](themes-and-density.md).
 
 ## Independent parts
 
@@ -34,7 +34,7 @@ npm run generate -- --eyes mixed --mouth rest4 --dent left --size 16 --format pn
 npm run generate -- --eyes separate --mouth rest2 --size 32 --output .local/home.svg
 ```
 
-CLI supports 16–4096 px and SVG/PNG. `--theme light|dark` selects the explicit palette (default light), also included in HTML-generator SVG downloads. SVG without `--output` goes to stdout; PNG needs a file. `--study` remains compatible but is not required for any supported micro combination. The offline HTML generator embeds 2016 SVGs (1008 optical drawings × 2 palettes) and native PNGs without network, server or external fonts.
+CLI supports 16–4096 px and SVG/PNG. `--color` explicitly overrides the recommended line color for creative placement; the background stays transparent. `--theme light|dark` selects the explicit palette (default light), also included in HTML-generator SVG downloads. SVG without `--output` goes to stdout; PNG needs a file. `--study` remains compatible but is not required for any supported micro combination. The offline HTML generator embeds 2016 SVGs (1008 optical drawings × 2 palettes) and native PNGs without network, server or external fonts.
 
 ## Website and breadcrumbs
 
@@ -44,11 +44,11 @@ After the owner commits the complete source, from a clean checkout:
 npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-`--development` creates a preview with a null source commit. Schema 4 for 0.3.0 contains **576 ICOs and 576 compact SVGs** in two palettes, two fallback ICOs, PNGs 96/180, selector and manifest: 1158 hashed files plus provenance. Each ID has `ico`/`icoDark` and `svg`/`svgDark`. Older schema 2/3 verification remains supported.
+`--development` creates a preview with a null source commit. Schema 5 for 0.3.0 contains **576 ICOs and 576 compact SVGs** in two palettes, two fallback ICOs, PNGs 96/180, selector and manifest: 1158 hashed files plus provenance. Each ID has `ico`/`icoDark` and `svg`/`svgDark`. Older schema 2/3 verification remains supported.
 
 The browser favicon selector chooses once per load from the requested frames. A validated sessionStorage Fisher–Yates bag visits the pool before repeating and avoids immediate cycle-boundary repetition. Unknown/empty groups preserve the fallback. Storage failure removes cross-load guarantees. There is no runtime drawing, manifest fetch or timer.
 
-Breadcrumb marks may be independently selected on the server from `markPool`, including without JavaScript. Resolve only manifest-listed SVGs inside the pinned resource directory. Insert the trusted SVG inline with its fixed palette. Choose `svgDark` for a dark header; the link color does not recolor it. Give the link an accessible name such as “Home”; mark the nested SVG decorative with `aria-hidden="true"` and `focusable="false"`. About 32–40 CSS px suits compact breadcrumbs; reserve a comfortable focus/click area and avoid layout shifts.
+Breadcrumb marks may be independently selected on the server from `markPool`, including without JavaScript. Resolve only manifest-listed SVGs inside the pinned resource directory. Insert the trusted SVG inline with a recommended line color and transparent background. Choose `svgDark` for a dark header; the link color does not recolor it. Give the link an accessible name such as “Home”; mark the nested SVG decorative with `aria-hidden="true"` and `focusable="false"`. About 32–40 CSS px suits compact breadcrumbs; reserve a comfortable focus/click area and avoid layout shifts.
 
 Keep versioned local URLs and `logo-source.json`. A development package is not a released adoption. A new source commit and real rollout must precede its adoption record. The shared contract and first-version behavior remain in [usage](usage.md).
 

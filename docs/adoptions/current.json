@@ -1,12 +1,29 @@
 {
-  "version": "0.2.1",
-  "date": "2026-10-24",
+  "version": "0.3.0",
+  "date": "2026-10-25",
   "site": "http://empytree.com/",
-  "sourceCommit": "9145a47a0d1f5cfb998848d2e6646a66fdaf300f",
+  "sourceCommit": "f27cb6e75281b98352519bcb1357fad197ccc07a",
   "faviconChoices": 288,
+  "paletteCount": 2,
+  "faviconFiles": 576,
   "compactMarks": 288,
   "genericOpenDefaults": 144,
-  "frames": ["open", "closed"],
-  "verifiedInventoryFiles": 581,
+  "frames": [
+    "open",
+    "closed"
+  ],
+  "icoSizes": [
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64,
+    96,
+    128,
+    256
+  ],
+  "verifiedInventoryFiles": 1158,
   "transport": "http"
 }

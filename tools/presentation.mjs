@@ -1,10 +1,12 @@
 // Production presentation is explicit. Historical v1 construction stays unchanged.
 export const palettes=Object.freeze({
-  light:Object.freeze({foreground:'#20211f',background:'#f5f4ef'}),
-  dark:Object.freeze({foreground:'#f5f4ef',background:'#20211f'}),
+  light:Object.freeze({foreground:'#20211f',background:null}),
+  dark:Object.freeze({foreground:'#f5f4ef',background:null}),
 });
+// Examples of known placement surfaces, never baked into production marks.
+export const previewSurfaces=Object.freeze({light:'#f5f4ef',dark:'#20211f'});
 export const icoSizes=Object.freeze([16,20,24,32,40,48,64,96,128,256]);
-export const presentation=Object.freeze({revision:'1.4',canvas:'edge-to-edge',palettes,icoSizes,
+export const presentation=Object.freeze({revision:'1.5',canvas:'edge-to-edge',background:'transparent',lineColors:'recommended-overridable',palettes,icoSizes,
   opticalBasis:'physical-raster-size',fallbackTheme:'light'});
 export function opticalForSize(size){
   if(!Number.isInteger(size)||size<16||size>4096)throw Error('Size must be an integer from 16 to 4096');

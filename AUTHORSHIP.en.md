@@ -17,3 +17,5 @@ Preserve sketches, intermediate material, actual Git history and the [decision j
 Authorship, licensing and trademark registration are separate matters. A domain or repository is not a trademark registration. No blanket reuse license has been selected. The [rights review](docs/rights-and-publication.md) contains research and proposed wording rather than an automatically adopted policy.
 
 On 25 October 2026 the author accepted two fixed palettes and removal of mandatory safety margins. Revision 0.3.0 retains irregular joints and shallow dents. Its adoption is recorded only after actual rollout, separately from source preparation.
+
+On 25 October 2026 the author clarified that production artwork is transparent. The selected line colors #20211f and #f5f4ef are recommended defaults, open to explicit creative changes for known placement conditions. This is the 0.3.1 rule.

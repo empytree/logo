@@ -18,7 +18,7 @@ test('frame fills its canvas without cropping any stroke, including dent shoulde
     assert.deepEqual([minX,minY,maxX,maxY],[2,2,size+1,size+1],`${optical}/${frame}/${dent}`);
   }
 });
-test('every face has both opaque palettes and ten true vector-rasterized ICO resolutions',async()=>{
+test('every face has both transparent line colors and ten true vector-rasterized ICO resolutions',async()=>{
   for(const variant of enumerate('micro')){
     for(const theme of Object.keys(palettes)){
       const buffer=await readFile(resource(variant.id+(theme==='dark'?'-dark':'')+'.ico'));
@@ -28,9 +28,19 @@ test('every face has both opaque palettes and ten true vector-rasterized ICO res
         const svg=renderMark({...variant,optical,theme}).replace(/width="\d+" height="\d+"/,`width="${size}" height="${size}"`);
         const actual=await sharp(png).ensureAlpha().raw().toBuffer();
         assert.deepEqual(actual,await sharp(Buffer.from(svg)).ensureAlpha().raw().toBuffer(),`${variant.id}/${theme}/${size}`);
-        for(let i=3;i<actual.length;i+=4)assert.equal(actual[i],255);
+        let transparent=0,solid=0;
+        for(let i=3;i<actual.length;i+=4){if(actual[i]===0)transparent++;if(actual[i]===255)solid++}
+        assert.ok(transparent>size*size/3,`${variant.id}/${theme}/${size}: no transparent field`);
+        assert.ok(solid>0,`${variant.id}/${theme}/${size}: missing solid strokes`);
       }
     }
+  }
+  // Both recommended colors have precisely the same silhouette and alpha.
+  const light=unpackIco(await readFile(resource('arrows--flat--open--none.ico')));
+  const dark=unpackIco(await readFile(resource('arrows--flat--open--none-dark.ico')));
+  for(let layer=0;layer<light.length;layer++){
+    const a=await sharp(light[layer].png).ensureAlpha().raw().toBuffer(),b=await sharp(dark[layer].png).ensureAlpha().raw().toBuffer();
+    for(let i=3;i<a.length;i+=4)assert.equal(a[i],b[i]);
   }
   const id='separate--flat--open--none';
   const layers=unpackIco(await readFile(resource(id+'.ico')));
@@ -54,4 +64,19 @@ test('theme changes reuse the same face without consuming the random bag; legacy
     query.matches=true;change();assert.equal(link.dataset.expression,id);assert.deepEqual([...store],before);
   }
   for(const options of [{throws:true},{available:false}])assert.equal(page(options).link.dataset.theme,'light');
+});
+
+test('line colors are recommended defaults; explicit creative colors preserve transparency and geometry',async()=>{
+  const defaults=renderMark({optical:'micro'}),custom=renderMark({optical:'micro',theme:'dark',color:'#804020'});
+  assert.match(defaults,/#20211f/);assert.match(custom,/#804020/);
+  assert.doesNotMatch(custom,/<rect width="16" height="16"/);
+  const a=await sharp(Buffer.from(defaults)).ensureAlpha().raw().toBuffer(),b=await sharp(Buffer.from(custom)).ensureAlpha().raw().toBuffer();
+  for(let i=3;i<a.length;i+=4)assert.equal(a[i],b[i]);
+  assert.throws(()=>renderMark({color:'currentColor'}));
+  assert.throws(()=>renderMark({color:'#ffffff80'}));
+  assert.throws(()=>renderMark({background:'#ffffff'}));
+  for(const name of ['favicon-96.png','apple-touch-icon.png']){
+    const {data}=await sharp(await readFile(resource(name))).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+    assert.ok(data.some((value,index)=>index%4===3&&value===0));
+  }
 });

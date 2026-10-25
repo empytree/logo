@@ -2,11 +2,11 @@
 
 [README](../../README.md) · [Правила](../logo-system.md) · [Generator](../../examples/generator.html)
 
-Current system: **0.3.0**, construction 1.4, micro approval 2. All supported 16 px combinations are usable. The overview starts the English and Russian READMEs; the remaining sheets serve closer inspection.
+Current system: **0.3.1**, construction 1.5, micro approval 2. All supported 16 px combinations are usable. The overview starts the English and Russian READMEs; the remaining sheets serve closer inspection.
 
 | Current sheet | What it shows |
 | --- | --- |
-| [themes-and-density.png](themes-and-density.png) | Two palettes, actual 16/32/48 layers, historical/current canvas comparison and all ten resolutions |
+| [themes-and-density.png](themes-and-density.png) | Transparent marks on two example surfaces, actual 16/32/48 layers, historical/current canvas comparison and all ten resolutions |
 | [overview.png](overview.png), [русская версия](overview-ru.png) | Four large, deliberately different eye/mouth examples; all nine mouths; side/frame states; optical drawings; current usage |
 | [dented-sides.png](dented-sides.png) | Four current eye families × four side states; only the frame changes within each column |
 | [pixel-check.png](pixel-check.png) | Twelve distinct examples; real 16/32/48 physical-pixel ICO layers and nearest-neighbour enlargements |

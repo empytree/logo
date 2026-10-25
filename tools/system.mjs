@@ -82,7 +82,8 @@ export function wrap(content,{optical='display',theme='light',color,background}=
   if(theme!==null&&!Object.hasOwn(palettes,theme))throw Error('Unknown theme');
   // null is a construction/review layer only; production exports name a palette.
   const palette=theme===null?{foreground:'currentColor',background:null}:palettes[theme];
-  if(theme!==null&&((color!==undefined&&color!==palette.foreground)||(background!==undefined&&background!==palette.background)))throw Error('Production palettes are fixed; use a named theme');
+  if(theme!==null&&background!==undefined&&background!==null)throw Error('Production marks have transparent backgrounds');
+  if(theme!==null&&color!==undefined&&!/^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(color))throw Error('Use an explicit opaque hex line color');
   color??=palette.foreground;
   background=background===undefined?palette.background:background;
   const safe=value=>value==='currentColor'||/^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value);

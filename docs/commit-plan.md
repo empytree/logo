@@ -1,33 +1,29 @@
 # Publication history and owner workflow
 
-[Development history](development-history.md) · [Current adoption](adoptions/0.2.1.md)
+[Development history](development-history.md) · [Current adoption](adoptions/0.3.0.md) · [Prepared release notes](releases/0.3.1.md)
 
-All commits and pushes are performed by the owner. Dates and author identity remain factual; earlier design stages are not represented as backdated Git records.
-
-## Recorded public stages
+All commits, tags and pushes are performed by the owner. Earlier dialogue stages are not backdated Git records.
 
 | Commit | Result |
 | --- | --- |
-| `55e83a3` | Accepted first implementation, source geometry, generated assets and design/research documentation |
-| `7f9c791` | Public structure, English documentation, offline gallery, verification and pinned website-package export |
-| `dc036c3` | Actual first adoption record, 0.1.0 |
-| `de6460a` | Full musical generator and initial conservative micro filter, 0.2.0 |
-| `9145a47` | Author approval of every supported micro combination and compact-mark export, 0.2.1 |
+| `55e83a3` | Accepted first construction and original research |
+| `7f9c791` | Public structure, bilingual entry, offline gallery and pinned export |
+| `dc036c3` | First adoption record, 0.1.0 |
+| `de6460a` | Full generator and initial conservative micro filter |
+| `9145a47` | All supported micro combinations approved; compact export, 0.2.1 |
+| `61e4f12` | Current-family documentation and visual sheets |
+| `f27cb6e` | Two opaque palettes, full canvas and ten resolutions per ICO, 0.3.0 |
 
-Version 0.2.1 is now deployed on empytree.com. The [record](adoptions/0.2.1.md) identifies its full public source SHA and public checks. Private consumer commits and infrastructure are not part of this history.
+Version 0.3.0 is deployed and publicly verified. Its record preserves the actual source SHA and opaque files. Private consumer source and infrastructure are excluded.
 
-## Documentation refresh
+## Prepared 0.3.1
 
-The current documentation change records the 0.2.1 adoption, replaces outdated summaries with the full family, puts an up-to-date image first in both READMEs, synchronizes current texts and labels historical comparisons. It changes no deployed geometry or selector behavior and needs no website re-export.
+The next coherent owner commit records verified 0.3.0 adoption and implements transparency/color clarification. Suggested message: `feat: export transparent marks and document color flexibility`.
 
-A suitable owner-created commit is `docs: refresh identity overview and current adoption`. Review the diff and generated sheets, then commit and push through the owner's normal workflow. No history reset or reconstructed earlier commits are needed.
+After that commit and successful verification, export a clean pinned 0.3.1 package. Update the consumer under a new versioned URL, verify real delivery, and record adoption separately. Do not overwrite 0.3.0 files or move v0.2.1.
 
-Future drawing/runtime changes require a new version, pinned export, consumer rollout and a factual adoption record after the rollout.
+The v0.3.1 release uses the owner's final source/documentation snapshot, with its deployed package SHA stated separately if documentation was committed later. Create an annotated tag only after the intended final commit, then attach the verified consumer archive and SHA256SUMS. Tag/push/release publication remains an owner action.
 
 ## По-русски
 
-Первые пять публичных этапов уже выполнены владельцем. Текущий changeset — актуальная документация, сводные изображения и запись внедрения 0.2.1. Его можно оформить одним коммитом документации. На сайте ничего повторно выкладывать не нужно: используемый SHA и графика сохраняются. Коммиты и push выполняет владелец.
-
-## Следующий связный коммит — 0.3.0
-
-После просмотра выполнить владельцу один исходный коммит `feat: add full-canvas themes and multi-resolution favicons`, затем push. Только после этого экспортировать release по полному SHA; development-пакет не подменяет происхождение релиза. Далее обновить потребителя, проверить реальную выкладку и отдельно записать внедрение. Прежний тег 0.2.1 не перемещать.
+0.3.0 уже внедрена. Следующий коммит объединяет фактическую запись внедрения и прозрачную 0.3.1 с рекомендованными, изменяемыми при творческой необходимости цветами линий. После owner commit/push экспортируется настоящий пакет по SHA. Тег и релиз v0.3.1 фиксируют итоговое состояние; исходный SHA пакета сохраняется отдельно от позднейших коммитов документации. Опубликованные URL и теги не перемещаются.
