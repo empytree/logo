@@ -2,6 +2,7 @@
 import { createRequire } from 'node:module';
 import { readFile,writeFile,mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { unpackIco } from './favicon.mjs';
 import { renderMark,eyePairs,mouthKinds,names } from './system.mjs';
 const require=createRequire(import.meta.url),sharp=require(process.env.EMPYTREE_SHARP||'sharp');
 const output=new URL('../docs/brand/',import.meta.url);
@@ -15,7 +16,7 @@ const text=(x,y,value,size=20,{color=ink,font='Consolas,monospace',anchor='start
 const line=(y,x=64,to=1376,color=rule)=>`<path d="M${x} ${y}H${to}" fill="none" stroke="${color}"/>`;
 const begin=(width,height,background=paper)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="${width}" height="${height}" fill="${background}"/>`;
 const embed=(buffer,x,y,width,height=width,type='png')=>`<image x="${x}" y="${y}" width="${width}" height="${height}" href="data:image/${type};base64,${buffer.toString('base64')}"/>`;
-const glyph=(options,x,y,size,color=ink)=>embed(Buffer.from(renderMark({...options,color})),x,y,size,size,'svg+xml');
+const glyph=(options,x,y,size,color=ink)=>embed(Buffer.from(renderMark({...options,color,theme:null})),x,y,size,size,'svg+xml');
 const id=v=>[v.eyes,v.mouth,v.frame,v.dent].join('--');
 const primary=[
   {eyes:'arrows',mouth:'flat',frame:'open',dent:'left'},
@@ -35,17 +36,15 @@ const samples=[...primary,
 ];
 async function icoPng(variant,size){
   const buffer=await readFile(new URL(`../public/brand/v2/${id(variant)}.ico`,import.meta.url));
-  const index=[16,32,48].indexOf(size),entry=6+index*16;
-  if(index<0||buffer.readUInt16LE(4)!==3)throw Error('Unexpected ICO density layers');
-  return buffer.subarray(buffer.readUInt32LE(entry+12),buffer.readUInt32LE(entry+12)+buffer.readUInt32LE(entry+8));
+  const layer=unpackIco(buffer).find(layer=>layer.size===size);if(!layer)throw Error('Missing resolution');return layer.png;
 }
 async function save(name,svg){
   await writeFile(new URL(name+'.svg',output),svg);
   await sharp(Buffer.from(svg)).png().toFile(fileURLToPath(new URL(name+'.png',output)));
 }
 const languages={
-  en:{tag:'PERSONAL MARK SYSTEM',title:'Quiet music from a crumpled box.',eyes:['Note arrows','Beamed notes','Separate eighths','Partial beam + flag'],detail:['Straight mouth / left dent','Triangle / right dent','Quarter rest / both dents','Half rest / straight sides'],parts:'4 EYE PAIRS × 9 MOUTHS × 4 SIDE STATES',counts:'288 small marks / 432 display expressions',mouths:['Straight','Rising','Falling','Left wedge','Right wedge','Triangle','1/8 rest','1/4 rest','1/2 rest'],box:'ONE BOX / FOUR SIDE STATES',sides:['Straight','Left','Right','Both'],frames:'OPEN / CLOSED / TOP CREASE',crease:'Top crease: display only, 64 px and above',optics:'THREE OPTICAL DRAWINGS',native:'16 px / native',zoom:'16 px / pixels ×8',sizes:'32 px compact / 64 px display',accepted:'Every supported 16 px combination is approved.',fixed:'ONE CHARACTER, MANY EXPRESSIONS',features:['Deliberately irregular note joints.','Intermediate shallow dents; the face stays fixed.','One color. No texture, volume or animation.'],live:'Live on empytree.com: 288 favicons + breadcrumb home marks',footer:'Construction 1.3 / micro policy 2 / version '+pkg.version},
-  ru:{tag:'СИСТЕМА ЛИЧНОГО ЗНАКА',title:'Тихая музыка из помятой коробки.',eyes:['Ноты-стрелки','Связанная пара','Раздельные восьмые','Короткая вязка + флажок'],detail:['Прямой рот / вмятина слева','Треугольник / вмятина справа','Пауза 1/4 / две вмятины','Пауза 1/2 / ровные бока'],parts:'4 ВЕРХА × 9 РТОВ × 4 СОСТОЯНИЯ БОКОВ',counts:'288 малых / 432 крупных выражения',mouths:['Прямой','Наклон /','Наклон \\','Левый угол','Правый угол','Треугольник','Пауза 1/8','Пауза 1/4','Пауза 1/2'],box:'ОДНА КОРОБКА / ЧЕТЫРЕ СОСТОЯНИЯ',sides:['Ровно','Слева','Справа','Две'],frames:'ОТКРЫТАЯ / ЗАКРЫТАЯ / С ЗАЛОМОМ',crease:'Залом сверху — только display, от 64 px',optics:'ТРИ ОПТИЧЕСКИХ РИСУНКА',native:'16 px / оригинал',zoom:'16 px / пиксели ×8',sizes:'32 px compact / 64 px display',accepted:'Все поддерживаемые сочетания 16 px разрешены автором.',fixed:'ХАРАКТЕР ОДИН, ВЫРАЖЕНИЯ МЕНЯЮТСЯ',features:['Неровный стык головки и штиля сохраняется.','Пологие вмятины; лицо остаётся на месте.','Один цвет. Без текстуры, объёма и анимации.'],live:'На empytree.com: 288 favicon + знак Home в хлебных крошках',footer:'Конструкция 1.3 / политика micro 2 / версия '+pkg.version},
+  en:{tag:'PERSONAL MARK SYSTEM',title:'Quiet music from a crumpled box.',eyes:['Note arrows','Beamed notes','Separate eighths','Partial beam + flag'],detail:['Straight mouth / left dent','Triangle / right dent','Quarter rest / both dents','Half rest / straight sides'],parts:'4 EYE PAIRS × 9 MOUTHS × 4 SIDE STATES',counts:'288 small marks / 432 display expressions',mouths:['Straight','Rising','Falling','Left wedge','Right wedge','Triangle','1/8 rest','1/4 rest','1/2 rest'],box:'ONE BOX / FOUR SIDE STATES',sides:['Straight','Left','Right','Both'],frames:'OPEN / CLOSED / TOP CREASE',crease:'Top crease: display only, 64 px and above',optics:'THREE OPTICAL DRAWINGS',native:'16 px / native',zoom:'16 px / pixels ×8',sizes:'32 px compact / 64 px display',accepted:'Every supported 16 px combination is approved.',fixed:'ONE CHARACTER, MANY EXPRESSIONS',features:['Deliberately irregular note joints.','Intermediate shallow dents; the face stays fixed.','Two explicit palettes; edge-to-edge artwork.'],live:'Live on empytree.com: 288 favicons + breadcrumb home marks',footer:'Construction 1.4 / micro policy 2 / version '+pkg.version},
+  ru:{tag:'СИСТЕМА ЛИЧНОГО ЗНАКА',title:'Тихая музыка из помятой коробки.',eyes:['Ноты-стрелки','Связанная пара','Раздельные восьмые','Короткая вязка + флажок'],detail:['Прямой рот / вмятина слева','Треугольник / вмятина справа','Пауза 1/4 / две вмятины','Пауза 1/2 / ровные бока'],parts:'4 ВЕРХА × 9 РТОВ × 4 СОСТОЯНИЯ БОКОВ',counts:'288 малых / 432 крупных выражения',mouths:['Прямой','Наклон /','Наклон \\','Левый угол','Правый угол','Треугольник','Пауза 1/8','Пауза 1/4','Пауза 1/2'],box:'ОДНА КОРОБКА / ЧЕТЫРЕ СОСТОЯНИЯ',sides:['Ровно','Слева','Справа','Две'],frames:'ОТКРЫТАЯ / ЗАКРЫТАЯ / С ЗАЛОМОМ',crease:'Залом сверху — только display, от 64 px',optics:'ТРИ ОПТИЧЕСКИХ РИСУНКА',native:'16 px / оригинал',zoom:'16 px / пиксели ×8',sizes:'32 px compact / 64 px display',accepted:'Все поддерживаемые сочетания 16 px разрешены автором.',fixed:'ХАРАКТЕР ОДИН, ВЫРАЖЕНИЯ МЕНЯЮТСЯ',features:['Неровный стык головки и штиля сохраняется.','Пологие вмятины; лицо остаётся на месте.','Две палитры; рисунок до границ изображения.'],live:'На empytree.com: 288 favicon + знак Home в хлебных крошках',footer:'Конструкция 1.4 / политика micro 2 / версия '+pkg.version},
 };
 for(const [language,copy] of Object.entries(languages)){
   copy.counts=language==='en'?`${manifest.counts.microAllowed} small marks / ${manifest.counts.display} display expressions`:`${manifest.counts.microAllowed} малых / ${manifest.counts.display} крупных выражения`;
@@ -89,7 +88,7 @@ for(const [row,dent] of ['none','left','right','both'].entries()){
 sides.push(line(1140),text(64,1181,'Version '+pkg.version+' / intermediate shallow dents / irregular joints remain fixed',17),'</svg>');
 await save('dented-sides',sides.join(''));
 
-const pixels=[begin(1440,1530),text(40,54,'empytree / real favicon pixels, twelve distinct expressions',28,{font:'Georgia,serif'}),text(40,91,'All three ICO layers use micro geometry. Every example is approved; no automatic exclusions.',17)];
+const pixels=[begin(1440,1530),text(40,54,'empytree / real favicon pixels, twelve distinct expressions',28,{font:'Georgia,serif'}),text(40,91,'ICO: 16/20 micro; 24–48 compact; 64–256 display. Two palettes; every expression approved.',17)];
 pixels.push(text(40,140,'EXPRESSION',15),text(378,140,'DISPLAY',15),text(552,140,'16 px / 1×',15),text(844,140,'32 px / 2×',15),text(1136,140,'48 px / 3×',15));
 for(const [row,variant] of samples.entries()){
   const y=166+row*108;

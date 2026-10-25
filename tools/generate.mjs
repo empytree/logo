@@ -1,22 +1,23 @@
 import { readFile,writeFile,mkdir } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import { opticalForSize } from './presentation.mjs';
 import { renderMark,variantId } from './system.mjs';
-const args=process.argv.slice(2),options={eyes:'arrows',mouth:'flat',frame:'open',dent:'none'};
+const args=process.argv.slice(2),options={eyes:'arrows',mouth:'flat',frame:'open',dent:'none',theme:'light'};
 let size=64,format='svg',output=null,study=false;
 for(let i=0;i<args.length;i++){
   const key=args[i];
   if(key==='--study'){study=true;continue}
   const value=args[++i];
   if(value===undefined)throw Error(`Missing value for ${key}`);
-  if(['--eyes','--mouth','--frame','--dent'].includes(key))options[key.slice(2)]=value;
+  if(['--eyes','--mouth','--frame','--dent','--theme'].includes(key))options[key.slice(2)]=value;
   else if(key==='--size')size=Number(value);
   else if(key==='--format')format=value;
   else if(key==='--output')output=value;
   else throw Error(`Unknown option: ${key}`);
 }
 if(!Number.isInteger(size)||size<16||size>4096||!['svg','png'].includes(format))throw Error('Size must be 16–4096; format must be svg or png');
-const optical=size<=20?'micro':size<64?'compact':'display';
+const optical=opticalForSize(size);
 const id=variantId(options);
 const manifest=JSON.parse(await readFile(new URL('../public/brand/v2/variants.json',import.meta.url),'utf8'));
 const entry=manifest.catalog.find(v=>v.id===id&&v.optical===optical);

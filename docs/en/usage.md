@@ -4,72 +4,42 @@
 
 Version **0.2.1** is deployed on [empytree.com](http://empytree.com/): 288 favicon choices and independently selected compact home-link marks on the jugbeat page. The deployed public source is [9145a47a0d1f5cfb998848d2e6646a66fdaf300f](https://github.com/empytree/logo/commit/9145a47a0d1f5cfb998848d2e6646a66fdaf300f). Documentation-only commits do not replace that provenance or require a new website package.
 
-## Build and inspect
+## Current source 0.3.0
 
-With Node.js 24:
+The new package adds explicit light/dark palettes, full-canvas marks and ten resolutions per ICO. See [complete theme/density rules](themes-and-density.md). The deployed 0.2.1 statement above remains historical adoption data until 0.3.0 is rolled out and verified.
 
-```sh
-npm ci
-npm run verify
-```
-
-This rebuilds the historical catalog, current musical catalog, offline examples and current visual sheets, then checks documentation and behavior. Sharp is a build dependency. Consumers need only static resources and their integration code. `examples/generator.html` is the current offline example; `examples/index.html` is explicitly the first edition.
-
-## Export a versioned package
-
-Use a clean checkout and its full source commit:
+Build with Node.js 24: `npm ci`, then `npm run verify`. Preview with `npm run export:site -- --development`; it has a `-dev` URL and null commit. A release requires the owner's clean committed checkout:
 
 ```sh
 npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-The exporter checks repository root, HEAD and clean status and refuses to overwrite an output directory. Reproducing the deployed version means using its recorded source commit. Changes to runtime geometry or selection require a new version; do not overwrite files at a previously deployed versioned URL.
-
-The 0.2.1 package directory is `dist/empytree-logo-0.2.1/`. Its `public/brand/empytree/v0.2.1/` contains 288 ICO variants, 288 compact SVGs, the canonical favicon, stable Apple icon, 96 px PNG, selector, manifest and `logo-source.json`. There are 581 SHA-256 inventory entries plus provenance. Manifest/provenance schema 3 includes `markPool`, `compactMarks` and each variant's compact `svg` filename.
-
-For an uncommitted local preview:
-
-```sh
-npm run export:site -- --development
-```
-
-This creates a `-dev` version with null source commit. It is not a release or an adoption record. `--output-name` gives a different local directory if one already exists.
+The exporter checks root/HEAD/clean state and refuses overwrite. Copy only `public/` into the consumer. Schema 4 contains 576 paired ICOs, 576 paired compact SVGs and six other hashed resources, plus provenance: 1159 files total. Each ICO contains 16/20/24/32/40/48/64/96/128/256px, with optics selected by physical resolution. Keep all layers and `logo-source.json`; do not overwrite earlier versioned URLs.
 
 ## Favicon
 
-Copy the package's `public/` contents into the consumer's public directory. For the full website pool use:
-
 ```html
-<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48"
-      href="/brand/empytree/v0.2.1/favicon.ico" data-empytree-favicon>
+<link rel="icon" type="image/x-icon"
+      sizes="16x16 20x20 24x24 32x32 40x40 48x48 64x64 96x96 128x128 256x256"
+      href="/brand/empytree/v0.3.0/favicon.ico" data-empytree-favicon>
 <link rel="apple-touch-icon" sizes="180x180"
-      href="/brand/empytree/v0.2.1/apple-touch-icon.png">
-<script defer src="/brand/empytree/v0.2.1/random-favicon.js"
+      href="/brand/empytree/v0.3.0/apple-touch-icon.png">
+<script defer src="/brand/empytree/v0.3.0/random-favicon.js"
         data-frames="open,closed"></script>
 ```
 
-The generic default without `data-frames` is 144 open choices. The snippet explicitly enables both frames, 288 choices. `data-eyes`, `data-mouths` and `data-dents` can restrict the supported pool; an empty/unknown group keeps the fixed fallback. Only one selector should run per document.
+The generic default is 144 open choices; explicitly enabling both frames gives 288. Supported `data-eyes`, `data-mouths`, `data-dents` restrictions preserve the fixed fallback for unknown/empty groups. Run one selector per document. A validated sessionStorage Fisher–Yates bag visits all requested faces before repeating and avoids immediate cycle-boundary repetition; blocked storage removes cross-load guarantees.
 
-The selector validates and restores a compatible sessionStorage shuffle bag, creates a Fisher–Yates bag as needed, takes one choice and saves the remainder. Every choice is visited once per cycle; the boundary avoids an immediate repeat. Pool changes invalidate old storage. Without storage, selection works without the cross-load guarantee. It runs once per document load, with no timer, API, manifest fetch or runtime drawing. ICO layers all use micro geometry at 1×/2×/3×.
-
-In an explicit no-JS mode omit the selector even if the browser supports JavaScript. The canonical favicon and Apple icon remain. A browser with JavaScript disabled also keeps the fallback. The prepared 96 px PNG is not selected by this snippet; search-engine favicon selection is not guaranteed.
+The face is selected once per load. `matchMedia` selects its paired palette and `change` updates that palette without consuming the bag. Missing API uses light. No manifest fetch, runtime drawing, polling or timer is needed. Omit the selector for explicit no-JS. Disabled JavaScript retains the fixed light canonical ICO, also with ten layers. Apple icon remains stable. The supplied 96px PNG is not automatically selected by this snippet; search-engine icon selection is not guaranteed.
 
 ## Breadcrumb home mark
 
-Choose an ID from `markPool` on the server and resolve only that variant's manifest-listed compact SVG inside the pinned resource directory. Insert the trusted generated SVG inline, so `currentColor` inherits the home link's normal/hover color. Do not accept arbitrary user SVG or paths.
+On the server choose an ID from `markPool`. For the existing dark header use that variant's `svgDark`; use `svg` for a known light placement. Both have a fixed foreground and opaque background; arbitrary inherited link colors are not production palettes. Resolve only manifest-listed files in the pinned directory; accept no user SVG or path.
 
-Give the link a name such as `aria-label="Home"`; the nested SVG is decorative (`aria-hidden="true"`, `focusable="false"`). Reserve its dimensions before rendering. The deployed site uses about 32–40 CSS px with a visible keyboard focus and at least a 44 × 44 CSS px link area.
+Give the home link an accessible name, mark its nested SVG `aria-hidden="true" focusable="false"`, reserve its dimensions and provide visible focus. Existing marks are about 32–40 CSS px with a minimum 44px target. Selection is independent of the favicon and works without JavaScript. Server random selection may repeat; no timer changes either mark. SVG itself remains vector at high display density.
 
-The breadcrumb selection is independent of the favicon. It happens once on the server per page request and works without JavaScript. Repetitions are possible; the breadcrumb does not use the favicon's sessionStorage bag. Neither mark changes on a timer.
+## Verification and adoption
 
-## Verify and record
+`node tools/verify-site.mjs PATH_TO_RESOURCE_DIRECTORY` checks a pinned release. For preview only add `--allow-development`. Verify checksums, both palettes, ICO dimensions, all independent heads, no-JS, the 404 page and breadcrumb accessibility. Preserve historical text encodings. Test actual browser theme changes and dense displays where available; automated layer checks do not claim access to Apple hardware.
 
-```sh
-node tools/verify-site.mjs PATH_TO_RESOURCE_DIRECTORY
-```
-
-For development only append `--allow-development`. Verify actual HTTP responses, asset hashes, no-JS, all independent heads, the 404 page and breadcrumb accessibility. Preserve historical encodings when editing old pages. The deployed site currently serves HTTP; HTTPS is not asserted by this document.
-
-Keep `logo-source.json`. Hashes detect accidental modifications; they are not digital signatures. After a real rollout add an adoption record with source SHA, version, date, public scope and observable validation. Keep private consumer source/history/infrastructure outside this repository.
-
-The 24-choice 0.1.0 implementation and `export:legacy` remain for historical compatibility. They are not the current integration recipe. See [adoption history](../adoptions/0.1.0.md) and [current adoption](../adoptions/0.2.1.md).
+Hashes detect accidental modification; they are not signatures. Record the full public source SHA, version, public scope and observable results only after rollout. Keep private consumer code/history/infrastructure outside this repository. Older 0.1.0 and 0.2.1 URLs/adoption records remain historical; `export:legacy` is not the current recipe.

@@ -8,6 +8,8 @@
 
 **Version 0.2.1 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.2.1.md).
 
+**New revision 0.3.0:** two fixed palettes, edge-to-edge artwork and ten resolutions in every ICO. 288 expressions × 2 palettes = **576 ICOs**. Public adoption of 0.3.0 is not yet confirmed. [Theme and density rules](docs/en/themes-and-density.md) · [Pixel comparison](docs/brand/themes-and-density.png).
+
 ## The system
 
 | Part | Choices |
@@ -19,7 +21,7 @@
 
 Four eye pairs × nine mouths × four side states give **144** expressions per frame, **288** with open/closed frames and **432** in display with the top-crease frame. The author approves every supported 16 px combination. Optical measurements remain advisory and do not exclude faces. The generic selector defaults to 144 open-frame choices; the site explicitly enables both frames.
 
-The canonical face is `arrows / flat / open / none`. Fixed features are the intermediate shallow dent profile, irregular joint and slightly reduced micro noteheads. There are three optical drawings: micro for 16–20 CSS px, compact for 21–63, display from 64. Formats and pixel densities do not multiply the face count.
+The canonical face is `arrows / flat / open / none`. Fixed features are the intermediate shallow dent profile, irregular joint and slightly reduced micro noteheads. There are three optical drawings: micro for 16–20 px, compact for 21–63, display from 64; favicon optics follow physical raster size. Formats and pixel densities do not multiply the face count.
 
 ## Explore and build
 

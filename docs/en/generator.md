@@ -2,7 +2,7 @@
 
 [Русский](../generator.md) · [Offline generator](../../examples/generator.html) · [First adoption](../adoptions/0.1.0.md)
 
-Version **0.2.1** implements the author's acceptance of **every supported 16 px combination**. Version 0.2.1 is [deployed](../adoptions/0.2.1.md): all 288 favicon choices and independent compact breadcrumb marks are in use. The published 0.2.0 source contained a stricter automatic filter; the author has superseded that decision. Geometry is unchanged.
+Version **0.3.0** adds two explicit palettes and full-canvas artwork. The 0.2.1 author decision remains: all **288** supported micro combinations are usable; the generic default is **144** open choices. The latest verified [adoption](../adoptions/0.2.1.md) remains 0.2.1. [Theme, bounds and density](themes-and-density.md).
 
 ## Independent parts
 
@@ -15,7 +15,7 @@ The half rest stands above its reference line. These faces are identity drawings
 
 There are **432** display expressions and **288** compact/micro combinations. All **288** micro combinations are usable. The generic default is **144** open-frame choices; `data-frames="open,closed"` enables all 288. A small top-crease request fails explicitly, without substituting another frame.
 
-Display starts at 64 CSS px, compact at 21–63, micro at 16–20. ICO contains micro geometry at 16/32/48 physical pixels for a 16 CSS px tab at 1×/2×/3×. Compact SVGs use a 32-unit grid for larger inline marks. Original arrow/geometric-mouth silhouettes remain byte-for-byte compatible.
+Base grids are micro 16, compact 32 and display 64. Every ICO has ten physical resolutions: 16/20 micro, 24/32/40/48 compact, 64/96/128/256 display. Layers are vector-rasterized. The micro frame expands while eyes/mouth retain their pixel grid. Irregular joints remain; the new drawings do not claim byte compatibility with earlier releases.
 
 ## Advisory measurements
 
@@ -34,7 +34,7 @@ npm run generate -- --eyes mixed --mouth rest4 --dent left --size 16 --format pn
 npm run generate -- --eyes separate --mouth rest2 --size 32 --output .local/home.svg
 ```
 
-CLI supports 16–4096 px and SVG/PNG. SVG without `--output` goes to stdout; PNG needs a file. `--study` remains compatible but is not required for any supported micro combination. The offline HTML generator embeds all 1008 optical drawings and native PNGs without network, server or external fonts.
+CLI supports 16–4096 px and SVG/PNG. `--theme light|dark` selects the explicit palette (default light), also included in HTML-generator SVG downloads. SVG without `--output` goes to stdout; PNG needs a file. `--study` remains compatible but is not required for any supported micro combination. The offline HTML generator embeds 2016 SVGs (1008 optical drawings × 2 palettes) and native PNGs without network, server or external fonts.
 
 ## Website and breadcrumbs
 
@@ -44,10 +44,12 @@ After the owner commits the complete source, from a clean checkout:
 npm run export:site -- --commit FULL_40_CHARACTER_HEAD_SHA
 ```
 
-`--development` creates a preview with a null commit. Released 0.2.1 packages contain **288 ICOs and 288 compact SVGs**, plus the fixed favicon, Apple icon, 96 px PNG, selector and manifest. Provenance/manifest schema 3 adds `compactMarks`, `markPool` and per-variant `svg` names. Verification retains compatibility with schema 2 under its original policy revision.
+`--development` creates a preview with a null source commit. Schema 4 for 0.3.0 contains **576 ICOs and 576 compact SVGs** in two palettes, two fallback ICOs, PNGs 96/180, selector and manifest: 1158 hashed files plus provenance. Each ID has `ico`/`icoDark` and `svg`/`svgDark`. Older schema 2/3 verification remains supported.
 
 The browser favicon selector chooses once per load from the requested frames. A validated sessionStorage Fisher–Yates bag visits the pool before repeating and avoids immediate cycle-boundary repetition. Unknown/empty groups preserve the fallback. Storage failure removes cross-load guarantees. There is no runtime drawing, manifest fetch or timer.
 
-Breadcrumb marks may be independently selected on the server from `markPool`, including without JavaScript. Resolve only manifest-listed SVGs inside the pinned resource directory. Insert the trusted SVG inline so `currentColor` follows the link color. Give the link an accessible name such as “Home”; mark the nested SVG decorative with `aria-hidden="true"` and `focusable="false"`. About 32–40 CSS px suits compact breadcrumbs; reserve a comfortable focus/click area and avoid layout shifts.
+Breadcrumb marks may be independently selected on the server from `markPool`, including without JavaScript. Resolve only manifest-listed SVGs inside the pinned resource directory. Insert the trusted SVG inline with its fixed palette. Choose `svgDark` for a dark header; the link color does not recolor it. Give the link an accessible name such as “Home”; mark the nested SVG decorative with `aria-hidden="true"` and `focusable="false"`. About 32–40 CSS px suits compact breadcrumbs; reserve a comfortable focus/click area and avoid layout shifts.
 
 Keep versioned local URLs and `logo-source.json`. A development package is not a released adoption. A new source commit and real rollout must precede its adoption record. The shared contract and first-version behavior remain in [usage](usage.md).
+
+Changes to `prefers-color-scheme` switch only the selected favicon palette, without another random draw or consuming the bag.

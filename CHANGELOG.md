@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 — source preparation, 2026-10-25
+
+- Construction 1.4: explicit opaque light/dark palettes; box fits the full canvas. Micro eyes/mouth retain their pixel grid. Irregular joints and accepted dents remain.
+- Every paired ICO has ten directly vector-rasterized layers; physical resolution selects micro/compact/display detail.
+- Theme detection and change events preserve the selected face and shuffle bag.
+- Schema 4 exports 576 ICOs and 576 compact SVGs with palettes, layer sizes/optics and checksums.
+- Offline generator supports both palettes; current sheets and RU/EN rules are updated. Last verified public adoption remains 0.2.1.
+
 ## Documentation refresh — 2026-10-24
 
 - Image-first English/Russian READMEs and current full-family overview sheets.

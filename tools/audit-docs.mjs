@@ -2,6 +2,7 @@ import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { presentation } from './presentation.mjs';
 import { identityConfig } from './identity-config.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const reportTarget=path.join(root,'docs/research/documentation-check.json');
@@ -30,7 +31,7 @@ assert.deepEqual(manifest.construction,identityConfig,'Generated exports do not 
 const current=JSON.parse(await readFile(path.join(root,'public/brand/v2/variants.json'),'utf8'));
 const pkg=JSON.parse(await readFile(path.join(root,'package.json'),'utf8'));
 const adoption=JSON.parse(await readFile(path.join(root,'docs/adoptions/current.json'),'utf8'));
-assert.deepEqual(current.construction,identityConfig);
+assert.deepEqual(current.construction,{...identityConfig,...presentation});
 assert.equal(current.counts.microAllowed,288);assert.equal(current.counts.websitePool,144);
 for(const file of ['README.md','README.ru.md','docs/en/generator.md','docs/generator.md']){
   const content=await readFile(path.join(root,file),'utf8');assert.ok(content.includes(pkg.version));assert.ok(content.includes(String(current.counts.microAllowed)));assert.ok(content.includes(String(current.counts.websitePool)));
@@ -38,6 +39,6 @@ for(const file of ['README.md','README.ru.md','docs/en/generator.md','docs/gener
 assert.equal(adoption.faviconChoices,current.counts.microAllowed);
 assert.equal(adoption.genericOpenDefaults,current.counts.websitePool);
 assert.match(adoption.sourceCommit,/^[0-9a-f]{40}$/);
-const result={date:'2026-10-24',markdownFiles:files.length,localLinks,missingLinks:missing.length,construction:identityConfig,systemVersion:pkg.version,adoptedVersion:adoption.version,adoptedSource:adoption.sourceCommit,adoptedChoices:adoption.faviconChoices,genericOpenDefaults:current.counts.websitePool,firstImplementationChoices:manifest.defaultPool.length,matrix:counts.matrix,micro:counts.micro};
+const result={date:'2026-10-25',markdownFiles:files.length,localLinks,missingLinks:missing.length,construction:identityConfig,systemVersion:pkg.version,adoptedVersion:adoption.version,adoptedSource:adoption.sourceCommit,adoptedChoices:adoption.faviconChoices,genericOpenDefaults:current.counts.websitePool,firstImplementationChoices:manifest.defaultPool.length,matrix:counts.matrix,micro:counts.micro};
 await writeFile(reportTarget,JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(result));

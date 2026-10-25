@@ -1,5 +1,6 @@
-import { frameShape, arrows, mouthShape, dents, frames, mouths as geometricMouths } from './geometry.mjs';
+import { arrows, mouthShape, dents, frames, mouths as geometricMouths } from './geometry.mjs';
 import { identityConfig } from './identity-config.mjs';
+import { palettes,gridSizes,fullCanvasTransform,edgeFrame } from './presentation.mjs';
 
 export const eyePairs = ['arrows', 'beam', 'separate', 'mixed'];
 export const mouthKinds = [...geometricMouths, 'rest8', 'rest4', 'rest2'];
@@ -72,15 +73,21 @@ function rest(kind,optical) {
 }
 export function parts({eyes='arrows',mouth='flat',frame='open',dent='none',optical='display'}={}) {
   validate({eyes,mouth,frame,dent,optical});
-  return {frame:frameShape(optical,frame,dent,identityConfig.dentProfile),eyes:notes(eyes,optical),mouth:geometricMouths.includes(mouth)?mouthShape(optical,mouth):rest(mouth,optical)};
+  const transform=content=>`<g transform="${fullCanvasTransform(optical)}">${content}</g>`;
+  return {frame:transform(edgeFrame(optical,frame,dent)),eyes:transform(notes(eyes,optical)),mouth:transform(geometricMouths.includes(mouth)?mouthShape(optical,mouth):rest(mouth,optical))};
 }
-export function wrap(content,{optical='display',color='currentColor',background=null,adaptive=false}={}) {
-  const size={micro:16,compact:32,display:64}[optical];
+export function wrap(content,{optical='display',theme='light',color,background}={}) {
+  const size=gridSizes[optical];
   if(!size)throw Error('Unknown optical size');
+  if(theme!==null&&!Object.hasOwn(palettes,theme))throw Error('Unknown theme');
+  // null is a construction/review layer only; production exports name a palette.
+  const palette=theme===null?{foreground:'currentColor',background:null}:palettes[theme];
+  if(theme!==null&&((color!==undefined&&color!==palette.foreground)||(background!==undefined&&background!==palette.background)))throw Error('Production palettes are fixed; use a named theme');
+  color??=palette.foreground;
+  background=background===undefined?palette.background:background;
   const safe=value=>value==='currentColor'||/^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value);
   if(!safe(color)||(background!==null&&!safe(background)))throw Error('Use a hex color or currentColor');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="empytree — тихая музыка из помятой коробки">`
-    +(adaptive?'<style>:root{color:#20211f}@media(prefers-color-scheme:dark){:root{color:#f5f4ef}}</style>':'')
     +(background?`<rect width="${size}" height="${size}" fill="${background}"/>`:'')
     +`<g${color!=='currentColor'?` color="${color}"`:''} fill="currentColor">${content}</g></svg>\n`;
 }

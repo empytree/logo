@@ -9,6 +9,7 @@ const report={
   firstImplementation:{default:count([['arrows'],mouths,dents,['open']]),withClosed:count([['arrows'],mouths,dents,['open','closed']])},
   matrix:{oneFrame:count([eyes,mouthKinds,dents,['open']]),openAndClosed:count([eyes,mouthKinds,dents,['open','closed']]),displayWithCrease:count([eyes,mouthKinds,dents,['open','closed','crease']])},
   micro:{allowed:catalog.counts.microAllowed,excluded:catalog.counts.microExcluded,defaultOpen:catalog.counts.websitePool,policyRevision:catalog.microPolicyRevision},
+  reproduction:{palettes:2,svgFiles:2016,smallIcoFiles:576,layersPerIco:10},
   fixed:['from-inset dent profile','character joint'],
 };
 await mkdir(new URL('../docs/research/',import.meta.url),{recursive:true});

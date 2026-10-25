@@ -15,3 +15,5 @@ Vector implementation, generator, exports, integration examples and documentatio
 Preserve sketches, intermediate material, actual Git history and the [decision journal](docs/development-history.md). Analogy research followed development; third-party marks were neither drawing sources nor included in graphic assets.
 
 Authorship, licensing and trademark registration are separate matters. A domain or repository is not a trademark registration. No blanket reuse license has been selected. The [rights review](docs/rights-and-publication.md) contains research and proposed wording rather than an automatically adopted policy.
+
+On 25 October 2026 the author accepted two fixed palettes and removal of mandatory safety margins. Revision 0.3.0 retains irregular joints and shallow dents. Its adoption is recorded only after actual rollout, separately from source preparation.

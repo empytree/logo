@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import vm from 'node:vm';
 import { enumerate,renderMark,parts,wrap } from './system.mjs';
+import { icoSizes,palettes,opticalForSize } from './presentation.mjs';
+import { rasterSvg,unpackIco } from './favicon.mjs';
 import { mark,mouths,dents } from './geometry.mjs';
 import { filterPool } from './micro-policy.mjs';
 import { exportSystemPackage,verifySystemPackage } from './system-package.mjs';
@@ -16,13 +18,14 @@ const manifest=JSON.parse(await readFile(resource('variants.json'),'utf8'));
 const selector=await readFile(resource('random-favicon.js'),'utf8');
 const root=fileURLToPath(new URL('../',import.meta.url));
 
-test('full matrix is distinct; the established original drawings remain byte-for-byte compatible',()=>{
+test('full matrix is distinct; the accepted dent and irregular joint remain fixed',()=>{
   for(const [optical,count] of [['display',432],['compact',288],['micro',288]]){
     const variants=enumerate(optical);
     assert.equal(variants.length,count);assert.equal(new Set(variants.map(v=>v.id)).size,count);
     assert.equal(new Set(variants.map(v=>renderMark({...v,optical}))).size,count);
   }
-  for(const optical of ['micro','compact','display'])for(const frame of ['open','closed'])for(const mouth of mouths)for(const dent of dents)assert.equal(renderMark({optical,frame,mouth,dent}),mark({optical,frame,mouth,dent}));
+  assert.equal(manifest.construction.joint,'character');assert.equal(manifest.construction.dentProfile,'from-inset');assert.equal(manifest.construction.canvas,'edge-to-edge');
+  assert.match(parts({optical:'micro'}).eyes,/scale\(0.88 0.96\)/);assert.throws(()=>renderMark({theme:'unknown'}));
   assert.throws(()=>renderMark({optical:'micro',frame:'crease'}));
   assert.throws(()=>renderMark({eyes:'<script>'}));
   assert.throws(()=>renderMark({color:'red" onload="bad'}));
@@ -42,20 +45,20 @@ test('compact and display layers never overlap at their native raster sizes',asy
   for(const optical of ['compact','display'])for(const variant of enumerate(optical)){
     const masks=[];
     for(const layer of Object.values(parts({...variant,optical}))){
-      const {data,info}=await sharp(Buffer.from(wrap(layer,{optical}))).ensureAlpha().raw().toBuffer({resolveWithObject:true});
+      const {data,info}=await sharp(Buffer.from(wrap(layer,{optical,theme:null}))).ensureAlpha().raw().toBuffer({resolveWithObject:true});
       const mask=new Set();for(let i=3;i<data.length;i+=info.channels)if(data[i]>=64)mask.add((i-3)/info.channels);masks.push(mask);
     }
     for(const [a,b] of [[0,1],[0,2],[1,2]])assert.ok(![...masks[a]].some(pixel=>masks[b].has(pixel)),`${variant.id}, ${optical}, layers ${a}/${b}`);
   }
 });
 
-test('advisory measurements remain accurate and all ICO density layers use the micro drawing',async()=>{
+test('advisory measurements remain accurate after the edge-to-edge construction',async()=>{
   for(const variant of filterPool(manifest.catalog,{frames:['open','closed']})){
-    const layers=parts(variant),ico=await readFile(resource(variant.id+'.ico'));
+    const layers=parts(variant);
     for(const [index,scale] of [1,2,3].entries()){
       const masks=[];
       for(const layer of Object.values(layers)){
-        const svg=wrap(layer,{optical:'micro'}).replace('width="16" height="16"',`width="${16*scale}" height="${16*scale}"`);
+        const svg=wrap(layer,{optical:'micro',theme:null}).replace('width="16" height="16"',`width="${16*scale}" height="${16*scale}"`);
         const {data,info}=await sharp(Buffer.from(svg)).ensureAlpha().raw().toBuffer({resolveWithObject:true});
         const pixels=[];for(let y=0;y<info.height;y++)for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*info.channels+3]>=64)pixels.push([x,y]);masks.push(pixels);
       }
@@ -64,9 +67,7 @@ test('advisory measurements remain accurate and all ICO density layers use the m
         const name=a===0?(b===1?'frameEyes':'frameMouth'):'eyesMouth';
         assert.equal(Number(distance.toFixed(3)),variant.metrics.densityGaps[scale][name]);
       }
-      const p=6+index*16,length=ico.readUInt32LE(p+8),offset=ico.readUInt32LE(p+12);
-      const expected=await sharp(Buffer.from(renderMark({...variant,color:'#20211f',background:'#ffffff'}).replace('width="16" height="16"',`width="${16*scale}" height="${16*scale}"`))).raw().toBuffer();
-      assert.deepEqual(await sharp(ico.subarray(offset,offset+length)).raw().toBuffer(),expected);
+
     }
   }
 });
@@ -104,7 +105,7 @@ test('new website package includes only allowed ICOs, records a null development
   const expected=path.join(root,'dist',outputName);
   try{
     const {resourceDir,provenance}=await exportSystemPackage({development:true,outputName});
-    assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,144);assert.equal(provenance.availableChoices,288);assert.equal(provenance.compactMarks,288);
+    assert.equal(provenance.schemaVersion,4);assert.equal(Object.keys(provenance.files).length,1158);assert.equal(provenance.faviconFiles,576);assert.equal(provenance.sourceCommit,null);assert.equal(provenance.poolSize,144);assert.equal(provenance.availableChoices,288);assert.equal(provenance.compactMarks,288);
     const packed=JSON.parse(await readFile(path.join(resourceDir,'variants.json'),'utf8'));
     assert.equal(packed.markPool.length,288);assert.ok(packed.variants.every(v=>v.svg===v.id+'-compact.svg'));
     assert.match(await readFile(path.join(resourceDir,packed.variants[0].svg),'utf8'),/viewBox="0 0 32 32"/);
@@ -126,7 +127,7 @@ test('offline generator embeds every optical drawing, actual micro pixels and sy
   assert.match(html,/data:image\/png;base64/);
   const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];new vm.Script(script);
   const data=JSON.parse(script.match(/const data=(.*);\r?\n/)[1]);
-  assert.equal(Object.keys(data.marks).length,1008);assert.equal(Object.keys(data.pixels).length,288);
+  assert.equal(Object.keys(data.marks).length,2016);assert.equal(Object.keys(data.pixels).length,576);
 });
 
 test('generator controls allow every micro mark and preserve explicit unsupported frame state',async()=>{
@@ -139,8 +140,8 @@ test('generator controls allow every micro mark and preserve explicit unsupporte
     replaceChildren(){this.children=[]}
     addEventListener(name,callback){this.listeners[name]=callback}
   }
-  const nodes={};for(const id of ['eyes','mouth','dent','frame','optical','sheet'])nodes[id]=new Element('select');
-  nodes.optical.value='display';nodes.sheet.value='all';
+  const nodes={};for(const id of ['eyes','mouth','dent','frame','optical','sheet','theme'])nodes[id]=new Element('select');
+  nodes.optical.value='display';nodes.sheet.value='all';nodes.theme.value='light';
   const document={getElementById:id=>nodes[id]??=new Element(),createElement:tag=>new Element(tag)};
   vm.runInNewContext(script,{document,location:{hash:''},URLSearchParams,Math});
   assert.equal(nodes.download.disabled,false);assert.match(nodes.status.textContent,/eligible at display/);
@@ -150,5 +151,6 @@ test('generator controls allow every micro mark and preserve explicit unsupporte
   nodes.frame.value='crease';nodes.frame.listeners.change();
   assert.equal(nodes.download.disabled,true);assert.equal(nodes.random.disabled,true);assert.match(nodes.status.textContent,/No drawing/);assert.equal(nodes.frame.value,'crease');
   nodes.optical.value='display';nodes.optical.listeners.change();assert.equal(nodes.download.disabled,false);
+  nodes.theme.value='dark';nodes.theme.listeners.change();assert.match(nodes.hero.innerHTML,/#20211f/);assert.match(nodes.hero.innerHTML,/#f5f4ef/);
   assert.ok(nodes.grid.children.length>0);
 });

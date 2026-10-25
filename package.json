@@ -1,6 +1,6 @@
 {
   "name": "@empytree/logo",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "The personal mark system of empytree: construction, optical variants and controlled diversity.",
   "private": true,
   "type": "module",
@@ -12,8 +12,8 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "build": "node tools/build.mjs && node tools/build-system.mjs && node tools/build-generator.mjs && node tools/build-docs.mjs",
-    "check": "node --test tools/check.test.mjs tools/site-package.test.mjs tools/gallery.test.mjs tools/system.test.mjs",
+    "build": "node tools/build.mjs && node tools/build-system.mjs && node tools/build-generator.mjs && node tools/build-docs.mjs && node tools/build-theme-docs.mjs",
+    "check": "node --test tools/check.test.mjs tools/site-package.test.mjs tools/gallery.test.mjs tools/system.test.mjs tools/presentation.test.mjs",
     "audit:docs": "node tools/count-variants.mjs && node tools/audit-docs.mjs",
     "research:examples": "node tools/research-examples.mjs",
     "export:site": "node tools/export-system.mjs",

@@ -20,6 +20,12 @@
     "defaultOpen": 144,
     "policyRevision": 2
   },
+  "reproduction": {
+    "palettes": 2,
+    "svgFiles": 2016,
+    "smallIcoFiles": 576,
+    "layersPerIco": 10
+  },
   "fixed": [
     "from-inset dent profile",
     "character joint"

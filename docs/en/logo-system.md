@@ -2,7 +2,7 @@
 
 [Русский](../logo-system.md) · [README](../../README.md) · [Generator](generator.md) · [Integration](usage.md)
 
-Current system: **0.2.1**, deployed on empytree.com. The accepted construction is revision **1.3**; micro approval policy is revision **2**. These describe different things: package version, drawing construction and permitted use of small combinations.
+Current system: **0.3.0**, construction **1.4**, micro approval **2**. The latest verified website adoption remains 0.2.1; the new source package does not imply a rollout. [Two palettes and density](themes-and-density.md).
 
 ## Character
 
@@ -27,7 +27,7 @@ The source of truth is `identity-config.mjs` plus `geometry.mjs` and `system.mjs
 
 ## Geometry
 
-The original display face uses a 64 × 64 grid:
+The original display face uses a 64 × 64 grid. Tables below describe base coordinates before the 0.3.0 full-canvas mapping; the micro frame uses the new coordinates in [placement rules](themes-and-density.md):
 
 | Element | Construction |
 | --- | --- |
@@ -61,11 +61,11 @@ The display top crease is `(47,4) → (50,6) → (53,4)`. A compact/micro reques
 
 ## Optical drawings and color
 
-Micro covers 16–20 CSS px, compact 21–63 and display 64+. Their grids are 16, 32 and 64. Below 16 px no separate drawing is provided. Micro keeps the notehead attachment point and scales heads by 0.88 × 0.96: width 4 → 3.52, height 2 → 1.92. Dents never trigger further head resizing.
+Micro covers 16–20 px, compact 21–63 and display 64+. Their grids are 16, 32 and 64. Below 16 px no separate drawing is provided. Micro keeps the notehead attachment point and scales heads by 0.88 × 0.96: width 4 → 3.52, height 2 → 1.92. Dents never trigger further head resizing.
 
-ICO uses the micro drawing at 16/32/48 physical pixels for a 16 CSS px icon at 1×/2×/3×. A compact SVG at 32 CSS px is a different optical drawing. The [pixel sheet](../brand/pixel-check.png) embeds actual ICO layers; native dimensions refer to the source image, which a README may scale down.
+Every ICO contains 16/20/24/32/40/48/64/96/128/256 physical pixels. Optics follow the layer resolution: micro through 20, compact through 63, display from 64. Retina can therefore receive a more detailed drawing of the same face. [Comparison](../brand/themes-and-density.png).
 
-Inline SVG inherits `currentColor`; external SVG in `<img>` does not inherit parent text color. For dark surfaces use inline inheritance or an explicit light drawing. ICO has an opaque white background. Keep strong contrast and a quiet backdrop. Leave at least 8/64 of a large mark's width clear outside it; do not add padding inside the favicon cell.
+Production SVG/PNG/ICO use explicit `light` or `dark` palettes with an opaque background. The box fills the canvas. There is no mandatory internal or external safety margin; layout supplies spacing as needed. Micro keeps eye/mouth coordinates and expands only its frame; compact/display map to full bounds. See [palette and canvas rules](themes-and-density.md).
 
 ## Diversity and approval
 

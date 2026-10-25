@@ -1,4 +1,4 @@
-/* Generated from the size-specific allowlist. No fetch, timer or runtime drawing. */
+/* Generated choices. One face per load; theme changes only its static palette. */
 (function () {
   'use strict';
   var script = document.currentScript;
@@ -35,6 +35,17 @@
   }
   var selected = deck.pop();
   try { sessionStorage.setItem(key, JSON.stringify({pool: signature, deck: deck, last: selected})); } catch (_) {}
-  link.href = new URL(selected + '.ico', script.src).href;
   link.dataset.expression = selected;
+  var scheme = null;
+  try { if (typeof matchMedia === 'function') scheme = matchMedia('(prefers-color-scheme: dark)'); } catch (_) {}
+  function applyTheme() {
+    var theme = scheme && scheme.matches ? 'dark' : 'light';
+    link.href = new URL(selected + (theme === 'dark' ? '-dark' : '') + '.ico', script.src).href;
+    link.dataset.theme = theme;
+  }
+  applyTheme();
+  if (scheme) {
+    if (typeof scheme.addEventListener === 'function') scheme.addEventListener('change', applyTheme);
+    else if (typeof scheme.addListener === 'function') scheme.addListener(applyTheme);
+  }
 })();

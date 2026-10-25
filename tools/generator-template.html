@@ -20,6 +20,7 @@
     <label>Sides<select id="dent"></select></label>
     <label>Frame<select id="frame"></select></label>
     <label>Drawing<select id="optical"><option value="display">Display · 64 px and above</option><option value="compact">Compact · 21–63 px</option><option value="micro">Micro · 16–20 px</option></select></label>
+    <label>Palette<select id="theme"><option value="light">Dark on light</option><option value="dark">Light on dark</option></select></label>
     <button id="random" type="button">Another eligible face</button>
   </div>
   <div class="stage">
@@ -33,7 +34,7 @@
   <h2>The space between the parts matters.</h2>
   <p>Every supported 16 px combination is approved by empytree. Optical measurements remain visible as observations; they do not remove a face from the pool. The top-crease frame remains display-only.</p>
   <div id="counts" class="counts"></div>
-  <details><summary>Optical observations and the author’s decision</summary><p class="meta">Frame, eyes and mouth are rasterized at 1×/2×/3×. The report retains small gaps, quarter-rest detail and identical thresholded silhouettes as observations. The author accepts every supported micro combination. Geometry is unchanged; density measurements do not act as automatic exclusions.</p></details>
+  <details><summary>Optical observations and the author’s decision</summary><p class="meta">Frame, eyes and mouth are rasterized at 1×/2×/3×. The report retains small gaps, quarter-rest detail and identical thresholded silhouettes as observations. The author accepts every supported micro combination. The current frame fills the canvas. Measurements describe enlarged micro geometry; ICO layers use micro/compact/display according to physical resolution. Observations do not act as automatic exclusions.</p></details>
   <label>Contact sheet<select id="sheet"><option value="all">All combinations in the selected frame and size</option><option value="observed">With optical observations</option></select></label>
   <div id="grid" class="grid"></div>
 </section>
@@ -43,8 +44,8 @@
 (()=>{
   const data=__GENERATOR_DATA__;
   const $=id=>document.getElementById(id);
-  const controls=['eyes','mouth','dent','frame','optical'];
-  const key=(id,optical)=>id+':'+optical;
+  const controls=['eyes','mouth','dent','frame','optical','theme'];
+  const key=(id,optical)=>id+':'+optical+':'+$('theme').value;
   const id=()=>[$('eyes').value,$('mouth').value,$('frame').value,$('dent').value].join('--');
   const current=()=>data.catalog.find(v=>v.id===id()&&v.optical===$('optical').value);
   const svg=(entry)=>data.marks[key(entry.id,entry.optical)];
@@ -71,7 +72,7 @@
     const samples=$('sizes');samples.replaceChildren();
     if(entry){
       const micro=data.catalog.find(v=>v.id===entry.id&&v.optical==='micro');
-      if(micro)for(const scale of [1,4]){const item=document.createElement('div');item.className='sample';const image=document.createElement('img');image.src=data.pixels[entry.id];image.width=16*scale;image.height=16*scale;image.alt='Actual 16 px raster';item.appendChild(image);const caption=document.createElement('small');caption.textContent=scale===1?'16 px · 1:1':'16 px · ×4';item.appendChild(caption);samples.appendChild(item)}
+      if(micro)for(const scale of [1,4]){const item=document.createElement('div');item.className='sample';const image=document.createElement('img');image.src=data.pixels[entry.id+':'+$('theme').value];image.width=16*scale;image.height=16*scale;image.alt='Actual 16 px raster';item.appendChild(image);const caption=document.createElement('small');caption.textContent=scale===1?'16 px · 1:1':'16 px · ×4';item.appendChild(caption);samples.appendChild(item)}
       for(const [mode,size] of [['compact',32],['display',64]]){const match=data.catalog.find(v=>v.id===entry.id&&v.optical===mode);if(!match)continue;const item=document.createElement('div');item.className='sample';item.innerHTML=svg(match);const caption=document.createElement('small');caption.textContent=size+' px';item.appendChild(caption);samples.appendChild(item)}
     }
     $('random').disabled=!list().some(v=>v.allowed&&v.id!==id());drawGrid();

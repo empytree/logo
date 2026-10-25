@@ -1,8 +1,10 @@
 import { createRequire } from 'node:module';
-import { mkdir,readFile,writeFile,readdir,unlink } from 'node:fs/promises';
+import { mkdir,readFile,writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { enumerate,parts,wrap,renderMark,eyePairs,mouthKinds,names } from './system.mjs';
+import { presentation,palettes,icoSizes } from './presentation.mjs';
+import { rasterSvg,packIco } from './favicon.mjs';
 import { identityConfig } from './identity-config.mjs';
 import { microPolicyRevision,microApproval,opticalReasons,filterPool,reasonLabels } from './micro-policy.mjs';
 const require=createRequire(import.meta.url);
@@ -28,9 +30,10 @@ const pngCache=new Map();
 const maskCache=new Map();
 for(const optical of ['display','compact','micro'])for(const variant of enumerate(optical)){
   const options={...variant,optical};
-  const svg=renderMark(options);
+  const svg=renderMark({...options,theme:null});
   const file=`${variant.id}-${optical}.svg`;
-  await writeFile(new URL(file,out),svg);
+  await writeFile(new URL(file,out),renderMark({...options,theme:'light'}));
+  await writeFile(new URL(`${variant.id}-${optical}-dark.svg`,out),renderMark({...options,theme:'dark'}));
   let metrics=null,advisories=[],rasterHash=null,duplicateOf=null;
   if(optical==='micro'){
     const layers=parts(options);
@@ -38,7 +41,7 @@ for(const optical of ['display','compact','micro'])for(const variant of enumerat
     for(const density of [1,2,3]){
       const masks=[];
       for(const layer of Object.values(layers)){
-        const svg=wrap(layer,{optical}).replace('width="16" height="16"',`width="${16*density}" height="${16*density}"`);
+        const svg=wrap(layer,{optical,theme:null}).replace('width="16" height="16"',`width="${16*density}" height="${16*density}"`);
         if(!maskCache.has(svg))maskCache.set(svg,await alphaMask(svg,16*density));
         masks.push(maskCache.get(svg));
       }
@@ -48,7 +51,7 @@ for(const optical of ['display','compact','micro'])for(const variant of enumerat
       if(Object.values(values).some(gap=>gap<density+1))densitySafe=false;
     }
     metrics={...densityGaps[1],densitySafe,densityGaps};
-    const png=await sharp(Buffer.from(renderMark({...options,color:'#20211f',background:'#ffffff'}))).png().toBuffer();
+    const png=await sharp(Buffer.from(renderMark({...options,theme:'light'}))).png().toBuffer();
     pngCache.set(variant.id,png);
     await writeFile(new URL(`${variant.id}-16.png`,out),png);
     const mask=await alphaMask(svg);
@@ -61,21 +64,16 @@ for(const optical of ['display','compact','micro'])for(const variant of enumerat
 }
 const micro=catalog.filter(v=>v.optical==='micro');
 const counts={display:432,compact:288,microCandidates:288,microAllowed:micro.filter(v=>v.allowed).length,microExcluded:micro.filter(v=>!v.allowed).length,websitePool:filterPool(catalog).length};
-const manifest={schemaVersion:2,construction:identityConfig,microPolicyRevision,microApproval,default:'arrows--flat--open--none',counts,catalog};
+const manifest={schemaVersion:2,construction:{...identityConfig,...presentation},microPolicyRevision,microApproval,default:'arrows--flat--open--none',counts,catalog};
 await writeFile(new URL('variants.json',out),JSON.stringify(manifest,null,2)+'\n');
-function ico(layers){
-  const header=Buffer.alloc(6+layers.length*16);header.writeUInt16LE(1,2);header.writeUInt16LE(layers.length,4);
-  let offset=header.length;
-  layers.forEach((buffer,index)=>{const size=[16,32,48][index],p=6+index*16;header[p]=size;header[p+1]=size;header.writeUInt16LE(1,p+4);header.writeUInt16LE(32,p+6);header.writeUInt32LE(buffer.length,p+8);header.writeUInt32LE(offset,p+12);offset+=buffer.length});
-  return Buffer.concat([header,...layers]);
+for(const variant of micro.filter(v=>v.allowed))for(const theme of Object.keys(palettes)){
+  const suffix=theme==='light'?'':'-dark';
+  const layers=await Promise.all(icoSizes.map(size=>sharp(Buffer.from(rasterSvg(variant,size,theme))).png().toBuffer()));
+  await writeFile(new URL(`${variant.id}${suffix}.ico`,out),packIco(layers));
+  if(theme==='dark')await writeFile(new URL(`${variant.id}-16-dark.png`,out),layers[0]);
 }
-const allowedIcos=new Set(micro.filter(v=>v.allowed).map(v=>`${v.id}.ico`));
-// Remove only obsolete generated ICO files in this fixed output directory.
-for(const name of await readdir(out))if(/^[a-z0-9-]+\.ico$/.test(name)&&!allowedIcos.has(name))await unlink(new URL(name,out));
-for(const variant of micro.filter(v=>v.allowed)){
-  const svg=renderMark({...variant,color:'#20211f',background:'#ffffff'});
-  const layers=await Promise.all([16,32,48].map(size=>sharp(Buffer.from(svg.replace('width="16" height="16"',`width="${size}" height="${size}"`))).png().toBuffer()));
-  await writeFile(new URL(`${variant.id}.ico`,out),ico(layers));
+for(const [name,size] of [['favicon-96.png',96],['apple-touch-icon.png',180]]){
+  await sharp(Buffer.from(rasterSvg({},size,'light'))).png().toFile(fileURLToPath(new URL(name,out)));
 }
 const selector=await readFile(new URL('selector-template.js',import.meta.url),'utf8');
 await writeFile(new URL('random-favicon.js',out),selector.replace('__CANDIDATES__',JSON.stringify(micro.filter(v=>v.allowed).map(({id,eyes,mouth,dent,frame})=>({id,eyes,mouth,dent,frame})))));
