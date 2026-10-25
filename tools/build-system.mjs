@@ -6,6 +6,7 @@ import { enumerate,parts,wrap,renderMark,eyePairs,mouthKinds,names } from './sys
 import { presentation,palettes,icoSizes } from './presentation.mjs';
 import { rasterSvg,packIco } from './favicon.mjs';
 import { identityConfig } from './identity-config.mjs';
+import { wordmark,wordmarkWidth } from './wordmark.mjs';
 import { microPolicyRevision,microApproval,opticalReasons,filterPool,reasonLabels } from './micro-policy.mjs';
 const require=createRequire(import.meta.url);
 const sharp=require(process.env.EMPYTREE_SHARP||'sharp');
@@ -82,7 +83,7 @@ await writeFile(new URL('../docs/research/micro-policy.json',import.meta.url),JS
 // Review sheets embed the actual native raster, not an enlarged vector approximation.
 const text=(x,y,value,size=14,color='#20211f')=>`<text x="${x}" y="${y}" font-family="Segoe UI,sans-serif" font-size="${size}" fill="${color}">${value}</text>`;
 const image=(data,x,y,size)=>`<image x="${x}" y="${y}" width="${size}" height="${size}" href="data:image/png;base64,${data.toString('base64')}"/>`;
-const sheet=['<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1140"><rect width="1560" height="1140" fill="#f5f4ef"/>',text(24,36,'empytree / 144 open-frame expressions — native 16 px + pixels ×4',22),text(24,62,`All supported combinations approved by empytree · ${counts.websitePool} open-frame choices`,16)];
+const sheet=['<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1140"><rect width="1560" height="1140" fill="#f5f4ef"/>',wordmark(24,36,22),text(24+wordmarkWidth(22)+10,36,'/ 144 open-frame expressions — native 16 px + pixels ×4',22),text(24,62,`All supported combinations approved by the author · ${counts.websitePool} open-frame choices`,16)];
 for(const [col,eyes] of eyePairs.entries())sheet.push(text(118+col*360,96,names[eyes],17));
 for(const [row,mouth] of mouthKinds.entries()){
   const y=122+row*108;
@@ -98,7 +99,7 @@ for(const [row,mouth] of mouthKinds.entries()){
 sheet.push('</svg>');
 await writeFile(new URL('matrix-micro.svg',previews),sheet.join(''));
 await sharp(Buffer.from(sheet.join(''))).png().toFile(fileURLToPath(new URL('matrix-micro.png',previews)));
-const overview=['<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1740"><rect width="1220" height="1740" fill="#f5f4ef"/>',text(28,40,'empytree / 4 eye pairs × 9 mouths — open frame, straight sides',26)];
+const overview=['<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="1740"><rect width="1220" height="1740" fill="#f5f4ef"/>',wordmark(28,40,26),text(28+wordmarkWidth(26)+10,40,'/ 4 eye pairs × 9 mouths — open frame, straight sides',26)];
 for(const [col,eyes] of eyePairs.entries())overview.push(text(170+col*252,85,names[eyes],17));
 for(const [row,mouth] of mouthKinds.entries())for(const [col,eyes] of eyePairs.entries()){
   const x=160+col*252,y=110+row*178;

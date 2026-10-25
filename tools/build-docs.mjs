@@ -4,6 +4,7 @@ import { readFile,writeFile,mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { unpackIco } from './favicon.mjs';
 import { renderMark,eyePairs,mouthKinds,names } from './system.mjs';
+import { wordmark,wordmarkWidth } from './wordmark.mjs';
 const require=createRequire(import.meta.url),sharp=require(process.env.EMPYTREE_SHARP||'sharp');
 const output=new URL('../docs/brand/',import.meta.url);
 await mkdir(output,{recursive:true});
@@ -61,7 +62,7 @@ const meanings={
 for(const [language,copy] of Object.entries(languages)){
   copy.counts=language==='en'?`${manifest.counts.microAllowed} small marks / ${manifest.counts.display} display expressions`:`${manifest.counts.microAllowed} малых / ${manifest.counts.display} крупных выражения`;
   copy.live=language==='en'?`Live ${adoption.version}: ${adoption.faviconChoices} faces / ${adoption.faviconFiles} ICOs + breadcrumb marks`:`На сайте ${adoption.version}: ${adoption.faviconChoices} лиц / ${adoption.faviconFiles} ICO + знак Home`;
-  const cover=[begin(1440,1940),text(64,52,copy.tag,15),text(1376,52,'empytree / '+pkg.version,15,{anchor:'end'}),text(64,120,'empytree',70,{font:'Georgia,serif'}),text(64,166,copy.title,28,{font:'Georgia,serif'})];
+  const cover=[begin(1440,1940),text(64,52,copy.tag,15),wordmark(1286,52,15,{anchor:'end'}),text(1376,52,'/ '+pkg.version,15,{anchor:'end'}),wordmark(64,120,70),text(64,166,copy.title,28,{font:'Georgia,serif'})];
   for(const [index,variant] of primary.entries()){
     const center=228+index*328;
     cover.push(glyph(variant,center-120,212,240),text(center,492,copy.eyes[index],21,{anchor:'middle',font:'Georgia,serif'}),text(center,520,copy.detail[index],14,{anchor:'middle'}));
@@ -99,7 +100,7 @@ for(const [language,copy] of Object.entries(languages)){
   await save(language==='en'?'overview':'overview-ru',cover.join(''));
 }
 
-const sides=[begin(1440,1210),text(64,60,'empytree / side states across the current musical family',27,{font:'Georgia,serif'}),text(64,96,'Only the frame changes. One accepted dent profile: from-inset.',18)];
+const sides=[begin(1440,1210),wordmark(64,60,27),text(64+wordmarkWidth(27)+10,60,'/ side states across the current musical family',27,{font:'Georgia,serif'}),text(64,96,'Only the frame changes. One accepted dent profile: from-inset.',18)];
 for(const [column,variant] of primary.entries())sides.push(text(326+column*284,145,names[variant.eyes],18));
 for(const [row,dent] of ['none','left','right','both'].entries()){
   const y=184+row*234;
@@ -109,7 +110,7 @@ for(const [row,dent] of ['none','left','right','both'].entries()){
 sides.push(line(1140),text(64,1181,'Version '+pkg.version+' / intermediate shallow dents / irregular joints remain fixed',17),'</svg>');
 await save('dented-sides',sides.join(''));
 
-const pixels=[begin(1440,1530),text(40,54,'empytree / real favicon pixels, twelve distinct expressions',28,{font:'Georgia,serif'}),text(40,91,'ICO: 16/20 micro; 24–48 compact; 64–256 display. Two palettes; every expression approved.',17)];
+const pixels=[begin(1440,1530),wordmark(40,54,28),text(40+wordmarkWidth(28)+10,54,'/ real favicon pixels, twelve distinct expressions',28,{font:'Georgia,serif'}),text(40,91,'ICO: 16/20 micro; 24–48 compact; 64–256 display. Two palettes; every expression approved.',17)];
 pixels.push(text(40,140,'EXPRESSION',15),text(378,140,'DISPLAY',15),text(552,140,'16 px / 1×',15),text(844,140,'32 px / 2×',15),text(1136,140,'48 px / 3×',15));
 for(const [row,variant] of samples.entries()){
   const y=166+row*108;

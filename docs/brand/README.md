@@ -18,6 +18,10 @@ SVG sources accompany the overview, side and pixel sheets. `tools/build-docs.mjs
 
 Pixel dimensions describe the source image. GitHub or a browser may scale a whole sheet down; open the original image at 100% to inspect native pixels. Enlargements use nearest-neighbour resampling. Logo drawings have no font dependency; explanatory sheet text uses installed fonts and may vary slightly between rendering environments.
 
+The name on current sheets, including both overview languages, uses the approved base personal spelling: **Fraunces 450 / SOFT 25 / WONK 1 / opsz 72**, tracking **−0.02 em**, with no separate y–t shift. It is drawn with fixed vector outlines from the 26 October 2026 pseudonym study, so SVG and PNG do not require Fraunces to be installed. [Build input and typeface attribution](../../tools/assets/README.md).
+
+Имя на актуальных сводках, включая обе языковые обложки, набрано базовым личным вариантом: **Fraunces 450 / SOFT 25 / WONK 1 / opsz 72**, интервал **−0.02 em**, без отдельного сдвига y–t. Используются точные векторные контуры из исследования от 26 октября 2026 года; установленный Fraunces для SVG и PNG не требуется.
+
 ## Construction history / История конструкции
 
 The following are **historical comparisons**, not additional current choices:

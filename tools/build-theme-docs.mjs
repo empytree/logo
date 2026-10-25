@@ -5,6 +5,7 @@ import { renderMark } from './system.mjs';
 import { mark } from './geometry.mjs';
 import { unpackIco } from './favicon.mjs';
 import { palettes,previewSurfaces,icoSizes,opticalForSize } from './presentation.mjs';
+import { wordmark,wordmarkWidth } from './wordmark.mjs';
 const require=createRequire(import.meta.url),sharp=require(process.env.EMPYTREE_SHARP||'sharp');
 const version=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8')).version;
 const samples=[
@@ -17,7 +18,7 @@ const samples=[
 ];
 const text=(x,y,value,size=18,color='#20211f')=>`<text x="${x}" y="${y}" fill="${color}" font-family="Consolas,monospace" font-size="${size}">${value}</text>`;
 const image=(png,x,y,size)=>`<image x="${x}" y="${y}" width="${size}" height="${size}" href="data:image/png;base64,${png.toString('base64')}"/>`;
-const svg=['<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2080"><rect width="1440" height="2080" fill="#f5f4ef"/>',text(48,58,'empytree / '+version+' — transparent marks, recommended line colors',26),text(48,100,'288 faces × 2 palettes = 576 ICOs. Every ICO contains ten true raster resolutions.'),text(48,132,'16/20 micro · 24/32/40/48 compact · 64/96/128/256 display',17)];
+const svg=['<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2080"><rect width="1440" height="2080" fill="#f5f4ef"/>',wordmark(48,58,26),text(48+wordmarkWidth(26)+10,58,'/ '+version+' — transparent marks, recommended line colors',26),text(48,100,'288 faces × 2 palettes = 576 ICOs. Every ICO contains ten true raster resolutions.'),text(48,132,'16/20 micro · 24/32/40/48 compact · 64/96/128/256 display',17)];
 for(const [column,theme] of ['light','dark'].entries()){
   const x=48+column*700,palette=palettes[theme];
   svg.push(`<rect x="${x-16}" y="160" width="680" height="1310" fill="${previewSurfaces[theme]}"/>`,text(x,199,theme==='light'?'DARK ON LIGHT':'LIGHT ON DARK',22,palette.foreground),text(x,231,'16px + pixels ×6 / 32px + ×3 / 48px + ×2',15,palette.foreground));
