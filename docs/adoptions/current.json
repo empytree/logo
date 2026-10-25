@@ -1,8 +1,8 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "date": "2026-10-25",
   "site": "http://empytree.com/",
-  "sourceCommit": "f27cb6e75281b98352519bcb1357fad197ccc07a",
+  "sourceCommit": "bb58e057dcd8e4fdb12aedf9725f26e4080c92b9",
   "faviconChoices": 288,
   "paletteCount": 2,
   "faviconFiles": 576,
@@ -25,5 +25,7 @@
     256
   ],
   "verifiedInventoryFiles": 1158,
-  "transport": "http"
+  "transport": "http",
+  "background": "transparent",
+  "lineColors": "recommended-overridable"
 }

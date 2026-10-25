@@ -2,7 +2,7 @@
 
 [Русский](../generator.md) · [Offline generator](../../examples/generator.html) · [First adoption](../adoptions/0.1.0.md)
 
-Version **0.3.1** adds transparency, two recommended line colors and full-canvas artwork. The 0.2.1 author decision remains: all **288** supported micro combinations are usable; the generic default is **144** open choices. The latest verified [adoption](../adoptions/0.3.0.md) remains 0.3.0. [Theme, bounds and density](themes-and-density.md).
+Version **0.3.1** adds transparency, two recommended line colors and full-canvas artwork. The 0.2.1 author decision remains: all **288** supported micro combinations are usable; the generic default is **144** open choices. The latest verified [adoption](../adoptions/0.3.1.md) is 0.3.1. [Theme, bounds and density](themes-and-density.md).
 
 ## Independent parts
 

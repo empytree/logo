@@ -1,7 +1,7 @@
 {
   "date": "2026-10-25",
-  "markdownFiles": 27,
-  "localLinks": 186,
+  "markdownFiles": 28,
+  "localLinks": 188,
   "missingLinks": 0,
   "construction": {
     "dentProfile": "from-inset",
@@ -38,8 +38,8 @@
     "fallbackTheme": "light"
   },
   "systemVersion": "0.3.1",
-  "adoptedVersion": "0.3.0",
-  "adoptedSource": "f27cb6e75281b98352519bcb1357fad197ccc07a",
+  "adoptedVersion": "0.3.1",
+  "adoptedSource": "bb58e057dcd8e4fdb12aedf9725f26e4080c92b9",
   "adoptedChoices": 288,
   "genericOpenDefaults": 144,
   "firstImplementationChoices": 24,

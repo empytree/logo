@@ -1,11 +1,16 @@
 # Changelog
 
-## 0.3.1 — prepared source, 2026-10-25
+## Overview explanation — 2026-10-25
+
+- Preserve the current overview layout and extend its lower panel with open-box, note/arrow, “this way up” and music meanings, plus monochrome/transparency principles (EN/RU).
+- Record verified 0.3.1 website adoption and refresh current labels. No drawing, runtime, package version or deployed resource changes.
+
+## 0.3.1 — adopted on 2026-10-25
 
 - Transparent SVG, PNG and every ICO layer; default line colors remain #20211f / #f5f4ef.
 - Line colors are recommendations; explicit creative overrides are supported by API/CLI.
 - Construction 1.5 and consumer schema 5; geometry, 288 expressions, ten resolutions and theme/bag behavior stay unchanged.
-- Public 0.3.0 adoption is recorded; its opaque URLs and source provenance are preserved. Transparent 0.3.1 is not yet deployed.
+- Public 0.3.0 adoption is recorded; its opaque URLs and source provenance are preserved. Transparent 0.3.1 is [deployed and publicly verified](docs/adoptions/0.3.1.md).
 
 ## 0.3.0 — adopted on 2026-10-25
 

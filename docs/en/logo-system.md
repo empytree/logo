@@ -2,7 +2,7 @@
 
 [Русский](../logo-system.md) · [README](../../README.md) · [Generator](generator.md) · [Integration](usage.md)
 
-Current system: **0.3.1**, construction **1.5**, micro approval **2**. The latest verified website adoption remains 0.3.0; the new source package does not imply a rollout. [Two palettes and density](themes-and-density.md).
+Current system: **0.3.1**, construction **1.5**, micro approval **2**. Version 0.3.1 is deployed on empytree.com; its verified package SHA is recorded separately from later documentation changes. [Two palettes and density](themes-and-density.md).
 
 ## Character
 
@@ -73,6 +73,6 @@ The matrix has 144 expressions per fixed frame, 288 open/closed small marks and 
 
 **All 288 supported 16 px combinations are approved by the author.** Quarter rests, small gaps and thresholded raster matches remain usable. Measurements at three densities are advisory, not automatic exclusions. The former 40-choice filter belongs to the development history.
 
-The generic selector defaults to 144 open marks. The deployed website explicitly enables both frames, 288 choices. Its favicon uses a validated shuffle bag; the compact breadcrumb mark is independently selected on the server and remains available in no-JS. [Full generator rules](generator.md), [usage](usage.md), [adoption](../adoptions/0.3.0.md).
+The generic selector defaults to 144 open marks. The deployed website explicitly enables both frames, 288 choices. Its favicon uses a validated shuffle bag; the compact breadcrumb mark is independently selected on the server and remains available in no-JS. [Full generator rules](generator.md), [usage](usage.md), [adoption](../adoptions/0.3.1.md).
 
 Construction, authorship, licensing and trademark registration are separate matters. The mark is a personal identity, not certified packaging instructions. [Provenance](../../AUTHORSHIP.en.md) and [research](../rights-and-publication.md) state their own scope.

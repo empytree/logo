@@ -2,7 +2,7 @@
 
 [Русский](../themes-and-density.md) · [Construction](logo-system.md) · [Comparison sheet](../brand/themes-and-density.png)
 
-Rules for **0.3.1**, construction **1.5**, accepted on 25 October 2026. This is a new source package; the latest verified public adoption remains [0.3.0](../adoptions/0.3.0.md). A source release is not a claim of deployment.
+Rules for **0.3.1**, construction **1.5**, accepted on 25 October 2026. Public [0.3.1 adoption](../adoptions/0.3.1.md) is verified over HTTP. Later overview and documentation changes do not change the deployed package source.
 
 ## Placement conditions
 

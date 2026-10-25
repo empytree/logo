@@ -7,7 +7,7 @@ Current system: **0.3.1**, construction 1.5, micro approval 2. All supported 16 
 | Current sheet | What it shows |
 | --- | --- |
 | [themes-and-density.png](themes-and-density.png) | Transparent marks on two example surfaces, actual 16/32/48 layers, historical/current canvas comparison and all ten resolutions |
-| [overview.png](overview.png), [русская версия](overview-ru.png) | Four large, deliberately different eye/mouth examples; all nine mouths; side/frame states; optical drawings; current usage |
+| [overview.png](overview.png), [русская версия](overview-ru.png) | Four large, deliberately different eye/mouth examples; all nine mouths; side/frame states; optical drawings; current usage; open-box, music and “this way up” meanings |
 | [dented-sides.png](dented-sides.png) | Four current eye families × four side states; only the frame changes within each column |
 | [pixel-check.png](pixel-check.png) | Twelve distinct examples; real 16/32/48 physical-pixel ICO layers and nearest-neighbour enlargements |
 | [matrix-display.png](matrix-display.png) | Four eye pairs × nine mouths, with a fixed open frame and straight sides |
@@ -28,3 +28,5 @@ The following are **historical comparisons**, not additional current choices:
 - `review/`: individual study SVGs. They do not enter a runtime pool.
 
 Исторические сравнения сохранены, поскольку объясняют решения автора. Они подписаны как история и не предлагают заново выбирать профиль или стык. Поисковые образцы в `docs/research/examples/` — отдельный датированный материал исследования, а не актуальная обложка системы.
+
+The overview keeps its four large examples and original parameter/optics layout. Its extended bottom panel explains the open top, short arrow stroke, familiar “this way up” symbol, music inside, monochrome transparency and absence of texture, volume or random deformation. These are presentation explanations, not new construction rules.

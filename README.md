@@ -6,9 +6,9 @@
 
 **Quiet music from a crumpled box.** A personal mark system by **Sergei Parfenov · empytree**. Note-like eyes, a changing mouth and a square with shallow dents keep one character across many expressions. The uneven notehead-to-stem joint is deliberate.
 
-**Version 0.3.0 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.3.0.md).
+**Version 0.3.1 is deployed on [empytree.com](http://empytree.com/).** The site uses all **288** supported favicon combinations and independently selects a compact home-link mark in the jugbeat page's breadcrumbs. [Adoption and public verification](docs/adoptions/0.3.1.md).
 
-**New revision 0.3.1:** transparent artwork, two recommended line colors, edge-to-edge geometry and ten resolutions per ICO. 288 expressions × 2 palettes = **576 ICOs**. 0.3.1 is not yet deployed. Default line colors may be overridden for a known placement. [Theme and density rules](docs/en/themes-and-density.md) · [Pixel comparison](docs/brand/themes-and-density.png).
+**Current presentation:** transparent artwork, two recommended line colors, edge-to-edge geometry and ten resolutions per ICO. 288 expressions × 2 palettes = **576 ICOs**. Default line colors may be overridden for a known placement. [Theme and density rules](docs/en/themes-and-density.md) · [Pixel comparison](docs/brand/themes-and-density.png).
 
 ## The system
 

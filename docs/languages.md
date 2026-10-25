@@ -4,7 +4,7 @@ The entry point is English `README.md`, paired with `README.ru.md`. Each begins 
 
 Shared current facts:
 
-- System 0.3.0 is deployed; its public source is `f27cb6e75281b98352519bcb1357fad197ccc07a`.
+- System 0.3.1 is deployed; its public source is `bb58e057dcd8e4fdb12aedf9725f26e4080c92b9`.
 - Source 0.3.1 uses construction 1.5: `from-inset`, `character`, micro head scaling 0.88 × 0.96.
 - Four eye pairs, nine mouths and four side states; 288 open/closed small marks, 432 display expressions.
 - Micro policy 2 approves all 288 supported combinations. Measurements are advisory.
@@ -15,4 +15,6 @@ Shared current facts:
 
 Change corresponding current pages together. Translations must not introduce a different drawing, pool or use policy. Local link checks do not establish semantic equivalence; compare the facts above and the actual deployed record.
 
-Английский и русский README начинаются равнозначными актуальными обзорными листами. В обеих версиях совпадают внедрённая 0.3.0, 288 рабочих сочетаний, общий открытый default 144, новая исходная 0.3.1 с конструкцией 1.5, прозрачностью и рекомендованными цветами и десятью слоями ICO и политика micro 2 без автоматических запретов. Исторические числа 24 и 40 остаются только с явным контекстом этапа. Изменять связанные документы одновременно; юридический перевод не становится второй самостоятельной лицензией.
+Английский и русский README начинаются равнозначными актуальными обзорными листами. В обеих версиях совпадают внедрённая 0.3.1, 288 рабочих сочетаний, общий открытый default 144, новая исходная 0.3.1 с конструкцией 1.5, прозрачностью и рекомендованными цветами и десятью слоями ICO и политика micro 2 без автоматических запретов. Исторические числа 24 и 40 остаются только с явным контекстом этапа. Изменять связанные документы одновременно; юридический перевод не становится второй самостоятельной лицензией.
+
+Both overviews now include equivalent meanings: open box, note/arrow hints, the familiar “this way up” symbol and music inside; monochrome, transparent artwork without texture, volume or random deformation. This is a documentation refresh within 0.3.1.

@@ -46,10 +46,22 @@ const languages={
   en:{tag:'PERSONAL MARK SYSTEM',title:'Quiet music from a crumpled box.',eyes:['Note arrows','Beamed notes','Separate eighths','Partial beam + flag'],detail:['Straight mouth / left dent','Triangle / right dent','Quarter rest / both dents','Half rest / straight sides'],parts:'4 EYE PAIRS × 9 MOUTHS × 4 SIDE STATES',counts:'288 small marks / 432 display expressions',mouths:['Straight','Rising','Falling','Left wedge','Right wedge','Triangle','1/8 rest','1/4 rest','1/2 rest'],box:'ONE BOX / FOUR SIDE STATES',sides:['Straight','Left','Right','Both'],frames:'OPEN / CLOSED / TOP CREASE',crease:'Top crease: display only, 64 px and above',optics:'THREE OPTICAL DRAWINGS',native:'16 px / native',zoom:'16 px / pixels ×8',sizes:'32 px compact / 64 px display',accepted:'Every supported 16 px combination is approved.',fixed:'ONE CHARACTER, MANY EXPRESSIONS',features:['Deliberately irregular note joints.','Intermediate shallow dents; the face stays fixed.','Transparent artwork; recommended line colors.'],live:'Live on empytree.com: 288 favicons + breadcrumb home marks',footer:'Construction 1.5 / micro policy 2 / version '+pkg.version},
   ru:{tag:'СИСТЕМА ЛИЧНОГО ЗНАКА',title:'Тихая музыка из помятой коробки.',eyes:['Ноты-стрелки','Связанная пара','Раздельные восьмые','Короткая вязка + флажок'],detail:['Прямой рот / вмятина слева','Треугольник / вмятина справа','Пауза 1/4 / две вмятины','Пауза 1/2 / ровные бока'],parts:'4 ВЕРХА × 9 РТОВ × 4 СОСТОЯНИЯ БОКОВ',counts:'288 малых / 432 крупных выражения',mouths:['Прямой','Наклон /','Наклон \\','Левый угол','Правый угол','Треугольник','Пауза 1/8','Пауза 1/4','Пауза 1/2'],box:'ОДНА КОРОБКА / ЧЕТЫРЕ СОСТОЯНИЯ',sides:['Ровно','Слева','Справа','Две'],frames:'ОТКРЫТАЯ / ЗАКРЫТАЯ / С ЗАЛОМОМ',crease:'Залом сверху — только display, от 64 px',optics:'ТРИ ОПТИЧЕСКИХ РИСУНКА',native:'16 px / оригинал',zoom:'16 px / пиксели ×8',sizes:'32 px compact / 64 px display',accepted:'Все поддерживаемые сочетания 16 px разрешены автором.',fixed:'ХАРАКТЕР ОДИН, ВЫРАЖЕНИЯ МЕНЯЮТСЯ',features:['Неровный стык головки и штиля сохраняется.','Пологие вмятины; лицо остаётся на месте.','Прозрачный знак; рекомендуемые цвета линий.'],live:'На empytree.com: 288 favicon + знак Home в хлебных крошках',footer:'Конструкция 1.5 / политика micro 2 / версия '+pkg.version},
 };
+const meanings={
+  en:{title:'A FACE / NOTES / THIS WAY UP',columns:[
+    {title:'AN OPEN BOX',lines:['The gap is the open top of the box.','The face stays inside its outline.']},
+    {title:'A HINT OF AN ARROW',lines:['The short left stroke suggests an arrow.','The pair above a line recalls the familiar','“this way up” handling symbol.']},
+    {title:'MUSIC INSIDE',lines:['Tilted noteheads: quiet music inside.','The expression changes;','the character remains recognizable.']},
+  ],principles:['Monochrome artwork on a transparent background. Line color may adapt to its placement.','No texture, volume or random deformation. The sheet background is a preview surface only.']},
+  ru:{title:'ЛИЦО / НОТЫ / «ЭТОЙ СТОРОНОЙ ВВЕРХ»',columns:[
+    {title:'ОТКРЫТАЯ КОРОБКА',lines:['Разрыв — открытый верх коробки.','Лицо остаётся внутри её границ.']},
+    {title:'НАМЁК НА СТРЕЛКУ',lines:['Короткий левый штрих намекает','на стрелку. Пара над чертой —','отсылка к общепринятому знаку','«этой стороной вверх».']},
+    {title:'МУЗЫКА ВНУТРИ',lines:['Наклонные головки нот —','тихая музыка внутри коробки.','Лицо меняет выражение,','сохраняя узнаваемый характер.']},
+  ],principles:['Монохромный рисунок на прозрачном фоне. Цвет линий может меняться под условия размещения.','Без текстур, объёма и случайных деформаций. Фон сводки — только поверхность для просмотра.']},
+};
 for(const [language,copy] of Object.entries(languages)){
   copy.counts=language==='en'?`${manifest.counts.microAllowed} small marks / ${manifest.counts.display} display expressions`:`${manifest.counts.microAllowed} малых / ${manifest.counts.display} крупных выражения`;
   copy.live=language==='en'?`Live ${adoption.version}: ${adoption.faviconChoices} faces / ${adoption.faviconFiles} ICOs + breadcrumb marks`:`На сайте ${adoption.version}: ${adoption.faviconChoices} лиц / ${adoption.faviconFiles} ICO + знак Home`;
-  const cover=[begin(1440,1640),text(64,52,copy.tag,15),text(1376,52,'empytree / '+pkg.version,15,{anchor:'end'}),text(64,120,'empytree',70,{font:'Georgia,serif'}),text(64,166,copy.title,28,{font:'Georgia,serif'})];
+  const cover=[begin(1440,1940),text(64,52,copy.tag,15),text(1376,52,'empytree / '+pkg.version,15,{anchor:'end'}),text(64,120,'empytree',70,{font:'Georgia,serif'}),text(64,166,copy.title,28,{font:'Georgia,serif'})];
   for(const [index,variant] of primary.entries()){
     const center=228+index*328;
     cover.push(glyph(variant,center-120,212,240),text(center,492,copy.eyes[index],21,{anchor:'middle',font:'Georgia,serif'}),text(center,520,copy.detail[index],14,{anchor:'middle'}));
@@ -71,10 +83,19 @@ for(const [language,copy] of Object.entries(languages)){
   cover.push(embed(micro,784,934,16),text(776,1002,copy.native,13),embed(zoom,950,900,128),text(936,1066,copy.zoom,13));
   cover.push(glyph({...primary[2],optical:'compact'},800,1114,32),glyph(primary[2],904,1098,64),text(776,1215,copy.sizes,15));
   cover.push(text(776,1250,copy.accepted,14));
-  cover.push('<rect x="0" y="1300" width="1440" height="340" fill="'+ink+'"/>',text(64,1346,copy.fixed,20,{color:paper}));
+  cover.push('<rect x="0" y="1300" width="1440" height="640" fill="'+ink+'"/>',text(64,1346,copy.fixed,20,{color:paper}));
   for(const [index,variant] of [primary[1],{eyes:'mixed',mouth:'rest8',frame:'open',dent:'left'},primary[2]].entries())cover.push(glyph(variant,64+index*178,1376,144,paper));
   for(const [index,value] of copy.features.entries())cover.push(text(672,1410+index*35,value,19,{color:paper,font:'Georgia,serif'}));
-  cover.push(text(64,1573,copy.live,18,{color:paper}),text(64,1612,copy.footer,14,{color:soft}),'</svg>');
+  const meaning=meanings[language];
+  cover.push(line(1552,64,1376,'#575b50'),text(64,1590,meaning.title,20,{color:paper}));
+  for(const [column,section] of meaning.columns.entries()){
+    const x=64+column*448;
+    cover.push(text(x,1634,section.title,16,{color:soft}));
+    for(const [row,value] of section.lines.entries())cover.push(text(x,1667+row*28,value,19,{color:paper,font:'Georgia,serif'}));
+  }
+  cover.push(line(1782,64,1376,'#575b50'));
+  for(const [row,value] of meaning.principles.entries())cover.push(text(64,1815+row*28,value,17,{color:paper,font:'Georgia,serif'}));
+  cover.push(text(64,1878,copy.live,18,{color:paper}),text(64,1912,copy.footer,14,{color:soft}),'</svg>');
   await save(language==='en'?'overview':'overview-ru',cover.join(''));
 }
 

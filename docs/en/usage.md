@@ -1,12 +1,12 @@
 # Website integration
 
-[README](../../README.md) · [Construction](logo-system.md) · [Generator](generator.md) · [Deployed 0.3.0](../adoptions/0.3.0.md)
+[README](../../README.md) · [Construction](logo-system.md) · [Generator](generator.md) · [Deployed 0.3.1](../adoptions/0.3.1.md)
 
-Version **0.3.0** is deployed on [empytree.com](http://empytree.com/): 288 favicon choices and independently selected compact home-link marks on the jugbeat page. The deployed public source is [f27cb6e75281b98352519bcb1357fad197ccc07a](https://github.com/empytree/logo/commit/f27cb6e75281b98352519bcb1357fad197ccc07a). Documentation-only commits do not replace that provenance or require a new website package.
+Version **0.3.1** is deployed on [empytree.com](http://empytree.com/): 288 favicon choices and independently selected compact home-link marks on the jugbeat page. The deployed public source is [bb58e057dcd8e4fdb12aedf9725f26e4080c92b9](https://github.com/empytree/logo/commit/bb58e057dcd8e4fdb12aedf9725f26e4080c92b9). Documentation-only commits do not replace that provenance or require a new website package.
 
 ## Current source 0.3.1
 
-The new package adds transparent backgrounds and recommended light/dark line colors, full-canvas marks and ten resolutions per ICO. See [complete theme/density rules](themes-and-density.md). The deployed 0.3.0 statement above remains adoption data until transparent 0.3.1 is rolled out and verified.
+The new package adds transparent backgrounds and recommended light/dark line colors, full-canvas marks and ten resolutions per ICO. See [complete theme/density rules](themes-and-density.md). The transparent 0.3.1 package is deployed and publicly verified. Overview-only changes do not require a new export or rollout.
 
 Build with Node.js 24: `npm ci`, then `npm run verify`. Preview with `npm run export:site -- --development`; it has a `-dev` URL and null commit. A release requires the owner's clean committed checkout:
 
